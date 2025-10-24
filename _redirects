@@ -1,0 +1,9 @@
+# Single Page Application redirects
+/*    /index.html   200
+
+# API redirects (if using Netlify Functions)
+/api/*  /.netlify/functions/:splat  200
+
+# Custom redirects (examples)
+# /old-page  /new-page  301
+# /blog/*    /news/:splat  301
