@@ -4,7 +4,7 @@ A modern, responsive website built with HTML, CSS, and JavaScript. Hosted on Git
 
 ## 🚀 Live Demo
 
-[View Live Site](https://your-site-name.netlify.app) *(Update this URL after Netlify deployment)*
+[View Live Site](https://clouds-website.netlify.app) *(Update this URL after Netlify deployment)*
 
 ## 📋 Features
 
@@ -48,8 +48,8 @@ website/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/website.git
-   cd website
+   git clone https://github.com/thecloudsstudio/clouds_website.git
+   cd clouds_website
    ```
 
 2. **Open in browser**
@@ -121,8 +121,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- **Website**: [Your Live Site](https://your-site-name.netlify.app)
-- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Website**: [Clouds Website](https://clouds-website.netlify.app)
+- **GitHub**: [@thecloudsstudio](https://github.com/thecloudsstudio)
 - **Email**: your.email@example.com
 
 ---
