@@ -12,6 +12,12 @@
   # Environment variables for build process
   NODE_VERSION = "18"
 
+# MAINTENANCE MODE INSTRUCTIONS:
+# To enable maintenance mode, uncomment the redirect in _redirects file:
+# Change: # /*    /maintenance.html   200
+# To:     /*      /maintenance.html   200
+# Then commit and push to GitHub for automatic deployment
+
 # Headers for security and performance
 [[headers]]
   for = "/*"
