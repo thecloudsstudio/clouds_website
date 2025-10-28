@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Under Maintenance - The Clouds Studio</title>
-    <meta name="description" content="The Clouds Studio website is currently undergoing maintenance. We'll be back soon!">
+    <title>Under Maintenance - CLOUDS</title>
+    <meta name="description" content="CLOUDS is currently under maintenance. We'll be back soon.">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,276 +17,102 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
             min-height: 100vh;
+            color: #333333;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            overflow: hidden;
         }
 
         .maintenance-container {
             text-align: center;
-            padding: 2rem;
             max-width: 600px;
-            animation: fadeIn 1s ease-in-out;
+            padding: 2rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
         }
 
-        .maintenance-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .main-title {
+            font-size: 2rem;
             font-weight: 300;
+            color: #333333;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .message {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .message h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #FFD700;
-        }
-
-        .message p {
             font-size: 1.1rem;
+            font-weight: 300;
+            color: #666666;
+            margin-bottom: 3rem;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
-        .countdown {
+        .signup-form {
             display: flex;
-            justify-content: center;
             gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.15);
+        .signup-form input {
+            flex: 1;
             padding: 1rem;
-            border-radius: 10px;
-            min-width: 80px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .countdown-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #FFD700;
-        }
-
-        .countdown-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .contact-info {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .contact-info p {
+            border: 1px solid #dddddd;
             font-size: 1rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
+            color: #333333;
+            background: #ffffff;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+        .signup-form button {
+            background: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .social-link {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            margin: 2rem 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            width: 0%;
-            animation: progress 3s ease-in-out infinite;
-        }
-
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 75%; }
-            100% { width: 0%; }
+        .signup-form button:hover {
+            background: #555555;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1rem; }
-            .message { padding: 1.5rem; }
-            .countdown { gap: 0.5rem; }
-            .countdown-item { min-width: 60px; padding: 0.8rem; }
-            .countdown-number { font-size: 1.5rem; }
-        }
-
-        /* Background Animation */
-        .bg-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape-1 { top: 10%; left: 10%; animation-delay: 0s; }
-        .shape-2 { top: 70%; left: 80%; animation-delay: 2s; }
-        .shape-3 { top: 40%; left: 70%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+            }
+            
+            .signup-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation">
-        <div class="floating-shapes shape-1"></div>
-        <div class="floating-shapes shape-2"></div>
-        <div class="floating-shapes shape-3"></div>
-    </div>
-
     <div class="maintenance-container">
-        <div class="maintenance-icon">🔧</div>
+        <h1 class="logo-text">CLOUDS</h1>
+        <h2 class="main-title">Under Maintenance</h2>
+        <p class="subtitle">We're making improvements and will be back shortly.</p>
         
-        <h1>We'll Be Right Back!</h1>
-        <p class="subtitle">The Clouds Studio is currently undergoing scheduled maintenance</p>
-        
-        <div class="message">
-            <h2>What's Happening?</h2>
-            <p>We're making some exciting improvements to bring you a better experience. Our team is working hard to enhance the website's performance, security, and features.</p>
-            <p><strong>Expected completion:</strong> Within the next few hours</p>
-        </div>
-
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-            </div>
-        </div>
-
-        <div class="contact-info">
-            <p><strong>Need immediate assistance?</strong></p>
-            <p>Contact us at: <strong>contact@thecloudsstudio.com</strong></p>
-            
-            <div class="social-links">
-                <a href="https://github.com/thecloudsstudio" class="social-link">GitHub</a>
-                <a href="#" class="social-link">Twitter</a>
-                <a href="#" class="social-link">LinkedIn</a>
-            </div>
-        </div>
+        <form class="signup-form" netlify>
+            <input type="email" name="email" placeholder="Enter your email for updates" required>
+            <button type="submit">Get Notified</button>
+        </form>
     </div>
-
-    <script>
-        // Simple countdown timer (counts up from current time)
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const startTime = new Date().setHours(0, 0, 0, 0); // Start of today
-            const elapsed = now - startTime;
-            
-            // Calculate time components
-            const hours = Math.floor(elapsed / (1000 * 60 * 60)) % 24;
-            const minutes = Math.floor(elapsed / (1000 * 60)) % 60;
-            const seconds = Math.floor(elapsed / 1000) % 60;
-            
-            // Update display
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // Initial call
-
-        // Optional: Auto-refresh page every 5 minutes to check if maintenance is complete
-        setTimeout(() => {
-            window.location.reload();
-        }, 5 * 60 * 1000); // 5 minutes
-    </script>
 </body>
 </html>
