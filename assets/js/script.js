@@ -1,82 +1,99 @@
-// Smooth scrolling for navigation links
+// Coming Soon Page functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle navigation clicks
-    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+    // Launch countdown timer
+    function updateCountdown() {
+        // Set launch date (30 days from now for demo)
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30);
+        
+        const now = new Date().getTime();
+        const distance = launchDate.getTime() - now;
+        
+        // Calculate time components
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update display
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+        
+        if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+        if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+        if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+        if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+        
+        // If countdown is finished
+        if (distance < 0) {
+            if (daysElement) daysElement.textContent = '00';
+            if (hoursElement) hoursElement.textContent = '00';
+            if (minutesElement) minutesElement.textContent = '00';
+            if (secondsElement) secondsElement.textContent = '00';
+        }
+    }
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // Update countdown immediately and then every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Handle email signup form
+    const signupForm = document.querySelector('.signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if (!email) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // For demo - in production this would be handled by Netlify Forms
+            alert('Thank you! We\'ll notify you when CLOUDS launches.');
+            this.reset();
+        });
+    }
+    
+    // Add smooth scroll for any internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
-
-    // Handle contact form submission (for demonstration)
-    const contactForm = document.querySelector('.contact-form');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Show success message (replace with actual form handling)
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
-        });
-    }
-
-    // Add scroll effect to navbar
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.background = '#fff';
-            navbar.style.backdropFilter = 'none';
-        }
+    // Add loading animation delay for better UX
+    const elements = document.querySelectorAll('.logo-section, .content, .coming-soon-footer');
+    elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 200);
     });
-
-    // Animate elements on scroll (intersection observer)
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe project cards and sections
-    const animatedElements = document.querySelectorAll('.project-card, .section');
     
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+    // Parallax effect for background elements
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.floating-element');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.1 + (index * 0.05);
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
     });
 });
