@@ -117,39 +117,42 @@
 /* Services Section */
 .services-section {
     flex: 1;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
     min-height: 60vh;
+    background: rgba(255, 0, 0, 0.1) !important; /* Debug red background */
 }
 
 .services-container {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     gap: 3rem;
     max-width: 900px;
     width: 100%;
     justify-content: center;
     align-items: stretch;
+    background: rgba(0, 255, 0, 0.1) !important; /* Debug green background */
 }
 
 .service-button {
-    display: block;
+    display: block !important;
     flex: 1;
-    min-width: 300px;
+    min-width: 300px !important;
     max-width: 400px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid rgba(120, 119, 198, 0.3);
+    background: #ffffff !important;
+    border: 3px solid #7877c6 !important;
     border-radius: 16px;
-    padding: 3rem 2rem;
+    padding: 3rem 2rem !important;
     text-decoration: none;
-    color: #333333;
+    color: #333333 !important;
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+    margin: 1rem !important;
 }
 
 .service-button::before {
