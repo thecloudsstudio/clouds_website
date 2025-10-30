@@ -40,32 +40,33 @@
         }
 
         .logo-section {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
-        .logo-image {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            background: url('assets/images/logo.svg') center/contain no-repeat;
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
         .tagline {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: #666666;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
         }
 
         .services-section {
-            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 4rem;
-            margin: 2rem 0;
+            margin: 4rem 0;
         }
 
         .service-button {
@@ -123,19 +124,26 @@
             background: #333333;
             color: #ffffff;
             border: none;
-            padding: 0.8rem 2rem;
-            font-size: 0.9rem;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: all 0.3s ease;
             border-radius: 4px;
+            position: relative;
+        }
+
+        .contact-btn:before {
+            content: "✉ ";
+            margin-right: 0.5rem;
         }
 
         .contact-btn:hover {
             background: #555555;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Modal Styles */
@@ -214,6 +222,9 @@
             background: #ffffff;
             color: #333333;
             transition: border-color 0.3s ease;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .contact-form input:focus,
@@ -259,9 +270,8 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .logo-image {
-                width: 150px;
-                height: 150px;
+            .logo-text {
+                font-size: 2.5rem;
             }
             
             .services-section {
@@ -284,13 +294,13 @@
             .modal-content {
                 padding: 2rem;
                 margin: 1rem;
+                width: 95%;
             }
         }
         
         @media (max-width: 480px) {
-            .logo-image {
-                width: 120px;
-                height: 120px;
+            .logo-text {
+                font-size: 2rem;
             }
             
             .tagline {
@@ -307,6 +317,11 @@
             .form-row {
                 flex-direction: column;
             }
+
+            .modal-content {
+                width: 90%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -314,7 +329,7 @@
     <div class="container">
         <!-- Logo Section -->
         <div class="logo-section">
-            <div class="logo-image"></div>
+            <h1 class="logo-text">CLOUDS</h1>
             <p class="tagline">Design and Research Studio</p>
         </div>
 
@@ -335,7 +350,7 @@
                 <a href="#" target="_blank">LinkedIn</a>
                 <a href="#" target="_blank">Twitter</a>
             </div>
-            <button class="contact-btn" onclick="openModal()">Contact Us</button>
+            <button class="contact-btn" onclick="openModal()">Get In Touch</button>
         </div>
     </div>
 
