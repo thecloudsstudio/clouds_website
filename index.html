@@ -40,27 +40,18 @@
         }
 
         .logo-section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .logo-image {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1rem;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
             background: url('assets/images/logo.svg') center/contain no-repeat;
         }
 
-        .logo-text {
-            font-size: 4rem;
-            font-weight: 200;
-            letter-spacing: 0.3em;
-            color: #333333;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 300;
             color: #666666;
             margin-bottom: 4rem;
@@ -81,8 +72,8 @@
             background: #f8f9fa;
             border: 2px solid #e9ecef;
             padding: 4rem 3rem;
-            min-width: 280px;
-            min-height: 200px;
+            width: 300px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,22 +119,149 @@
             color: #333333;
         }
 
-        .contact-info {
+        .contact-btn {
+            background: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 2rem;
             font-size: 0.9rem;
-            color: #999999;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .contact-btn:hover {
+            background: #555555;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
             font-weight: 300;
+            cursor: pointer;
+            color: #999999;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #333333;
+        }
+
+        .modal h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #333333;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: #ffffff;
+            color: #333333;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #333333;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
             letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .submit-btn:hover {
+            background: #555555;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 2.5rem;
-            }
-            
             .logo-image {
-                width: 80px;
-                height: 80px;
+                width: 150px;
+                height: 150px;
             }
             
             .services-section {
@@ -152,8 +270,8 @@
             }
             
             .service-button {
-                min-width: 250px;
-                min-height: 150px;
+                width: 280px;
+                height: 160px;
                 font-size: 1.5rem;
                 padding: 3rem 2rem;
             }
@@ -162,11 +280,17 @@
                 flex-wrap: wrap;
                 gap: 1rem;
             }
+
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .logo-text {
-                font-size: 2rem;
+            .logo-image {
+                width: 120px;
+                height: 120px;
             }
             
             .tagline {
@@ -174,10 +298,14 @@
             }
             
             .service-button {
-                min-width: 200px;
-                min-height: 120px;
+                width: 250px;
+                height: 140px;
                 font-size: 1.3rem;
                 padding: 2rem 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
             }
         }
     </style>
@@ -187,7 +315,6 @@
         <!-- Logo Section -->
         <div class="logo-section">
             <div class="logo-image"></div>
-            <h1 class="logo-text">CLOUDS</h1>
             <p class="tagline">Design and Research Studio</p>
         </div>
 
@@ -208,8 +335,89 @@
                 <a href="#" target="_blank">LinkedIn</a>
                 <a href="#" target="_blank">Twitter</a>
             </div>
-            <p class="contact-info">hello@thecloudsstudio.com</p>
+            <button class="contact-btn" onclick="openModal()">Contact Us</button>
         </div>
     </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Get In Touch</h3>
+            <form class="contact-form" netlify name="contact">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-row">
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="automation">Clouds Automation</option>
+                        <option value="architecture">Clouds Arch</option>
+                        <option value="consultation">General Consultation</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('contactModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.contact-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const name = this.querySelector('input[name="name"]').value;
+                    const email = this.querySelector('input[name="email"]').value;
+                    const service = this.querySelector('select[name="service"]').value;
+                    const message = this.querySelector('textarea[name="message"]').value;
+                    
+                    if (!name || !email || !service || !message) {
+                        e.preventDefault();
+                        alert('Please fill in all fields.');
+                        return;
+                    }
+                    
+                    if (!email.includes('@') || !email.includes('.')) {
+                        e.preventDefault();
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    
+                    const btn = this.querySelector('.submit-btn');
+                    btn.textContent = 'Sending...';
+                    btn.disabled = true;
+                    
+                    // Close modal after submission
+                    setTimeout(() => {
+                        closeModal();
+                        btn.textContent = 'Send Message';
+                        btn.disabled = false;
+                        form.reset();
+                    }, 1000);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
