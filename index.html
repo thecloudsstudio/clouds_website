@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLOUDS - Digital Solutions</title>
-    <meta name="description" content="CLOUDS - Premium digital solutions including automation and architecture services.">
+    <title>CLOUDS - Design and Research Studio</title>
+    <meta name="description" content="CLOUDS - Design and Research Studio specializing in automation and architecture solutions.">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,149 +19,120 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #ffffff;
-            min-height: 100vh;
+            height: 100vh;
             color: #333333;
-            line-height: 1.6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             padding: 2rem;
             text-align: center;
         }
 
+        .logo-section {
+            margin-bottom: 3rem;
+        }
+
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            background: url('assets/images/logo.svg') center/contain no-repeat;
+        }
+
         .logo-text {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 200;
             letter-spacing: 0.3em;
             color: #333333;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .tagline {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: #666666;
             margin-bottom: 4rem;
-            letter-spacing: 0.1em;
-        }
-
-        .services {
-            margin: 4rem 0;
-        }
-
-        .services h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            color: #333333;
-            margin-bottom: 3rem;
-            letter-spacing: 0.1em;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border: 1px solid #e9ecef;
-            text-align: left;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: #333333;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: #666666;
-            font-weight: 300;
-        }
-
-        .contact-section {
-            background: #f8f9fa;
-            padding: 3rem;
-            margin-top: 4rem;
-            border: 1px solid #e9ecef;
-        }
-
-        .contact-section h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            color: #333333;
-            margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            flex: 1;
-            padding: 1rem;
-            border: 1px solid #dddddd;
-            font-family: inherit;
-            font-size: 1rem;
-            background: #ffffff;
-            color: #333333;
-        }
-
-        .contact-form textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: #333333;
-            color: #ffffff;
-            border: none;
-            padding: 1rem 3rem;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            margin-top: 1rem;
-            transition: background 0.3s ease;
         }
 
-        .submit-btn:hover {
-            background: #555555;
+        .services-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            margin: 2rem 0;
+        }
+
+        .service-button {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 4rem 3rem;
+            min-width: 280px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #333333;
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-button:hover {
+            background: #e9ecef;
+            border-color: #dee2e6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-section {
+            margin-top: 3rem;
         }
 
         .social-links {
-            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .social-links a {
-            display: inline-block;
-            margin: 0 1rem;
-            color: #333333;
+            color: #666666;
             text-decoration: none;
             font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             transition: color 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #666666;
+            color: #333333;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            color: #999999;
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
 
         /* Responsive Design */
@@ -170,70 +141,75 @@
                 font-size: 2.5rem;
             }
             
-            .container {
-                padding: 1rem;
+            .logo-image {
+                width: 80px;
+                height: 80px;
             }
             
-            .form-row {
+            .services-section {
                 flex-direction: column;
+                gap: 2rem;
             }
             
-            .service-grid {
-                grid-template-columns: 1fr;
+            .service-button {
+                min-width: 250px;
+                min-height: 150px;
+                font-size: 1.5rem;
+                padding: 3rem 2rem;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .service-button {
+                min-width: 200px;
+                min-height: 120px;
+                font-size: 1.3rem;
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <h1 class="logo-text">CLOUDS</h1>
-        <p class="tagline">Digital Solutions</p>
-
-        <!-- Services Section -->
-        <section class="services">
-            <h2>Our Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <h3>Clouds Automation</h3>
-                    <p>Streamline your workflows with intelligent automation solutions. We help businesses reduce manual tasks and increase efficiency through smart automation tools.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Clouds Arch</h3>
-                    <p>Scalable architecture designs for modern digital solutions. Our team creates robust, scalable systems that grow with your business needs.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social Links -->
-        <div class="social-links">
-            <a href="https://github.com/thecloudsstudio" target="_blank">GitHub</a>
-            <a href="#" target="_blank">LinkedIn</a>
-            <a href="#" target="_blank">Twitter</a>
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <div class="logo-image"></div>
+            <h1 class="logo-text">CLOUDS</h1>
+            <p class="tagline">Design and Research Studio</p>
         </div>
 
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <h3>Get In Touch</h3>
-            <form class="contact-form" netlify name="contact">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-row">
-                    <select name="service" required>
-                        <option value="">Select Service</option>
-                        <option value="automation">Clouds Automation</option>
-                        <option value="architecture">Clouds Arch</option>
-                        <option value="consultation">General Consultation</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </section>
+        <!-- Services Section -->
+        <div class="services-section">
+            <a href="#" class="service-button">
+                Clouds Automation
+            </a>
+            <a href="#" class="service-button">
+                Clouds Arch
+            </a>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <div class="social-links">
+                <a href="https://github.com/thecloudsstudio" target="_blank">GitHub</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">Twitter</a>
+            </div>
+            <p class="contact-info">hello@thecloudsstudio.com</p>
+        </div>
     </div>
 </body>
 </html>
