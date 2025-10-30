@@ -5,98 +5,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLOUDS - Digital Solutions</title>
     <meta name="description" content="CLOUDS - Premium digital solutions including automation and architecture services.">
-    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="homepage-body">
-    <!-- Main Content Container -->
-    <div class="homepage-container">
-        <!-- Header Section -->
-        <header class="header-section">
-            <div class="logo-section">
-                <h1 class="logo-text">CLOUDS</h1>
-                <p class="tagline">Digital Solutions</p>
-            </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #666666;
+            margin-bottom: 4rem;
+            letter-spacing: 0.1em;
+        }
+
+        .services {
+            margin: 4rem 0;
+        }
+
+        .services h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #333333;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border: 1px solid #e9ecef;
+            text-align: left;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666666;
+            font-weight: 300;
+        }
+
+        .contact-section {
+            background: #f8f9fa;
+            padding: 3rem;
+            margin-top: 4rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .contact-section h3 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #333333;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #dddddd;
+            font-family: inherit;
+            font-size: 1rem;
+            background: #ffffff;
+            color: #333333;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #555555;
+        }
+
+        .social-links {
+            margin: 3rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 1rem;
+            color: #333333;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #666666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2.5rem;
+            }
             
-            <!-- Social Media Links -->
-            <div class="social-links">
-                <a href="https://github.com/thecloudsstudio" class="social-link" aria-label="GitHub" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link" aria-label="LinkedIn" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link" aria-label="Twitter" target="_blank">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                </a>
-            </div>
-        </header>
+            .container {
+                padding: 1rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1 class="logo-text">CLOUDS</h1>
+        <p class="tagline">Digital Solutions</p>
 
-        <!-- Main Services Section -->
-        <main class="services-section">
-            <div class="services-container">
-                <a href="#" class="service-button automation-btn">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <h2>Clouds Automation</h2>
-                    <p>Streamline your workflows with intelligent automation solutions</p>
-                </a>
-                
-                <a href="#" class="service-button architecture-btn">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M3 3h18v18H3z"/>
-                            <path d="M9 9h6v6H9z"/>
-                            <path d="M3 9h6"/>
-                            <path d="M15 9h6"/>
-                            <path d="M9 3v6"/>
-                            <path d="M9 15v6"/>
-                        </svg>
-                    </div>
-                    <h2>Clouds Arch</h2>
-                    <p>Scalable architecture designs for modern digital solutions</p>
-                </a>
+        <!-- Services Section -->
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Clouds Automation</h3>
+                    <p>Streamline your workflows with intelligent automation solutions. We help businesses reduce manual tasks and increase efficiency through smart automation tools.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Clouds Arch</h3>
+                    <p>Scalable architecture designs for modern digital solutions. Our team creates robust, scalable systems that grow with your business needs.</p>
+                </div>
             </div>
-        </main>
+        </section>
 
-        <!-- Contact Form Section -->
-        <footer class="contact-section">
-            <div class="contact-container">
-                <h3>Get In Touch</h3>
-                <form class="contact-form" netlify name="contact">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-row">
-                        <select name="service" required>
-                            <option value="">Select Service</option>
-                            <option value="automation">Clouds Automation</option>
-                            <option value="architecture">Clouds Arch</option>
-                            <option value="consultation">General Consultation</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <textarea name="message" placeholder="Tell us about your project..." rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </footer>
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://github.com/thecloudsstudio" target="_blank">GitHub</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">Twitter</a>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h3>Get In Touch</h3>
+            <form class="contact-form" netlify name="contact">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-row">
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="automation">Clouds Automation</option>
+                        <option value="architecture">Clouds Arch</option>
+                        <option value="consultation">General Consultation</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
     </div>
-
-    <script src="assets/js/script.js"></script>
 </body>
 </html>
