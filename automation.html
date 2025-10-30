@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouds Automation - AI-Powered Manufacturing Intelligence</title>
+    <meta name="description" content="Revolutionary AI automation for manufacturing industries using computer vision, custom LLMs, and ARGIS algorithm for intelligent factories.">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e9ecef;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333333;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #333333;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section:first-of-type {
+            padding-top: 8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 200;
+            color: #333333;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #666666;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-visual {
+            width: 300px;
+            height: 200px;
+            margin: 3rem auto;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #ffffff;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .problem-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .problem-icon {
+            width: 80px;
+            height: 80px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #666666;
+        }
+
+        .problem-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        .problem-text {
+            color: #666666;
+            font-weight: 300;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: #f8f9fa;
+        }
+
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .solution-text {
+            font-size: 1.1rem;
+            color: #666666;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .argis-highlight {
+            background: #333333;
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .argis-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .argis-desc {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .solution-visual {
+            width: 100%;
+            height: 400px;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Technology Section */
+        .technology {
+            background: #ffffff;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .tech-icon {
+            width: 100px;
+            height: 100px;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #666666;
+        }
+
+        .tech-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: #f8f9fa;
+        }
+
+        .benefits-visual {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .factory-diagram {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: #333333;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .benefit-text {
+            color: #666666;
+            font-weight: 300;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: #333333;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #333333;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-button:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Simple Graphics */
+        .graphic-brain {
+            position: relative;
+        }
+
+        .graphic-brain::before {
+            content: "🧠";
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .graphic-factory::before {
+            content: "🏭";
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .graphic-eye::before {
+            content: "👁";
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .graphic-robot::before {
+            content: "🤖";
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .graphic-chart::before {
+            content: "📊";
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .problem-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+                min-height: auto;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="nav-brand">CLOUDS</a>
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section hero">
+        <div class="container">
+            <h1 class="hero-title">Clouds Automation</h1>
+            <p class="hero-subtitle">Revolutionizing manufacturing with AI-powered intelligence. Every workstation gets a brain, every factory becomes conscious.</p>
+            <div class="hero-visual graphic-brain">
+                <div style="position: absolute; top: 20%; left: 20%; font-size: 1.5rem; opacity: 0.6;">🧠</div>
+                <div style="position: absolute; top: 40%; right: 25%; font-size: 1.2rem; opacity: 0.5;">👁</div>
+                <div style="position: absolute; bottom: 25%; left: 30%; font-size: 1.3rem; opacity: 0.5;">⚡</div>
+                <div style="color: #666; font-size: 1.1rem; font-weight: 300;">Intelligent Manufacturing</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section problem">
+        <div class="container">
+            <h2 class="section-title">The Manufacturing Challenge</h2>
+            <p style="text-align: center; color: #666666; font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Traditional manufacturing lacks real-time intelligence, leading to inefficiencies, quality issues, and missed opportunities for optimization.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">❌</div>
+                    <h3 class="problem-title">Manual Inspection</h3>
+                    <p class="problem-text">Human inspectors can miss defects, leading to quality issues and inconsistent standards across production lines.</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">📉</div>
+                    <h3 class="problem-title">Limited Visibility</h3>
+                    <p class="problem-text">Lack of real-time data and insights makes it difficult to optimize processes and prevent issues before they occur.</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">⏰</div>
+                    <h3 class="problem-title">Reactive Approach</h3>
+                    <p class="problem-text">Problems are discovered after they happen, leading to costly downtime, waste, and reduced productivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section solution">
+        <div class="container">
+            <h2 class="section-title">The ARGIS Solution</h2>
+            <div class="solution-content">
+                <div>
+                    <p class="solution-text">Clouds Automation transforms manufacturing through our proprietary ARGIS algorithm - a revolutionary system that combines computer vision, custom LLMs, and augmented reality to create intelligent workstations.</p>
+                    
+                    <div class="argis-highlight">
+                        <h3 class="argis-title">ARGIS Algorithm</h3>
+                        <p class="argis-desc">Augmented Reality Guidance and Inspection System - Our proprietary AI that provides real-time guidance, quality inspection, and intelligent decision-making at every workstation.</p>
+                    </div>
+                    
+                    <p class="solution-text">Each workstation becomes a smart node in your factory network, capable of learning, adapting, and providing valuable insights that contribute to a truly conscious manufacturing environment.</p>
+                </div>
+                <div class="solution-visual">
+                    <div style="position: absolute; top: 15%; left: 15%; font-size: 2rem; opacity: 0.4;">🧠</div>
+                    <div style="position: absolute; top: 20%; right: 20%; font-size: 1.8rem; opacity: 0.5;">👁</div>
+                    <div style="position: absolute; bottom: 30%; left: 25%; font-size: 1.5rem; opacity: 0.4;">⚙️</div>
+                    <div style="position: absolute; bottom: 25%; right: 15%; font-size: 1.6rem; opacity: 0.5;">📊</div>
+                    <div style="color: #666; font-size: 1.2rem; font-weight: 300; text-align: center;">Smart Workstation Network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section technology">
+        <div class="container">
+            <h2 class="section-title">Core Technologies</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon graphic-eye">👁</div>
+                    <h3 class="tech-title">Computer Vision</h3>
+                    <p>Advanced visual recognition systems that can detect defects, monitor processes, and ensure quality standards with superhuman accuracy.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon graphic-robot">🤖</div>
+                    <h3 class="tech-title">Custom LLMs</h3>
+                    <p>Tailored language models trained on your specific manufacturing processes, providing contextual guidance and intelligent decision support.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon graphic-chart">📊</div>
+                    <h3 class="tech-title">Real-time Analytics</h3>
+                    <p>Continuous data processing and analysis that turns every data point into actionable insights for immediate optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits">
+        <div class="container">
+            <h2 class="section-title">Creating Conscious Factories</h2>
+            <p style="text-align: center; color: #666666; font-size: 1.1rem; max-width: 800px; margin: 0 auto;">When every workstation has intelligence, your entire factory becomes a self-aware ecosystem that continuously learns, adapts, and optimizes itself.</p>
+            
+            <div class="benefits-visual">
+                <div class="factory-diagram">
+                    <div style="position: absolute; top: 20%; left: 20%; font-size: 1.5rem; opacity: 0.5;">🧠</div>
+                    <div style="position: absolute; top: 25%; right: 25%; font-size: 1.5rem; opacity: 0.5;">🧠</div>
+                    <div style="position: absolute; bottom: 30%; left: 30%; font-size: 1.5rem; opacity: 0.5;">🧠</div>
+                    <div style="position: absolute; bottom: 25%; right: 20%; font-size: 1.5rem; opacity: 0.5;">🧠</div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #666; font-size: 1.1rem; font-weight: 300;">Connected Intelligence Network</div>
+                </div>
+            </div>
+
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✓</div>
+                    <p class="benefit-text"><strong>Zero-defect production</strong> through real-time quality monitoring and immediate corrective actions</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <p class="benefit-text"><strong>Predictive maintenance</strong> that prevents downtime before issues occur</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <p class="benefit-text"><strong>Continuous optimization</strong> as the system learns and improves processes automatically</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <p class="benefit-text"><strong>Personalized guidance</strong> for workers at each station based on real-time conditions</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔍</div>
+                    <p class="benefit-text"><strong>Complete visibility</strong> into every aspect of your manufacturing process</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <p class="benefit-text"><strong>Scalable intelligence</strong> that grows with your operation and adapts to new requirements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <h2 class="cta-title">Ready to Transform Your Factory?</h2>
+            <p class="cta-text">Experience the future of intelligent manufacturing with ARGIS. Let's discuss how we can bring consciousness to your production line.</p>
+            <button class="cta-button" onclick="window.open('mailto:hello@thecloudsstudio.com?subject=ARGIS Demo Request', '_blank')">Schedule a Demo</button>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
