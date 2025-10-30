@@ -40,7 +40,8 @@
         }
 
         .logo-section {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
         }
 
         .logo-text {
@@ -56,9 +57,8 @@
             font-size: 1.2rem;
             font-weight: 300;
             color: #666666;
-            margin-bottom: 3rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
         }
 
         .services-section {
@@ -80,10 +80,9 @@
             justify-content: center;
             text-decoration: none;
             color: #333333;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -111,8 +110,7 @@
             text-decoration: none;
             font-weight: 300;
             font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: color 0.3s ease;
         }
 
@@ -128,16 +126,9 @@
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: all 0.3s ease;
             border-radius: 4px;
-            position: relative;
-        }
-
-        .contact-btn:before {
-            content: "✉ ";
-            margin-right: 0.5rem;
         }
 
         .contact-btn:hover {
@@ -248,7 +239,6 @@
             font-weight: 500;
             cursor: pointer;
             letter-spacing: 0.05em;
-            text-transform: uppercase;
             margin-top: 1rem;
             transition: background 0.3s ease;
             border-radius: 4px;
@@ -350,7 +340,7 @@
                 <a href="#" target="_blank">LinkedIn</a>
                 <a href="#" target="_blank">Twitter</a>
             </div>
-            <button class="contact-btn" onclick="openModal()">Get In Touch</button>
+            <button class="contact-btn" onclick="openModal()">Get in Touch</button>
         </div>
     </div>
 
@@ -361,15 +351,15 @@
             <h3>Get In Touch</h3>
             <form class="contact-form" netlify name="contact">
                 <div class="form-row">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
                 </div>
                 <div class="form-row">
                     <select name="service" required>
-                        <option value="">Select Service</option>
+                        <option value="">Select service</option>
                         <option value="automation">Clouds Automation</option>
                         <option value="architecture">Clouds Arch</option>
-                        <option value="consultation">General Consultation</option>
+                        <option value="consultation">General consultation</option>
                     </select>
                 </div>
                 <div class="form-row">
