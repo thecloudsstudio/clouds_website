@@ -78,185 +78,287 @@
         /* Hero Section - Point Innovation Style */
         .hero {
             background: #ffffff;
-            padding: 120px 0 80px;
+            padding: 140px 0 100px;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0e0e0 50%, transparent);
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 200;
-            letter-spacing: 0.5px;
+            font-size: 4.5rem;
+            font-weight: 100;
+            letter-spacing: 2px;
             color: #000000;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-transform: uppercase;
+            line-height: 1.1;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            color: #666666;
+            font-size: 1.4rem;
+            color: #555555;
             font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
         }
 
         /* Services Section */
         .services-section {
-            padding: 80px 0;
-            background: #f8f9fa;
+            padding: 100px 0;
+            background: #fafafa;
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0e0e0 50%, transparent);
         }
 
         .services-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         .services-title {
-            font-size: 2.5rem;
-            font-weight: 300;
+            font-size: 3rem;
+            font-weight: 100;
             color: #000000;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            line-height: 1.2;
         }
 
         .services-tabs {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 0;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
         }
 
         .service-tab {
-            background: #ffffff;
+            background: transparent;
             border: 2px solid #000000;
             color: #000000;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
             border-radius: 0;
+            font-size: 0.9rem;
+            margin: 0;
+            border-right: none;
+            position: relative;
+        }
+
+        .service-tab:first-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .service-tab:last-child {
+            border-right: 2px solid #000000;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         .service-tab:hover,
         .service-tab.active {
             background: #000000;
             color: #ffffff;
+            transform: translateY(-2px);
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .learn-more-btn {
             display: inline-block;
             background: #000000;
             color: #ffffff;
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
             margin-top: 2rem;
+            border: 2px solid #000000;
         }
 
         .learn-more-btn:hover {
-            background: #333333;
-            transform: translateY(-2px);
+            background: transparent;
+            color: #000000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         /* Project Spotlight Section */
         .project-spotlight {
-            padding: 80px 0;
+            padding: 120px 0;
             background: #ffffff;
+            position: relative;
+        }
+
+        .project-spotlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0e0e0 50%, transparent);
         }
 
         .spotlight-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
         }
 
         .spotlight-title {
-            font-size: 2.5rem;
-            font-weight: 300;
+            font-size: 3rem;
+            font-weight: 100;
             color: #000000;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            line-height: 1.2;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
         }
 
         .project-card {
             background: #ffffff;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
+            border: none;
+            transition: all 0.5s ease;
             overflow: hidden;
+            position: relative;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover::after {
+            transform: scaleX(1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
         }
 
         .project-image {
             width: 100%;
-            height: 250px;
+            height: 280px;
             background: #f5f5f5;
             background-size: cover;
             background-position: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            opacity: 1;
         }
 
         .project-content {
-            padding: 2rem;
+            padding: 2.5rem 0;
         }
 
         .project-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #000000;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-type {
-            font-size: 0.9rem;
-            color: #666666;
+            font-size: 1.4rem;
             font-weight: 400;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 0.8rem;
             letter-spacing: 0.5px;
         }
 
+        .project-type {
+            font-size: 0.85rem;
+            color: #888888;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .project-description {
-            color: #333333;
-            line-height: 1.6;
+            color: #555555;
+            line-height: 1.7;
             font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
         }
 
         .view-all-btn {
             display: inline-block;
-            background: #000000;
-            color: #ffffff;
-            padding: 1rem 2rem;
+            background: transparent;
+            color: #000000;
+            padding: 1.2rem 3rem;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
             margin: 0 auto;
             display: block;
             text-align: center;
-            max-width: 200px;
+            max-width: 250px;
+            border: 2px solid #000000;
         }
 
         .view-all-btn:hover {
-            background: #333333;
-            transform: translateY(-2px);
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         /* Partners Section */
@@ -777,16 +879,8 @@
             });
         });
     </script>
-                <div class="capability-card animate-on-scroll animate-delay-1">
-                    <div class="capability-icon">🎯</div>
-                    <h3 class="capability-title">3D Modeling & CAD</h3>
-                    <p class="capability-text">
-                        Precision 3D models for prototyping, visualization, and manufacturing using industry-leading CAD software.
-                    </p>
-                    <ul class="capability-features">
-                        <li>Parametric modeling</li>
-                        <li>Surface modeling</li>
-                        <li>Assembly design</li>
+</body>
+</html>
                         <li>Technical drawings</li>
                     </ul>
                 </div>
