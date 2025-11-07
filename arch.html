@@ -446,16 +446,203 @@
             opacity: 0.7;
         }
 
-        /* Animation Classes */
+        /* Advanced Animation System */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, opacity;
         }
 
         .animate-on-scroll.animated {
             opacity: 1;
+        }
+
+        /* Directional Animations */
+        .fade-up {
+            transform: translateY(60px);
+        }
+
+        .fade-up.animated {
             transform: translateY(0);
+        }
+
+        .fade-down {
+            transform: translateY(-60px);
+        }
+
+        .fade-down.animated {
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            transform: translateX(-60px);
+        }
+
+        .fade-left.animated {
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            transform: translateX(60px);
+        }
+
+        .fade-right.animated {
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            transform: scale(0.9);
+        }
+
+        .scale-in.animated {
+            transform: scale(1);
+        }
+
+        .rotate-in {
+            transform: rotate(-3deg) scale(0.95);
+        }
+
+        .rotate-in.animated {
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Staggered Animation Delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Parallax Elements */
+        .parallax-element {
+            will-change: transform;
+        }
+
+        /* Enhanced Hover Effects */
+        .benefit-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .audience-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            overflow: hidden;
+            will-change: transform, box-shadow;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+
+        .audience-card:hover .audience-image {
+            transform: scale(1.1);
+        }
+
+        .audience-image {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        /* Button Animations */
+        .cta-button-primary, .cta-button-secondary {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Header Animation */
+        .header {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        /* Loading Animation */
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            animation: slideInFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Smooth Page Transitions */
+        body {
+            animation: fadeInPage 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes fadeInPage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Advanced Hover States for Links */
+        .nav-link, .footer-link {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .nav-link::after, .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #333333;
+            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-link:hover::after, .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Preload optimization */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Responsive Design */
@@ -538,11 +725,11 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title animate-on-scroll">Your Invitation to True Partnership</h1>
-                <p class="hero-subtitle animate-on-scroll">
+                <h1 class="hero-title animate-on-scroll fade-up">Your Invitation to True Partnership</h1>
+                <p class="hero-subtitle animate-on-scroll fade-up stagger-1">
                     Architectural excellence delivers expert design solutions, creating beautiful and functional spaces with quality craftsmanship.
                 </p>
-                <a href="#contact" class="hero-cta animate-on-scroll">Work with us</a>
+                <a href="#contact" class="hero-cta animate-on-scroll scale-in stagger-2">Work with us</a>
             </div>
         </div>
     </section>
@@ -551,13 +738,13 @@
     <section class="benefits-section">
         <div class="container">
             <div class="benefits-header">
-                <h2 class="benefits-title animate-on-scroll">Why Partner with Clouds Arch?</h2>
-                <p class="benefits-subtitle animate-on-scroll">
+                <h2 class="benefits-title animate-on-scroll fade-down">Why Partner with Clouds Arch?</h2>
+                <p class="benefits-subtitle animate-on-scroll fade-up stagger-1">
                     We built the architectural service model that should've existed all along, one that supports your success without getting in your way.
                 </p>
             </div>
             <div class="benefits-grid">
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-1">
                     <h3 class="benefit-title">Complete Project Support</h3>
                     <p class="benefit-text">
                         Design help, permit assistance, and project management — all included.
@@ -565,7 +752,7 @@
                     <a href="#services" class="benefit-link">Read more</a>
                 </div>
                 
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-2">
                     <h3 class="benefit-title">Streamlined Operations</h3>
                     <p class="benefit-text">
                         Fast quoting, accurate deliveries, and less back-and-forth.
@@ -573,7 +760,7 @@
                     <a href="#services" class="benefit-link">Read more</a>
                 </div>
                 
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-3">
                     <h3 class="benefit-title">Professional-Grade Range</h3>
                     <p class="benefit-text">
                         From residential homes to commercial complexes, we've got your project covered.
@@ -581,7 +768,7 @@
                     <a href="#services" class="benefit-link">Read more</a>
                 </div>
                 
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-4">
                     <h3 class="benefit-title">Your Clients Stay Yours</h3>
                     <p class="benefit-text">
                         We support you, not compete with you. Relationships stay yours.
@@ -589,7 +776,7 @@
                     <a href="#services" class="benefit-link">Read more</a>
                 </div>
                 
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-5">
                     <h3 class="benefit-title">True Partnership Pricing</h3>
                     <p class="benefit-text">
                         Earn a real margin on architecture — no games, no retail markup.
@@ -597,7 +784,7 @@
                     <a href="#services" class="benefit-link">Read more</a>
                 </div>
                 
-                <div class="benefit-card animate-on-scroll">
+                <div class="benefit-card animate-on-scroll fade-up stagger-6">
                     <h3 class="benefit-title">Design Excellence</h3>
                     <p class="benefit-text">
                         Award-winning designs that balance aesthetics with functionality and sustainability.
@@ -612,13 +799,13 @@
     <section class="services-section" id="services">
         <div class="container">
             <div class="services-header">
-                <h2 class="services-title animate-on-scroll">Architecture & Design That Fits the Way You Work</h2>
-                <p class="services-subtitle animate-on-scroll">
+                <h2 class="services-title animate-on-scroll fade-left">Architecture & Design That Fits the Way You Work</h2>
+                <p class="services-subtitle animate-on-scroll fade-right stagger-1">
                     Designed to move fast and look sharp.
                 </p>
             </div>
             <div class="services-grid">
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll scale-in stagger-1">
                     <div class="service-icon">🏠</div>
                     <h3 class="service-title">Residential Architecture</h3>
                     <p class="service-text">
@@ -627,7 +814,7 @@
                     <a href="#contact" class="service-link">Explore Our Services</a>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll scale-in stagger-2">
                     <h3 class="service-title">Commercial Design</h3>
                     <p class="service-text">
                         Office buildings, retail spaces, and mixed-use developments that maximize functionality.
@@ -635,7 +822,7 @@
                     <a href="#contact" class="service-link">Explore Our Services</a>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll scale-in stagger-3">
                     <h3 class="service-title">Public Buildings</h3>
                     <p class="service-text">
                         Educational institutions and civic buildings designed with accessibility and community focus.
@@ -643,7 +830,7 @@
                     <a href="#contact" class="service-link">Explore Our Services</a>
                 </div>
                 
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll scale-in stagger-4">
                     <h3 class="service-title">Industrial Architecture</h3>
                     <p class="service-text">
                         Manufacturing facilities and industrial complexes optimized for operational efficiency.
@@ -658,7 +845,7 @@
     <section class="audience-section" id="projects">
         <div class="container">
             <div class="audience-grid">
-                <div class="audience-card animate-on-scroll">
+                <div class="audience-card animate-on-scroll rotate-in stagger-1 parallax-element">
                     <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
                     <div class="audience-content">
                         <p class="audience-label">You're in the right place if you're a...</p>
@@ -670,7 +857,7 @@
                     </div>
                 </div>
                 
-                <div class="audience-card animate-on-scroll">
+                <div class="audience-card animate-on-scroll rotate-in stagger-2 parallax-element">
                     <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
                     <div class="audience-content">
                         <p class="audience-label">You're in the right place if you're a...</p>
@@ -682,7 +869,7 @@
                     </div>
                 </div>
                 
-                <div class="audience-card animate-on-scroll">
+                <div class="audience-card animate-on-scroll rotate-in stagger-3 parallax-element">
                     <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
                     <div class="audience-content">
                         <p class="audience-label">You're in the right place if you're a...</p>
@@ -694,7 +881,7 @@
                     </div>
                 </div>
                 
-                <div class="audience-card animate-on-scroll">
+                <div class="audience-card animate-on-scroll rotate-in stagger-4 parallax-element">
                     <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
                     <div class="audience-content">
                         <p class="audience-label">You're in the right place if you're a...</p>
@@ -712,11 +899,11 @@
     <!-- Final CTA Section -->
     <section class="final-cta" id="contact">
         <div class="container">
-            <h2 class="final-cta-title animate-on-scroll">
+            <h2 class="final-cta-title animate-on-scroll fade-up">
                 You don't need another architect.<br>
                 You need a partner.
             </h2>
-            <div class="final-cta-buttons animate-on-scroll">
+            <div class="final-cta-buttons animate-on-scroll scale-in stagger-1">
                 <a href="index.html" class="cta-button-primary">Become a Partner</a>
                 <a href="index.html" class="cta-button-secondary">How It Works</a>
             </div>
@@ -743,22 +930,92 @@
     </footer>
 
     <script>
-        // Intersection Observer for animations
+        // Advanced Intersection Observer for sophisticated animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: [0, 0.1, 0.3, 0.5],
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+                if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                    // Add staggered delay based on elements position
+                    const delay = entry.target.classList.contains('stagger-1') ? 100 :
+                                  entry.target.classList.contains('stagger-2') ? 200 :
+                                  entry.target.classList.contains('stagger-3') ? 300 :
+                                  entry.target.classList.contains('stagger-4') ? 400 :
+                                  entry.target.classList.contains('stagger-5') ? 500 :
+                                  entry.target.classList.contains('stagger-6') ? 600 : 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, delay);
                 }
             });
         }, observerOptions);
 
-        // Observe all elements with animation classes
+        // Parallax Scrolling Effect
+        function handleParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            const scrolled = window.pageYOffset;
+            
+            parallaxElements.forEach((element, index) => {
+                const rate = scrolled * -0.5;
+                const yPos = -(rate / (index + 1));
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        }
+
+        // Smooth Header Hide/Show on Scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('.header');
+        
+        function handleHeaderScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+
+        // Enhanced Mouse Movement Parallax for Cards
+        function handleMouseParallax(e) {
+            const cards = document.querySelectorAll('.benefit-card, .service-card, .audience-card');
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+                }
+            });
+        }
+
+        // Reset card transforms when mouse leaves
+        function resetCardTransforms() {
+            const cards = document.querySelectorAll('.benefit-card, .service-card, .audience-card');
+            cards.forEach(card => {
+                card.style.transform = '';
+            });
+        }
+
+        // Initialize all animations and effects
         document.addEventListener('DOMContentLoaded', () => {
+            // Observe all elements with animation classes
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             animatedElements.forEach(el => observer.observe(el));
 
@@ -775,7 +1032,39 @@
                     }
                 });
             });
+
+            // Throttled scroll events for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(() => {
+                    handleParallax();
+                    handleHeaderScroll();
+                }, 10);
+            });
+
+            // Mouse movement effects
+            document.addEventListener('mousemove', handleMouseParallax);
+            document.addEventListener('mouseleave', resetCardTransforms);
+
+            // Add loading class to body for initial animation
+            document.body.classList.add('loaded');
         });
+
+        // Performance optimization: Use requestAnimationFrame for smooth animations
+        let rafId;
+        function smoothScrollHandler() {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+            }
+            rafId = requestAnimationFrame(() => {
+                handleParallax();
+            });
+        }
+
+        window.addEventListener('scroll', smoothScrollHandler, { passive: true });
     </script>
 </body>
 </html>
