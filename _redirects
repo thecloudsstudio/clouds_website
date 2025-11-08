@@ -1,7 +1,16 @@
 # MAINTENANCE MODE - Uncomment the line below to enable maintenance page
 # /*    /maintenance.html   200
 
-# Single Page Application redirects
+# Direct page access (allow specific pages to load)
+/engineering.html    /engineering.html   200
+/automation.html     /automation.html    200
+/arch.html          /arch.html          200
+/maintenance.html   /maintenance.html   200
+
+# Engineering page shortcut
+/engineering        /engineering.html   200
+
+# Single Page Application redirects (only for unmatched routes)
 /*    /index.html   200
 
 # Direct access to maintenance page (always available)
