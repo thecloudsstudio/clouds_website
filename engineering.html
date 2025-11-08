@@ -19,65 +19,88 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #ffffff;
-            color: #1a1a1a;
-            font-weight: 100;
-            line-height: 1.6;
+            color: #000000;
+            font-weight: 200;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* Header - Exact Point Innovation Style */
+        /* Header - Exact Point Innovation Visual */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e5e5e5;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
             z-index: 1000;
+            height: 64px;
         }
 
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
-            height: 80px;
+            padding: 0 32px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .nav-brand {
-            font-size: 24px;
-            font-weight: 100;
-            color: #1a1a1a;
+            font-size: 22px;
+            font-weight: 300;
+            color: #000000;
             text-decoration: none;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 48px;
+            gap: 56px;
             list-style: none;
         }
 
         .nav-link {
             color: #666666;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 300;
-            letter-spacing: 0.01em;
-            transition: color 0.3s ease;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            position: relative;
         }
 
         .nav-link:hover {
-            color: #1a1a1a;
+            color: #000000;
         }
 
-        /* Hero Section - Exact Point Innovation Style */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - Exact Point Innovation Visual */
         .hero {
-            padding: 160px 40px 120px;
+            padding: 120px 32px 80px;
             text-align: center;
             background: #ffffff;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-container {
@@ -86,12 +109,15 @@
         }
 
         .hero-title {
-            font-size: 64px;
-            font-weight: 100;
-            color: #1a1a1a;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 40px;
+            font-size: clamp(40px, 5.5vw, 72px);
+            font-weight: 200;
+            color: #000000;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
         .hero-subtitle {
@@ -99,92 +125,142 @@
             font-weight: 300;
             color: #666666;
             max-width: 600px;
-            margin: 0 auto 60px;
-            line-height: 1.7;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
         /* Services Section - Exact Point Innovation Tabs */
         .services {
-            padding: 120px 40px;
+            padding: 100px 32px;
             background: #fafafa;
         }
 
         .services-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .services-title {
-            font-size: 48px;
-            font-weight: 100;
-            color: #1a1a1a;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
             text-align: center;
             margin-bottom: 80px;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.5px;
         }
 
         .service-tabs {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             background: #ffffff;
-            border: 1px solid #e5e5e5;
-            min-height: 400px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
         }
 
         .service-tab {
-            flex: 1;
-            padding: 60px 40px;
-            border-right: 1px solid #e5e5e5;
+            padding: 48px 32px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-height: 320px;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-tab:last-child {
             border-right: none;
         }
 
+        .service-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-tab:hover::before {
+            opacity: 1;
+        }
+
         .service-tab:hover {
-            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
         }
 
         .service-tab.active {
-            background: #1a1a1a;
+            background: #000000;
             color: #ffffff;
+            transform: translateY(0);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
         }
 
         .service-tab-title {
-            font-size: 24px;
-            font-weight: 100;
-            margin-bottom: 24px;
-            letter-spacing: -0.01em;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .service-tab-desc {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 300;
             line-height: 1.6;
             color: inherit;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            flex-grow: 1;
         }
 
         .service-tab.active .service-tab-desc {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .learn-more-btn {
             align-self: flex-start;
-            padding: 12px 24px;
-            border: 1px solid #e5e5e5;
+            padding: 8px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
             background: transparent;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learn-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .learn-more-btn:hover::before {
+            left: 0;
+        }
+
+        .learn-more-btn:hover {
+            color: #ffffff;
+            border-color: #000000;
         }
 
         .service-tab.active .learn-more-btn {
@@ -192,84 +268,119 @@
             color: #ffffff;
         }
 
-        .learn-more-btn:hover {
-            background: #1a1a1a;
-            color: #ffffff;
+        .service-tab.active .learn-more-btn::before {
+            background: #ffffff;
         }
 
         .service-tab.active .learn-more-btn:hover {
-            background: #ffffff;
-            color: #1a1a1a;
+            color: #000000;
         }
 
-        /* Project Spotlight */
+        /* Project Spotlight - Exact Point Innovation Grid */
         .projects {
-            padding: 120px 40px;
+            padding: 100px 32px;
             background: #ffffff;
         }
 
         .projects-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .projects-title {
-            font-size: 48px;
-            font-weight: 100;
-            color: #1a1a1a;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            text-align: center;
             margin-bottom: 80px;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.5px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
             margin-bottom: 80px;
         }
 
         .project-card {
             background: #ffffff;
-            border: 1px solid #e5e5e5;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
         }
 
         .project-image {
             width: 100%;
-            height: 240px;
-            background: #f5f5f5;
+            height: 280px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999999;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
         }
 
         .project-content {
-            padding: 40px;
-            text-align: left;
+            padding: 32px;
         }
 
         .project-name {
             font-size: 20px;
-            font-weight: 300;
-            color: #1a1a1a;
-            margin-bottom: 8px;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .project-type {
-            font-size: 12px;
-            font-weight: 300;
+            font-size: 11px;
+            font-weight: 400;
             color: #999999;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 1px;
             margin-bottom: 16px;
         }
 
@@ -281,26 +392,43 @@
         }
 
         .view-all-btn {
-            padding: 16px 32px;
-            border: 1px solid #1a1a1a;
+            padding: 12px 24px;
+            border: 2px solid #000000;
             background: transparent;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-all-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .view-all-btn:hover::before {
+            left: 0;
         }
 
         .view-all-btn:hover {
-            background: #1a1a1a;
             color: #ffffff;
         }
 
-        /* Partners Section */
+        /* Partners Section - Exact Point Innovation Style */
         .partners {
-            padding: 120px 40px;
+            padding: 100px 32px;
             background: #fafafa;
         }
 
@@ -311,29 +439,29 @@
         }
 
         .partners-title {
-            font-size: 48px;
-            font-weight: 100;
-            color: #1a1a1a;
-            margin-bottom: 40px;
-            letter-spacing: -0.01em;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
         }
 
         .partners-desc {
             font-size: 18px;
             font-weight: 300;
             color: #666666;
-            line-height: 1.7;
-            margin-bottom: 60px;
+            line-height: 1.6;
+            margin-bottom: 48px;
         }
 
         .reach-out-btn {
-            padding: 16px 32px;
-            border: 1px solid #1a1a1a;
-            background: #1a1a1a;
+            padding: 12px 24px;
+            border: 2px solid #000000;
+            background: #000000;
             color: #ffffff;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -341,17 +469,17 @@
 
         .reach-out-btn:hover {
             background: transparent;
-            color: #1a1a1a;
+            color: #000000;
         }
 
-        /* Careers Section */
+        /* Careers Section - Exact Point Innovation Layout */
         .careers {
-            padding: 120px 40px;
+            padding: 100px 32px;
             background: #ffffff;
         }
 
         .careers-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -364,52 +492,72 @@
         }
 
         .careers-title {
-            font-size: 48px;
-            font-weight: 100;
-            color: #1a1a1a;
-            margin-bottom: 40px;
-            letter-spacing: -0.01em;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
         }
 
         .careers-desc {
             font-size: 18px;
             font-weight: 300;
             color: #666666;
-            line-height: 1.7;
-            margin-bottom: 60px;
+            line-height: 1.6;
+            margin-bottom: 48px;
         }
 
         .careers-btn {
-            padding: 16px 32px;
-            border: 1px solid #1a1a1a;
+            padding: 12px 24px;
+            border: 2px solid #000000;
             background: transparent;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .careers-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .careers-btn:hover::before {
+            left: 0;
         }
 
         .careers-btn:hover {
-            background: #1a1a1a;
             color: #ffffff;
         }
 
         .careers-image {
             width: 100%;
             height: 400px;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999999;
+            font-size: 13px;
+            font-weight: 300;
+            border: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         /* Process Section */
         .process {
-            padding: 120px 40px;
+            padding: 100px 32px;
             background: #fafafa;
         }
 
@@ -420,81 +568,100 @@
         }
 
         .process-title {
-            font-size: 48px;
-            font-weight: 100;
-            color: #1a1a1a;
-            margin-bottom: 40px;
-            letter-spacing: -0.01em;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
         }
 
         .process-desc {
             font-size: 18px;
             font-weight: 300;
             color: #666666;
-            line-height: 1.7;
-            margin-bottom: 60px;
+            line-height: 1.6;
+            margin-bottom: 48px;
         }
 
         .process-btn {
-            padding: 16px 32px;
-            border: 1px solid #1a1a1a;
+            padding: 12px 24px;
+            border: 2px solid #000000;
             background: transparent;
-            color: #1a1a1a;
-            font-size: 12px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .process-btn:hover::before {
+            left: 0;
         }
 
         .process-btn:hover {
-            background: #1a1a1a;
             color: #ffffff;
         }
 
-        /* Footer */
+        /* Footer - Exact Point Innovation Style */
         .footer {
-            padding: 80px 40px 40px;
-            background: #1a1a1a;
+            padding: 60px 32px 40px;
+            background: #000000;
             color: #ffffff;
         }
 
         .footer-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
         }
 
         .footer-contact {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .footer-contact h3 {
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 400;
             margin-bottom: 16px;
+            color: #ffffff;
         }
 
         .footer-contact p {
             font-size: 14px;
             font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .footer-social {
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-bottom: 40px;
+            gap: 32px;
+            margin-bottom: 32px;
         }
 
         .footer-social a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            font-size: 13px;
+            font-weight: 300;
+            transition: color 0.2s ease;
         }
 
         .footer-social a:hover {
@@ -502,17 +669,38 @@
         }
 
         .footer-legal {
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             font-size: 12px;
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Responsive */
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .service-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-tab {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+            
+            .service-tab:nth-child(2n) {
+                border-right: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav {
                 padding: 0 20px;
-                height: 60px;
             }
 
             .nav-links {
@@ -520,11 +708,7 @@
             }
 
             .hero {
-                padding: 120px 20px 80px;
-            }
-
-            .hero-title {
-                font-size: 40px;
+                padding: 100px 20px 60px;
             }
 
             .services,
@@ -535,21 +719,13 @@
                 padding: 80px 20px;
             }
 
-            .services-title,
-            .projects-title,
-            .partners-title,
-            .careers-title,
-            .process-title {
-                font-size: 32px;
-            }
-
             .service-tabs {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
 
             .service-tab {
                 border-right: none;
-                border-bottom: 1px solid #e5e5e5;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             }
 
             .service-tab:last-child {
@@ -567,7 +743,17 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                margin: 0;
             }
         }
     </style>
@@ -972,27 +1158,24 @@
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
+        // Service tabs interaction - exact Point Innovation behavior
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        
+        serviceTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active from all tabs
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                // Add active to clicked tab
+                tab.classList.add('active');
             });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
+            
+            // Set first tab as active by default
+            if (index === 0) {
+                tab.classList.add('active');
+            }
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links - Point Innovation style
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1006,16 +1189,220 @@
             });
         });
 
-        // Service tab interactions
-        document.querySelectorAll('.card-point').forEach(card => {
+        // Header background on scroll - exact Point Innovation effect
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.borderBottomColor = 'rgba(0, 0, 0, 0.1)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.borderBottomColor = 'rgba(0, 0, 0, 0.06)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Project cards hover effect enhancement - Point Innovation style
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-4px)';
+                this.style.transform = 'translateY(-8px) scale(1.005)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.12)';
+                this.style.borderColor = 'rgba(0, 0, 0, 0.12)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+                this.style.borderColor = 'rgba(0, 0, 0, 0.08)';
             });
         });
+
+        // Service tab enhanced hover effects - Point Innovation precision
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08)';
+                }
+            });
+            
+            tab.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations - Point Innovation timing
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations with Point Innovation stagger
+        const sections = document.querySelectorAll('.services, .projects, .partners, .careers, .process');
+        sections.forEach((section, index) => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(40px)';
+            section.style.transition = `all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
+            observer.observe(section);
+        });
+
+        // Enhanced button hover effects - Point Innovation micro-interactions
+        const buttons = document.querySelectorAll('.learn-more-btn, .view-all-btn, .reach-out-btn, .careers-btn, .process-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-1px)';
+                this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Subtle parallax effect for hero - Point Innovation smoothness
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const speed = scrolled * 0.15;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${speed}px)`;
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Loading animation for project images - Point Innovation shimmer
+        const projectImages = document.querySelectorAll('.project-image, .careers-image');
+        
+        projectImages.forEach(img => {
+            // Add shimmer effect on load
+            img.style.position = 'relative';
+            img.style.overflow = 'hidden';
+            
+            img.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #f0f2f5 0%, #dde1e7 100%)';
+                
+                // Trigger shimmer effect
+                const shimmer = this.querySelector('::before');
+                if (shimmer) {
+                    shimmer.style.left = '100%';
+                }
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)';
+            });
+        });
+
+        // Dynamic hero title animation - Point Innovation elegance
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            const words = heroTitle.textContent.split(' ');
+            heroTitle.innerHTML = words.map((word, i) => 
+                `<span style="opacity: 0; transform: translateY(20px); animation: fadeInWord 0.8s ease-out ${i * 0.1 + 0.3}s forwards;">${word}</span>`
+            ).join(' ');
+        }
+
+        // Add CSS for word animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInWord {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Navigation active state based on scroll position - Point Innovation precision
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections2 = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections2.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Card tilt effect for project cards - Point Innovation 3D feel
+        projectCards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / centerY * -2;
+                const rotateY = (x - centerX) / centerX * 2;
+                
+                this.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+                this.style.perspective = '1000px';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // Smooth page load animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initialize body for smooth load
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.6s ease-out';
     </script>
 </body>
 </html>
