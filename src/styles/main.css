@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design Tokens - Point Innovation Style */
+:root {
+  /* Typography Scale */
+  --font-ultra-light: 100;
+  --font-extra-light: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  
+  /* Spacing Scale - Exact Point Innovation Values */
+  --space-section: 120px;
+  --space-component: 80px;
+  --space-element: 40px;
+  --space-detail: 24px;
+  --space-micro: 16px;
+  --space-nano: 8px;
+  
+  /* Point Innovation Typography */
+  --text-hero: 4rem;
+  --text-section: 2.5rem;
+  --text-subsection: 1.5rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  
+  /* Point Innovation Colors */
+  --color-ultra-light: #fafafa;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #2563eb;
+  --color-hover: #1d4ed8;
+}
+
+/* Base Layer - Ultra-clean Foundation */
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-inter antialiased bg-white text-point-text-ultra;
+    font-weight: var(--font-ultra-light);
+    letter-spacing: -0.01em;
+  }
+  
+  /* Ultra-light headings like Point Innovation */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-ultra-light);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Component Layer - Reusable Patterns */
+@layer components {
+  /* Point Innovation Button Styles */
+  .btn-point {
+    @apply inline-flex items-center justify-center px-8 py-4 text-sm font-light;
+    @apply border border-point-border-light bg-transparent text-point-text-ultra;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-point-text-ultra hover:text-white;
+    letter-spacing: 0.05em;
+  }
+  
+  .btn-point-primary {
+    @apply btn-point bg-point-text-ultra text-white;
+    @apply hover:bg-point-accent;
+  }
+  
+  /* Point Innovation Section Spacing */
+  .section-point {
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+  }
+  
+  /* Ultra-light Typography System */
+  .text-ultra-light {
+    font-weight: var(--font-ultra-light);
+    letter-spacing: -0.02em;
+  }
+  
+  .text-extra-light {
+    font-weight: var(--font-extra-light);
+    letter-spacing: -0.01em;
+  }
+  
+  /* Point Innovation Cards */
+  .card-point {
+    @apply bg-white border border-point-border-light p-8;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:border-point-text-secondary;
+  }
+  
+  /* Exact Point Innovation Grid */
+  .grid-point {
+    @apply grid gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  /* Point Innovation Separators */
+  .separator-point {
+    @apply w-full h-px bg-gradient-to-r from-transparent via-point-border-light to-transparent;
+    margin: var(--space-component) 0;
+  }
+}
+
+/* Utility Layer - Custom Utilities */
+@layer utilities {
+  /* Precise Spacing Like Point Innovation */
+  .space-section { 
+    padding-top: var(--space-section); 
+    padding-bottom: var(--space-section); 
+  }
+  
+  .space-component { 
+    padding-top: var(--space-component); 
+    padding-bottom: var(--space-component); 
+  }
+  
+  /* Ultra-precise Text Sizes */
+  .text-hero-point {
+    font-size: var(--text-hero);
+    line-height: 1.1;
+    font-weight: var(--font-ultra-light);
+  }
+  
+  .text-section-point {
+    font-size: var(--text-section);
+    line-height: 1.2;
+    font-weight: var(--font-extra-light);
+  }
+  
+  /* Advanced Animations */
+  .animate-stagger-in {
+    @apply opacity-0 translate-y-4;
+    animation: staggerIn 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    @apply opacity-0 translate-y-8;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  /* Glass Morphism Effects */
+  .glass-point {
+    @apply backdrop-blur-xl bg-white/80 border border-white/20;
+  }
+}
+
+/* Advanced Keyframes */
+@keyframes staggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design Tokens */
+@media (max-width: 768px) {
+  :root {
+    --space-section: 80px;
+    --space-component: 60px;
+    --text-hero: 2.5rem;
+    --text-section: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --space-section: 60px;
+    --space-component: 40px;
+    --text-hero: 2rem;
+    --text-section: 1.5rem;
+  }
+}

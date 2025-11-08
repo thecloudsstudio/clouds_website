@@ -1,9 +1,9 @@
 [build]
-  # Build command (if you're using a build process)
-  # command = "npm run build"
+  # Build command for Vite + Tailwind
+  command = "npm run build"
   
-  # Directory to publish (for static sites, this is usually the root or dist folder)
-  publish = "."
+  # Directory to publish (Vite builds to dist/)
+  publish = "dist"
   
   # Functions directory (if using Netlify Functions)
   # functions = "netlify/functions"
