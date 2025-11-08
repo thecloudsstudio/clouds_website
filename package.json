@@ -1,8 +1,12 @@
 {
   "name": "website",
   "version": "1.0.0",
+  "type": "module",
   "description": "A modern, responsive website built with HTML, CSS, and JavaScript. Hosted on GitHub and deployed automatically to Netlify.",
   "main": "index.js",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

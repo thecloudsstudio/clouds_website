@@ -36,132 +36,120 @@
 }
 
 /* Base Layer - Ultra-clean Foundation */
-@layer base {
-  * {
-    @apply m-0 p-0 box-border;
-  }
-  
-  html {
-    @apply scroll-smooth;
-  }
-  
-  body {
-    @apply font-inter antialiased bg-white text-point-text-ultra;
-    font-weight: var(--font-ultra-light);
-    letter-spacing: -0.01em;
-  }
-  
-  /* Ultra-light headings like Point Innovation */
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: var(--font-ultra-light);
-    letter-spacing: -0.02em;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Component Layer - Reusable Patterns */
-@layer components {
-  /* Point Innovation Button Styles */
-  .btn-point {
-    @apply inline-flex items-center justify-center px-8 py-4 text-sm font-light;
-    @apply border border-point-border-light bg-transparent text-point-text-ultra;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:bg-point-text-ultra hover:text-white;
-    letter-spacing: 0.05em;
-  }
-  
-  .btn-point-primary {
-    @apply btn-point bg-point-text-ultra text-white;
-    @apply hover:bg-point-accent;
-  }
-  
-  /* Point Innovation Section Spacing */
-  .section-point {
-    padding-top: var(--space-section);
-    padding-bottom: var(--space-section);
-  }
-  
-  /* Ultra-light Typography System */
-  .text-ultra-light {
-    font-weight: var(--font-ultra-light);
-    letter-spacing: -0.02em;
-  }
-  
-  .text-extra-light {
-    font-weight: var(--font-extra-light);
-    letter-spacing: -0.01em;
-  }
-  
-  /* Point Innovation Cards */
-  .card-point {
-    @apply bg-white border border-point-border-light p-8;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:shadow-lg hover:border-point-text-secondary;
-  }
-  
-  /* Exact Point Innovation Grid */
-  .grid-point {
-    @apply grid gap-8;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  
-  /* Point Innovation Separators */
-  .separator-point {
-    @apply w-full h-px bg-gradient-to-r from-transparent via-point-border-light to-transparent;
-    margin: var(--space-component) 0;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-/* Utility Layer - Custom Utilities */
-@layer utilities {
-  /* Precise Spacing Like Point Innovation */
-  .space-section { 
-    padding-top: var(--space-section); 
-    padding-bottom: var(--space-section); 
-  }
-  
-  .space-component { 
-    padding-top: var(--space-component); 
-    padding-bottom: var(--space-component); 
-  }
-  
-  /* Ultra-precise Text Sizes */
-  .text-hero-point {
-    font-size: var(--text-hero);
-    line-height: 1.1;
-    font-weight: var(--font-ultra-light);
-  }
-  
-  .text-section-point {
-    font-size: var(--text-section);
-    line-height: 1.2;
-    font-weight: var(--font-extra-light);
-  }
-  
-  /* Advanced Animations */
-  .animate-stagger-in {
-    @apply opacity-0 translate-y-4;
-    animation: staggerIn 0.6s ease-out forwards;
-  }
-  
-  .animate-fade-in-up {
-    @apply opacity-0 translate-y-8;
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-  
-  /* Glass Morphism Effects */
-  .glass-point {
-    @apply backdrop-blur-xl bg-white/80 border border-white/20;
-  }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: var(--color-text-primary);
+  font-weight: var(--font-ultra-light);
+  letter-spacing: -0.01em;
+}
+
+/* Ultra-light headings like Point Innovation */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-ultra-light);
+  letter-spacing: -0.02em;
+}
+
+/* Point Innovation Button Styles */
+.btn-point {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-light);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+.btn-point:hover {
+  background: var(--color-text-primary);
+  color: #ffffff;
+}
+
+.btn-point-primary {
+  background: var(--color-text-primary);
+  color: #ffffff;
+}
+
+.btn-point-primary:hover {
+  background: var(--color-accent);
+}
+
+/* Point Innovation Section Spacing */
+.space-section {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+/* Ultra-light Typography System */
+.text-ultra-light {
+  font-weight: var(--font-ultra-light);
+  letter-spacing: -0.02em;
+}
+
+.text-extra-light {
+  font-weight: var(--font-extra-light);
+  letter-spacing: -0.01em;
+}
+
+.text-hero-point {
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  font-weight: var(--font-ultra-light);
+}
+
+.text-section-point {
+  font-size: var(--text-section);
+  line-height: 1.2;
+  font-weight: var(--font-extra-light);
+}
+
+/* Point Innovation Cards */
+.card-point {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.card-point:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-text-secondary);
+}
+
+/* Point Innovation Separators */
+.separator-point {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  margin: var(--space-component) 0;
+}
+
+/* Advanced Animations */
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(2rem);
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 /* Advanced Keyframes */
-@keyframes staggerIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
