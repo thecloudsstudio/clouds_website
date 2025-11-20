@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AnimatedTabs from './AnimatedTabs';
+import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Youtube } from 'lucide-react';
 import GetInTouchButton from './GetInTouchButton';
 
@@ -43,20 +44,63 @@ export default function Layout() {
     };
 
     return (
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8 text-center text-[#333333]">
+        <motion.div
+            className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-8"
+            initial="hidden"
+            animate="visible"
+            variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                    opacity: 1,
+                    transition: {
+                        staggerChildren: 0.3,
+                        delayChildren: 0.2
+                    }
+                }
+            }}
+        >
             {/* Logo Section */}
-            <div className="mb-8 mt-8">
-                <h1 className="text-6xl md:text-7xl font-extralight tracking-[0.3em] uppercase mb-2 text-[#333333]">CLOUDS</h1>
-                <p className="text-xl font-light text-[#666666] tracking-widest mb-8">Design and Research Studio</p>
-            </div>
+            <motion.div
+                className="mt-16 mb-12"
+                variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 1, ease: "easeOut" }
+                    }
+                }}
+            >
+                <img src="assets/logo/logo.png" alt="Clouds Logo" className="w-32 md:w-40 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
 
-            {/* Services Section - Animated Tabs */}
-            <div className="my-16 w-full max-w-4xl">
+            {/* Navigation Tabs */}
+            <motion.div
+                className="w-full max-w-4xl"
+                variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 1, ease: "easeOut" }
+                    }
+                }}
+            >
                 <AnimatedTabs />
-            </div>
+            </motion.div>
 
             {/* Footer Section */}
-            <div className="mt-32 mb-12 flex flex-col items-center gap-8 w-full">
+            <motion.div
+                className="mt-32 mb-12 flex flex-col items-center gap-8 w-full"
+                variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 1, ease: "easeOut" }
+                    }
+                }}
+            >
                 <div className="flex justify-center gap-6">
                     <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
                         <Instagram className="w-5 h-5" />
@@ -69,71 +113,86 @@ export default function Layout() {
                     </a>
                 </div>
                 <GetInTouchButton onClick={openModal} />
-            </div>
+            </motion.div>
 
             {/* Contact Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fadeIn" onClick={(e) => e.target === e.currentTarget && closeModal()}>
-                    <div className="bg-white p-12 rounded-lg w-[90%] max-w-[500px] relative animate-slideIn">
-                        <span className="absolute right-4 top-4 text-3xl font-light cursor-pointer text-[#999999] transition-colors duration-300 hover:text-[#333333]" onClick={closeModal}>&times;</span>
-                        <h3 className="text-3xl font-light text-[#333333] mb-8 tracking-widest text-center">Get In Touch</h3>
-                        <form className="flex flex-col gap-6" onSubmit={handleSubmit} name="contact">
-                            <div className="flex gap-4 flex-col sm:flex-row">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Your name"
-                                    required
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    className="flex-1 p-4 border border-[#dddddd] rounded font-inherit text-base bg-white text-[#333333] transition-colors duration-300 focus:outline-none focus:border-[#333333]"
-                                />
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Your email"
-                                    required
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    className="flex-1 p-4 border border-[#dddddd] rounded font-inherit text-base bg-white text-[#333333] transition-colors duration-300 focus:outline-none focus:border-[#333333]"
-                                />
-                            </div>
-                            <div className="flex gap-4">
-                                <select
-                                    name="service"
-                                    required
-                                    value={formData.service}
-                                    onChange={handleInputChange}
-                                    className="flex-1 p-4 border border-[#dddddd] rounded font-inherit text-base bg-white text-[#333333] transition-colors duration-300 focus:outline-none focus:border-[#333333]"
-                                >
-                                    <option value="">Select service</option>
-                                    <option value="automation">Clouds Automation</option>
-                                    <option value="architecture">Clouds Arch</option>
-                                    <option value="engineering">Clouds Engineering</option>
-                                    <option value="consultation">General consultation</option>
-                                </select>
-                            </div>
-                            <div className="flex gap-4">
-                                <textarea
-                                    name="message"
-                                    placeholder="Tell us about your project..."
-                                    required
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    className="flex-1 p-4 border border-[#dddddd] rounded font-inherit text-base bg-white text-[#333333] transition-colors duration-300 focus:outline-none focus:border-[#333333] min-h-[120px] resize-y"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="submit"
-                                disabled={isSending}
-                                className="bg-[#333333] text-white border-none py-4 px-12 text-base font-medium cursor-pointer tracking-wide mt-4 transition-colors duration-300 rounded hover:bg-[#555555] disabled:opacity-70 disabled:cursor-not-allowed"
-                            >
-                                {isSending ? 'Sending...' : 'Send Message'}
-                            </button>
-                        </form>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4" onClick={closeModal}>
+                    <div className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden relative animate-fade-in" onClick={(e) => e.stopPropagation()}>
+                        <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <div className="p-8">
+                            <h2 className="text-2xl font-light text-center mb-2 text-[#333333]">Get in Touch</h2>
+                            <p className="text-center text-gray-500 mb-6 font-light text-sm">We'd love to hear from you.</p>
+
+                            <form className="space-y-4" onSubmit={handleSubmit}>
+                                <div>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        required
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors font-light"
+                                        placeholder="Your Name"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors font-light"
+                                        placeholder="your@email.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">Service</label>
+                                    <select
+                                        name="service"
+                                        required
+                                        value={formData.service}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors font-light bg-white"
+                                    >
+                                        <option value="">Select service</option>
+                                        <option value="automation">Clouds Automation</option>
+                                        <option value="architecture">Clouds Arch</option>
+                                        <option value="engineering">Clouds Engineering</option>
+                                        <option value="consultation">General consultation</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        rows="4"
+                                        required
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:border-gray-400 transition-colors font-light resize-none"
+                                        placeholder="How can we help?"
+                                    ></textarea>
+                                </div>
+                                <button type="submit" className="w-full bg-[#333333] text-white py-3 rounded font-medium hover:bg-[#555555] transition-colors duration-300 mt-2">
+                                    {isSending ? 'Sending...' : 'Send Message'}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 }
