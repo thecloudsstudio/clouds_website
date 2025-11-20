@@ -2,6 +2,10 @@
   # Build command for Vite + Tailwind
   command = "npm run build"
   
+[build]
+  # Build command for Vite + Tailwind
+  command = "npm run build"
+  
   # Directory to publish (Vite builds to dist/)
   publish = "dist"
   
@@ -10,7 +14,7 @@
 
 [build.environment]
   # Environment variables for build process
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # MAINTENANCE MODE INSTRUCTIONS:
 # To enable maintenance mode, uncomment the redirect in _redirects file:
@@ -41,6 +45,11 @@
     Cache-Control = "public, max-age=3600"
 
 # Redirect rules (optional - useful for SPAs)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
