@@ -8,8 +8,8 @@ export default function Background() {
         <div className="fixed inset-0 w-full h-full bg-white -z-10 overflow-hidden">
             <MeshGradient
                 className="w-full h-full absolute inset-0"
-                colors={["#ffffff", "#f3f4f6", "#e5e7eb", "#ffffff"]}
-                speed={speed * 0.5}
+                colors={["#ffffff", "#e5e7eb", "#d1d5db", "#9ca3af"]}
+                speed={speed * 0.8}
                 wireframe={false}
                 backgroundColor="#ffffff"
             />
