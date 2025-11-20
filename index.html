@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLOUDS - Design and Research Studio</title>
-    <meta name="description" content="CLOUDS - Design and Research Studio specializing in automation and architecture solutions.">
+    <meta name="description"
+        content="CLOUDS - Design and Research Studio specializing in automation and architecture solutions.">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -251,13 +254,25 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Responsive Design */
@@ -265,7 +280,7 @@
             .services-section {
                 gap: 2rem;
             }
-            
+
             .service-button {
                 width: 260px;
                 height: 160px;
@@ -278,19 +293,19 @@
             .logo-text {
                 font-size: 2.5rem;
             }
-            
+
             .services-section {
                 flex-direction: column;
                 gap: 2rem;
             }
-            
+
             .service-button {
                 width: 280px;
                 height: 160px;
                 font-size: 1.4rem;
                 padding: 3rem 2rem;
             }
-            
+
             .social-links {
                 flex-wrap: wrap;
                 gap: 1rem;
@@ -302,16 +317,16 @@
                 width: 95%;
             }
         }
-        
+
         @media (max-width: 480px) {
             .logo-text {
                 font-size: 2rem;
             }
-            
+
             .tagline {
                 font-size: 1rem;
             }
-            
+
             .service-button {
                 width: 250px;
                 height: 140px;
@@ -330,7 +345,9 @@
         }
     </style>
 </head>
+
 <body>
+    <div id="canvas-container"></div>
     <div class="container">
         <!-- Logo Section -->
         <div class="logo-section">
@@ -399,7 +416,7 @@
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('contactModal');
             if (event.target === modal) {
                 closeModal();
@@ -407,31 +424,31 @@
         }
 
         // Form handling
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.querySelector('.contact-form');
             if (form) {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', function (e) {
                     const name = this.querySelector('input[name="name"]').value;
                     const email = this.querySelector('input[name="email"]').value;
                     const service = this.querySelector('select[name="service"]').value;
                     const message = this.querySelector('textarea[name="message"]').value;
-                    
+
                     if (!name || !email || !service || !message) {
                         e.preventDefault();
                         alert('Please fill in all fields.');
                         return;
                     }
-                    
+
                     if (!email.includes('@') || !email.includes('.')) {
                         e.preventDefault();
                         alert('Please enter a valid email address.');
                         return;
                     }
-                    
+
                     const btn = this.querySelector('.submit-btn');
                     btn.textContent = 'Sending...';
                     btn.disabled = true;
-                    
+
                     // Close modal after submission
                     setTimeout(() => {
                         closeModal();
@@ -443,5 +460,7 @@
             }
         });
     </script>
+    <script type="module" src="/src/js/main.js"></script>
 </body>
+
 </html>
