@@ -1,68 +1,28 @@
 import { useState, useEffect } from "react"
-import { MeshGradient, DotOrbit } from "@paper-design/shaders-react"
+import { MeshGradient } from "@paper-design/shaders-react"
 
 export default function Background() {
-    const [intensity, setIntensity] = useState(1.5)
     const [speed, setSpeed] = useState(1.0)
-    const [activeEffect, setActiveEffect] = useState("combined")
 
     return (
-        <div className="fixed inset-0 w-full h-full bg-black -z-10 overflow-hidden">
-            {activeEffect === "mesh" && (
-                <MeshGradient
-                    className="w-full h-full absolute inset-0"
-                    colors={["#000000", "#1a1a1a", "#333333", "#ffffff"]}
-                    speed={speed}
-                    backgroundColor="#000000"
-                />
-            )}
+        <div className="fixed inset-0 w-full h-full bg-white -z-10 overflow-hidden">
+            <MeshGradient
+                className="w-full h-full absolute inset-0"
+                colors={["#ffffff", "#f3f4f6", "#e5e7eb", "#ffffff"]}
+                speed={speed * 0.5}
+                wireframe={false}
+                backgroundColor="#ffffff"
+            />
 
-            {activeEffect === "dots" && (
-                <div className="w-full h-full absolute inset-0 bg-black">
-                    <DotOrbit
-                        className="w-full h-full"
-                        dotColor="#333333"
-                        orbitColor="#1a1a1a"
-                        speed={speed}
-                        intensity={intensity}
-                    />
-                </div>
-            )}
-
-            {activeEffect === "combined" && (
-                <>
-                    <MeshGradient
-                        className="w-full h-full absolute inset-0"
-                        colors={["#000000", "#1a1a1a", "#333333", "#ffffff"]}
-                        speed={speed * 0.5}
-                        wireframe={true}
-                        backgroundColor="#000000"
-                    />
-                    <div className="w-full h-full absolute inset-0 opacity-60">
-                        <DotOrbit
-                            className="w-full h-full"
-                            dotColor="#333333"
-                            orbitColor="#1a1a1a"
-                            speed={speed * 1.5}
-                            intensity={intensity * 0.8}
-                        />
-                    </div>
-                </>
-            )}
-
-            {/* Lighting overlay effects */}
-            <div className="absolute inset-0 pointer-events-none">
+            {/* Subtle lighting overlay for depth in light theme */}
+            <div className="absolute inset-0 pointer-events-none opacity-40">
                 <div
-                    className="absolute top-1/4 left-1/3 w-32 h-32 bg-gray-800/5 rounded-full blur-3xl animate-pulse"
-                    style={{ animationDuration: `${3 / speed}s` }}
+                    className="absolute top-1/4 left-1/3 w-64 h-64 bg-gray-100/50 rounded-full blur-3xl animate-pulse"
+                    style={{ animationDuration: `${4 / speed}s` }}
                 />
                 <div
-                    className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-white/2 rounded-full blur-2xl animate-pulse"
-                    style={{ animationDuration: `${2 / speed}s`, animationDelay: "1s" }}
-                />
-                <div
-                    className="absolute top-1/2 right-1/3 w-20 h-20 bg-gray-900/3 rounded-full blur-xl animate-pulse"
-                    style={{ animationDuration: `${4 / speed}s`, animationDelay: "0.5s" }}
+                    className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-gray-50/50 rounded-full blur-3xl animate-pulse"
+                    style={{ animationDuration: `${5 / speed}s`, animationDelay: "1s" }}
                 />
             </div>
         </div>
