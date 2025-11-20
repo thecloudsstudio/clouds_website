@@ -341,126 +341,209 @@
             .modal-content {
                 width: 90%;
                 padding: 1.5rem;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                animation: fadeIn 0.3s ease;
             }
-        }
+
+            .modal.show {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-content {
+                background: #ffffff;
+                padding: 3rem;
+                border-radius: 8px;
+                width: 90%;
+                max-width: 500px;
+                position: relative;
+                animation: slideIn 0.3s ease;
+            }
+
+            .close {
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+                font-size: 2rem;
+                font-weight: 300;
+                cursor: pointer;
+                color: #999999;
+                transition: color 0.3s ease;
+            }
+
+            .close:hover {
+                color: #333333;
+            }
+
+            .modal h3 {
+                font-size: 1.8rem;
+                font-weight: 300;
+                color: #333333;
+                margin-bottom: 2rem;
+                letter-spacing: 0.1em;
+                text-align: center;
+            }
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .contact-form input,
+            .contact-form select,
+            .contact-form textarea {
+                flex: 1;
+                padding: 1rem;
+                border: 1px solid #dddddd;
+                border-radius: 4px;
+                font-family: inherit;
+                font-size: 1rem;
+                background: #ffffff;
+                color: #333333;
+                transition: border-color 0.3s ease;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .contact-form input:focus,
+            .contact-form select:focus,
+            .contact-form textarea:focus {
+                outline: none;
+                border-color: #333333;
+            }
+
+            .contact-form textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            .submit-btn {
+                background: #333333;
+                color: #ffffff;
+                border: none;
+                padding: 1rem 3rem;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                letter-spacing: 0.05em;
+                margin-top: 1rem;
+                transition: background 0.3s ease;
+                border-radius: 4px;
+            }
+
+            .submit-btn:hover {
+                background: #555555;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(-50px);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            /* Responsive Design */
+            @media (max-width: 1024px) {
+                .services-section {
+                    gap: 2rem;
+                }
+
+                .service-button {
+                    width: 260px;
+                    height: 160px;
+                    font-size: 1.3rem;
+                    padding: 2.5rem 1.5rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .logo-text {
+                    font-size: 2.5rem;
+                }
+
+                .services-section {
+                    flex-direction: column;
+                    gap: 2rem;
+                }
+
+                .service-button {
+                    width: 280px;
+                    height: 160px;
+                    font-size: 1.4rem;
+                    padding: 3rem 2rem;
+                }
+
+                .social-links {
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                }
+
+                .modal-content {
+                    padding: 2rem;
+                    margin: 1rem;
+                    width: 95%;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .logo-text {
+                    font-size: 2rem;
+                }
+
+                .tagline {
+                    font-size: 1rem;
+                }
+
+                .service-button {
+                    width: 250px;
+                    height: 140px;
+                    font-size: 1.3rem;
+                    padding: 2rem 1.5rem;
+                }
+
+                .form-row {
+                    flex-direction: column;
+                }
+
+                .modal-content {
+                    width: 90%;
+                    padding: 1.5rem;
+                }
+            }
     </style>
 </head>
 
 <body>
-    <div id="canvas-container"></div>
-    <div class="container">
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <h1 class="logo-text">CLOUDS</h1>
-            <p class="tagline">Design and Research Studio</p>
-        </div>
-
-        <!-- Services Section -->
-        <div class="services-section">
-            <a href="automation.html" class="service-button">
-                Clouds Automation
-            </a>
-            <a href="arch.html" class="service-button">
-                Clouds Arch
-            </a>
-            <a href="engineering.html" class="service-button">
-                Clouds Engineering
-            </a>
-        </div>
-
-        <!-- Footer Section -->
-        <div class="footer-section">
-            <div class="social-links">
-                <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/c-l-o-u-d-s" target="_blank">LinkedIn</a>
-                <a href="https://youtube.com/@clouds6996?si=l6_HjCVpdoDm64La" target="_blank">YouTube</a>
-            </div>
-            <button class="contact-btn" onclick="openModal()">Get in Touch</button>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Get In Touch</h3>
-            <form class="contact-form" netlify name="contact">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="Your name" required>
-                    <input type="email" name="email" placeholder="Your email" required>
-                </div>
-                <div class="form-row">
-                    <select name="service" required>
-                        <option value="">Select service</option>
-                        <option value="automation">Clouds Automation</option>
-                        <option value="architecture">Clouds Arch</option>
-                        <option value="engineering">Clouds Engineering</option>
-                        <option value="consultation">General consultation</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function openModal() {
-            document.getElementById('contactModal').classList.add('show');
-        }
-
-        function closeModal() {
-            document.getElementById('contactModal').classList.remove('show');
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function (event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
-        // Form handling
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('.contact-form');
-            if (form) {
-                form.addEventListener('submit', function (e) {
-                    const name = this.querySelector('input[name="name"]').value;
-                    const email = this.querySelector('input[name="email"]').value;
-                    const service = this.querySelector('select[name="service"]').value;
-                    const message = this.querySelector('textarea[name="message"]').value;
-
-                    if (!name || !email || !service || !message) {
-                        e.preventDefault();
-                        alert('Please fill in all fields.');
-                        return;
-                    }
-
-                    if (!email.includes('@') || !email.includes('.')) {
-                        e.preventDefault();
-                        alert('Please enter a valid email address.');
-                        return;
-                    }
-
-                    const btn = this.querySelector('.submit-btn');
-                    btn.textContent = 'Sending...';
-                    btn.disabled = true;
-
-                    // Close modal after submission
-                    setTimeout(() => {
-                        closeModal();
-                        btn.textContent = 'Send Message';
-                        btn.disabled = false;
-                        form.reset();
-                    }, 1000);
-                });
-            }
-        });
-    </script>
-    <script type="module" src="/src/js/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
