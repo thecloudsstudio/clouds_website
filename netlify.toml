@@ -2,10 +2,6 @@
   # Build command for Vite + Tailwind
   command = "npm run build"
   
-[build]
-  # Build command for Vite + Tailwind
-  command = "npm run build"
-  
   # Directory to publish (Vite builds to dist/)
   publish = "dist"
   
