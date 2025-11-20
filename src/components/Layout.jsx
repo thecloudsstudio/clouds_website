@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AnimatedTabs from './AnimatedTabs';
+import { Instagram, Linkedin, Youtube } from 'lucide-react';
 
 export default function Layout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,11 +55,17 @@ export default function Layout() {
             </div>
 
             {/* Footer Section */}
-            <div className="mt-12">
-                <div className="flex justify-center gap-8 mb-8 flex-wrap">
-                    <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank" className="text-[#666666] no-underline font-light text-sm tracking-wide transition-colors duration-300 hover:text-[#333333]">Instagram</a>
-                    <a href="https://www.linkedin.com/company/c-l-o-u-d-s" target="_blank" className="text-[#666666] no-underline font-light text-sm tracking-wide transition-colors duration-300 hover:text-[#333333]">LinkedIn</a>
-                    <a href="https://youtube.com/@clouds6996?si=l6_HjCVpdoDm64La" target="_blank" className="text-[#666666] no-underline font-light text-sm tracking-wide transition-colors duration-300 hover:text-[#333333]">YouTube</a>
+            <div className="mt-32 mb-12 flex flex-col items-center gap-8 w-full">
+                <div className="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                        <Instagram className="w-5 h-5" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/c-l-o-u-d-s" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                        <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a href="https://youtube.com/@clouds6996?si=l6_HjCVpdoDm64La" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                        <Youtube className="w-5 h-5" />
+                    </a>
                 </div>
                 <button onClick={openModal} className="bg-[#333333] text-white border-none py-4 px-10 text-base font-medium cursor-pointer tracking-wide transition-all duration-300 rounded hover:bg-[#555555] hover:-translate-y-0.5 hover:shadow-md">
                     Get in Touch
