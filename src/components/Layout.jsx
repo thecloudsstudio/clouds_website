@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AnimatedTabs from './AnimatedTabs';
 
 export default function Layout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,17 +48,9 @@ export default function Layout() {
                 <p className="text-xl font-light text-[#666666] tracking-widest mb-8">Design and Research Studio</p>
             </div>
 
-            {/* Services Section */}
-            <div className="flex flex-wrap justify-center items-center gap-12 my-16">
-                <a href="automation.html" className="bg-[#f8f9fa] border-2 border-[#e9ecef] w-[280px] h-[180px] flex items-center justify-center text-[#333333] text-2xl font-medium tracking-wide transition-all duration-300 hover:bg-[#e9ecef] hover:border-[#dee2e6] hover:-translate-y-1 hover:shadow-lg cursor-pointer no-underline">
-                    Clouds Automation
-                </a>
-                <a href="arch.html" className="bg-[#f8f9fa] border-2 border-[#e9ecef] w-[280px] h-[180px] flex items-center justify-center text-[#333333] text-2xl font-medium tracking-wide transition-all duration-300 hover:bg-[#e9ecef] hover:border-[#dee2e6] hover:-translate-y-1 hover:shadow-lg cursor-pointer no-underline">
-                    Clouds Arch
-                </a>
-                <a href="engineering.html" className="bg-[#f8f9fa] border-2 border-[#e9ecef] w-[280px] h-[180px] flex items-center justify-center text-[#333333] text-2xl font-medium tracking-wide transition-all duration-300 hover:bg-[#e9ecef] hover:border-[#dee2e6] hover:-translate-y-1 hover:shadow-lg cursor-pointer no-underline">
-                    Clouds Engineering
-                </a>
+            {/* Services Section - Animated Tabs */}
+            <div className="my-16 w-full max-w-4xl">
+                <AnimatedTabs />
             </div>
 
             {/* Footer Section */}
