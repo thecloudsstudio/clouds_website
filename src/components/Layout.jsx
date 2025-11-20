@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AnimatedTabs from './AnimatedTabs';
 import { Instagram, Linkedin, Youtube } from 'lucide-react';
+import GetInTouchButton from './GetInTouchButton';
 
 export default function Layout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,9 +68,7 @@ export default function Layout() {
                         <Youtube className="w-5 h-5" />
                     </a>
                 </div>
-                <button onClick={openModal} className="bg-[#333333] text-white border-none py-4 px-10 text-base font-medium cursor-pointer tracking-wide transition-all duration-300 rounded hover:bg-[#555555] hover:-translate-y-0.5 hover:shadow-md">
-                    Get in Touch
-                </button>
+                <GetInTouchButton onClick={openModal} />
             </div>
 
             {/* Contact Modal */}
