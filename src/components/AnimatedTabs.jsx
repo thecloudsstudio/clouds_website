@@ -14,7 +14,7 @@ export default function AnimatedTabs() {
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
-            <div className="flex flex-wrap justify-center gap-8 sm:gap-12 p-2">
+            <div className="flex flex-wrap justify-center gap-12 sm:gap-20 p-2">
                 {tabs.map((tab) => (
                     <a
                         key={tab.id}
@@ -23,7 +23,7 @@ export default function AnimatedTabs() {
                         onMouseLeave={() => setActiveTab(null)}
                         className={twMerge(
                             clsx(
-                                "relative px-6 py-3 text-lg sm:text-xl font-light transition-colors duration-300 no-underline rounded-full",
+                                "relative px-8 py-4 text-lg sm:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10",
                                 "text-[#666666] hover:text-[#333333]"
                             )
                         )}
@@ -31,8 +31,8 @@ export default function AnimatedTabs() {
                         {activeTab === tab.id && (
                             <motion.span
                                 layoutId="bubble"
-                                className="absolute inset-0 z-[-1] bg-gray-100 mix-blend-multiply rounded-full"
-                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                className="absolute inset-0 z-[-1] bg-white/30 backdrop-blur-md border border-white/40 shadow-sm rounded-xl"
+                                transition={{ type: "spring", stiffness: 130, damping: 30 }}
                             />
                         )}
                         {tab.label}
