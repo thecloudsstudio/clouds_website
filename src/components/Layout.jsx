@@ -71,7 +71,7 @@ export default function Layout() {
                     }
                 }}
             >
-                <img src="assets/logo/logo.png" alt="Clouds Logo" className="w-32 md:w-40 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <img src="/assets/images/logo.png" alt="Clouds Logo" className="w-32 md:w-40 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
 
             {/* Navigation Tabs */}
