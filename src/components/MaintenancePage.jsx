@@ -3,7 +3,7 @@ import DotShaderBackground from './DotShaderBackground';
 
 const MaintenancePage = () => {
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-white text-black flex flex-col items-center justify-center font-sans">
+        <div className="relative w-full h-screen overflow-hidden bg-[#F4F5F5] text-black flex flex-col items-center justify-center font-sans">
             <DotShaderBackground />
 
             <div className="z-10 absolute inset-0 flex flex-col items-center justify-center space-y-8 text-center px-4 pointer-events-none">
