@@ -1,11 +1,4 @@
-# MAINTENANCE MODE - Uncomment the line below to enable maintenance page
-# /*    /maintenance.html   200
 
-# Direct page access (allow specific pages to load)
-/engineering.html    /engineering.html   200
-/automation.html     /automation.html    200
-/arch.html          /arch.html          200
-/maintenance.html   /maintenance.html   200
 
 # Engineering page shortcut
 /engineering        /engineering.html   200
@@ -14,7 +7,7 @@
 /*    /index.html   200
 
 # Direct access to maintenance page (always available)
-/maintenance    /maintenance.html   200
+
 
 # API redirects (if using Netlify Functions)
 /api/*  /.netlify/functions/:splat  200
