@@ -1,25 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140">
-  <!-- Gray square background for the "C" -->
-  <rect x="0" y="0" width="140" height="140" fill="#666666"/>
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Square Container -->
+  <rect x="10" y="10" width="100" height="100" fill="#4B4B4B"/>
   
-  <!-- White "C" letter inside the gray square -->
-  <path d="M70 30 C100 30 125 50 125 75 C125 100 100 110 70 110 C45 110 25 95 25 75 C25 55 45 40 70 40 C85 40 95 50 95 60 L85 65 C82 55 75 50 70 50 C55 50 45 60 45 75 C45 90 55 100 70 100 C85 100 105 90 105 75 C105 60 90 50 70 50 L70 30 Z" fill="white"/>
+  <!-- Letter C inside square -->
+  <text x="60" y="82" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="300" text-anchor="middle">C</text>
   
-  <!-- The remaining letters "LOUDS" in outlined style -->
-  <g fill="none" stroke="#666666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-    <!-- L -->
-    <path d="M170 30 L170 110 L220 110"/>
-    
-    <!-- O -->
-    <circle cx="260" cy="70" r="35"/>
-    
-    <!-- U -->
-    <path d="M320 30 L320 85 C320 100 335 115 350 115 C365 115 380 100 380 85 L380 30"/>
-    
-    <!-- D -->
-    <path d="M400 30 L400 110 L430 110 C450 110 465 95 465 75 C465 55 450 40 430 40 L400 40"/>
-    
-    <!-- S -->
-    <path d="M485 45 C480 35 470 30 455 30 C440 30 430 40 430 50 C430 60 440 65 455 70 C470 75 480 80 480 90 C480 100 470 110 455 110 C440 110 430 100 425 90"/>
-  </g>
+  <!-- Rest of the word LOUDS -->
+  <text x="130" y="82" fill="#4B4B4B" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="300" letter-spacing="10">LOUDS</text>
 </svg>
