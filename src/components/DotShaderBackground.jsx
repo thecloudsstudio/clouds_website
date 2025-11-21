@@ -102,11 +102,11 @@ function Scene() {
     const rotation = 0
     const gridSize = 100
 
-    // Hardcoded light theme colors from user reference
+    // Hardcoded light theme colors from user reference - Tweaked for visibility
     const themeColors = {
-        dotColor: '#e1e1e1',
+        dotColor: '#808080', // Darker gray for better visibility
         bgColor: '#F4F5F5',
-        dotOpacity: 0.15
+        dotOpacity: 0.4 // Increased opacity
     }
 
     const [trail, onMove] = useTrailTexture({
