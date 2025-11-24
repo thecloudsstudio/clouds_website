@@ -5,7 +5,7 @@ import Cursor from './ui/inverted-cursor';
 const MaintenancePage = () => {
     return (
         <div className="relative w-full h-screen overflow-hidden bg-white text-black flex flex-col items-center justify-center font-sans cursor-none">
-            <Cursor size={60} />
+            <Cursor size={120} />
 
 
             <div className="z-10 flex flex-col items-center justify-center space-y-8 text-center px-4">
