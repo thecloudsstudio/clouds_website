@@ -1,13 +1,12 @@
 import React from 'react';
-import Cursor from './ui/inverted-cursor';
+
 
 const MaintenancePage = () => {
     return (
         <div className="relative w-full h-screen overflow-hidden bg-white text-black flex flex-col items-center justify-center font-sans cursor-none">
-            <Cursor size={120} />
+
 
             <div className="z-10 flex flex-col items-center justify-center space-y-8 text-center px-4">
-                <img src="/assets/images/logo.svg" alt="CLOUDS Logo" className="w-48 md:w-64 h-auto mb-8" />
                 <h1 className="text-4xl md:text-6xl font-light tracking-wider uppercase animate-fade-in">
                     Site Under Maintenance
                 </h1>
