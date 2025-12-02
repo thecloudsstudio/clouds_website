@@ -102,13 +102,13 @@ export default function Layout() {
                 }}
             >
                 <div className="flex justify-center gap-6">
-                    <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                    <a href="https://www.instagram.com/_cloudsstudio?igsh=MWppdmVveDVqMnN4bA" target="_blank" className="text-gray-500 transition-colors duration-300 hover:text-gray-900">
                         <Instagram className="w-5 h-5" />
                     </a>
-                    <a href="https://www.linkedin.com/company/c-l-o-u-d-s" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                    <a href="https://www.linkedin.com/company/c-l-o-u-d-s" target="_blank" className="text-gray-500 transition-colors duration-300 hover:text-gray-900">
                         <Linkedin className="w-5 h-5" />
                     </a>
-                    <a href="https://youtube.com/@clouds6996?si=l6_HjCVpdoDm64La" target="_blank" className="text-gray-300 transition-colors duration-300 hover:text-gray-900">
+                    <a href="https://youtube.com/@clouds6996?si=l6_HjCVpdoDm64La" target="_blank" className="text-gray-500 transition-colors duration-300 hover:text-gray-900">
                         <Youtube className="w-5 h-5" />
                     </a>
                 </div>
