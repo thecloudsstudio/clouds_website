@@ -3,6 +3,7 @@ import AnimatedTabs from './AnimatedTabs';
 import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Youtube } from 'lucide-react';
 import GetInTouchButton from './GetInTouchButton';
+import logo from '../assets/images/LOGO_forwebsite.svg';
 
 export default function Layout() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,7 +72,7 @@ export default function Layout() {
                     }
                 }}
             >
-                <img src="/assets/images/LOGO_forwebsite.svg" alt="Clouds Logo" className="w-48 md:w-64 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <img src={logo} alt="Clouds Logo" className="w-48 md:w-64 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
 
             {/* Navigation Tabs */}
