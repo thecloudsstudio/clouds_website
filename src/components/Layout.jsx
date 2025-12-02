@@ -46,7 +46,7 @@ export default function Layout() {
 
     return (
         <motion.div
-            className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-8"
+            className="relative z-10 flex flex-col items-center min-h-screen px-4 py-8"
             initial="hidden"
             animate="visible"
             variants={{
@@ -62,7 +62,7 @@ export default function Layout() {
         >
             {/* Logo Section */}
             <motion.div
-                className="mt-16 mb-12 flex flex-col items-center"
+                className="mt-8 flex flex-col items-center"
                 variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: {
@@ -73,12 +73,12 @@ export default function Layout() {
                 }}
             >
                 <img src={logo} alt="Clouds Logo" className="w-80 md:w-96 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
-                <p className="text-sm md:text-base text-gray-600 font-light tracking-wide mt-3 text-center">A design & research studio</p>
+                <p className="text-sm md:text-base text-gray-600 font-light tracking-wide mt-1 text-center">A design & research studio</p>
             </motion.div>
 
             {/* Navigation Tabs */}
             <motion.div
-                className="w-full max-w-4xl"
+                className="w-full max-w-4xl flex-grow flex items-center justify-center"
                 variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: {
