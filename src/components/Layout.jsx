@@ -72,7 +72,7 @@ export default function Layout() {
                     }
                 }}
             >
-                <img src={logo} alt="Clouds Logo" className="w-48 md:w-64 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
+                <img src={logo} alt="Clouds Logo" className="w-80 md:w-96 h-auto opacity-90 hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
 
             {/* Navigation Tabs */}
