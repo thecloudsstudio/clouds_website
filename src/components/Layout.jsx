@@ -46,7 +46,7 @@ export default function Layout() {
 
     return (
         <motion.div
-            className="relative z-10 flex flex-col items-center min-h-screen px-4 py-8"
+            className="relative z-10 flex flex-col items-center justify-between h-screen overflow-hidden px-4 py-8"
             initial="hidden"
             animate="visible"
             variants={{
@@ -78,7 +78,7 @@ export default function Layout() {
 
             {/* Navigation Tabs */}
             <motion.div
-                className="w-full max-w-4xl flex-grow flex items-center justify-center"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl flex items-center justify-center"
                 variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: {
@@ -93,7 +93,7 @@ export default function Layout() {
 
             {/* Footer Section */}
             <motion.div
-                className="mt-32 mb-12 flex flex-col items-center gap-8 w-full"
+                className="mb-12 flex flex-col items-center gap-8 w-full"
                 variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: {
