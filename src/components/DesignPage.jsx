@@ -1,225 +1,304 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 
 export default function DesignPage({ onBack }) {
-    const sectionsRef = useRef([]);
+    const containerRef = useRef(null);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            },
-            { threshold: 0.2 }
-        );
-
-        sectionsRef.current.forEach(section => {
-            if (section) observer.observe(section);
-        });
-
-        return () => observer.disconnect();
+        const handleMouseMove = (e) => {
+            setMousePosition({
+                x: (e.clientX / window.innerWidth - 0.5) * 20,
+                y: (e.clientY / window.innerHeight - 0.5) * 20
+            });
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
+    const sections = [
+        {
+            title: "Where Vision",
+            subtitle: "Finds Its Voice",
+            content: [
+                "Every idea begins as a whisper—",
+                "a quiet shape in the mind,",
+                "a colour without a name,",
+                "a story waiting for its first breath."
+            ],
+            emphasis: "we listen to that whisper and give it a world"
+        },
+        {
+            title: "The Art of",
+            subtitle: "Making Thought Visible",
+            content: [
+                "Creativity is not an act of chance.",
+                "It is intention, discipline,",
+                "and the relentless pursuit of clarity."
+            ],
+            grid: ["A line becomes identity", "A frame becomes emotion", "A motion becomes meaning"]
+        },
+        {
+            title: "Designing",
+            subtitle: "Moments That Stay",
+            content: [
+                "Before anyone understands your work,",
+                "they feel it."
+            ],
+            emphasis: "We shape that moment with care, so your story is remembered"
+        },
+        {
+            title: "Imagery",
+            subtitle: "That Breathes",
+            services: [
+                { name: "Identities", desc: "that feel inevitable" },
+                { name: "2D Stories", desc: "that unfold like memory" },
+                { name: "3D Worlds", desc: "sculpted with realism" },
+                { name: "Renders", desc: "that hold silence" },
+                { name: "Motion", desc: "that turns complexity into poetry" }
+            ]
+        },
+        {
+            title: "Crafted for",
+            subtitle: "The Visionaries",
+            content: [
+                "We build for the ones who see further—",
+                "the founders shaping tomorrow,",
+                "the designers forging new forms,",
+                "the dreamers who refuse simplicity."
+            ]
+        },
+        {
+            title: "Let Us Shape",
+            subtitle: "Your Story",
+            cta: true
+        }
+    ];
+
     return (
-        <motion.div
-            className="min-h-screen w-full bg-white text-black font-['Inter'] antialiased"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-        >
+        <div ref={containerRef} className="relative bg-white text-black">
             {/* Fixed Header */}
-            <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-black/5 z-50">
-                <nav className="max-w-[1400px] mx-auto px-8 h-20 flex items-center">
+            <motion.header
+                className="fixed top-0 left-0 right-0 z-50 mix-blend-difference"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+            >
+                <nav className="max-w-[1400px] mx-auto px-8 py-6 flex justify-between items-center">
                     <button
                         onClick={onBack}
-                        className="flex items-center gap-3 group"
+                        className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-all duration-300 group"
                     >
-                        <div className="w-10 h-10 rounded-full bg-black/5 group-hover:bg-black/10 flex items-center justify-center transition-all duration-300">
-                            <ArrowLeft className="w-5 h-5 text-black" />
-                        </div>
+                        <ArrowLeft className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                     </button>
+                    <div className="text-white text-sm font-light tracking-[0.3em]">DESIGN</div>
                 </nav>
-            </header>
+            </motion.header>
 
-            {/* Section 1: Where Vision Finds Its Voice */}
-            <section
-                ref={el => sectionsRef.current[0] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 fade-section"
+            {/* Progress Indicator */}
+            <motion.div
+                className="fixed top-0 left-0 h-1 bg-black z-50"
+                style={{ width: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
+            />
+
+            {/* Sections */}
+            {sections.map((section, index) => (
+                <Section
+                    key={index}
+                    section={section}
+                    index={index}
+                    mousePosition={mousePosition}
+                    progress={scrollYProgress}
+                />
+            ))}
+
+            {/* Footer */}
+            <footer className="py-16 text-center border-t border-black/10">
+                <p className="text-xs tracking-[0.2em] text-gray-400">CLOUDS STUDIO © 2024</p>
+            </footer>
+        </div>
+    );
+}
+
+function Section({ section, index, mousePosition, progress }) {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8]);
+    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+    const isEven = index % 2 === 0;
+    const bgColor = section.cta ? 'bg-black text-white' : (isEven ? 'bg-white' : 'bg-gray-50');
+
+    return (
+        <motion.section
+            ref={sectionRef}
+            className={`min-h-screen flex items-center justify-center px-8 py-32 ${bgColor} relative overflow-hidden`}
+            style={{ opacity, scale }}
+        >
+            {/* Decorative Elements */}
+            <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    x: mousePosition.x,
+                    y: mousePosition.y,
+                }}
             >
-                <div className="max-w-[700px] text-center">
-                    <h1 className="text-5xl md:text-6xl font-extralight mb-16 tracking-tight leading-tight">
-                        Where Vision Finds Its Voice
-                    </h1>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p className="italic">Every idea begins as a whisper —</p>
-                        <p>a quiet shape in the mind,<br />a colour without a name,<br />a story waiting for its first breath.</p>
-                        <p className="mt-8">Here, in Creative,<br />we listen to that whisper<br />and give it a world to live in.</p>
-                    </div>
-                </div>
-            </section>
+                <div className={`absolute top-1/4 right-1/4 w-96 h-96 rounded-full ${section.cta ? 'bg-white/5' : 'bg-black/2'} blur-3xl`} />
+                <div className={`absolute bottom-1/4 left-1/4 w-96 h-96 rounded-full ${section.cta ? 'bg-white/3' : 'bg-black/3'} blur-3xl`} />
+            </motion.div>
 
-            {/* Section 2: The Art of Making Thought Visible */}
-            <section
-                ref={el => sectionsRef.current[1] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 bg-[#fafafa] fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        The Art of Making Thought Visible
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p>To us, creativity is not an act of chance.<br />It is intention,<br />discipline,<br />and the relentless pursuit of clarity.</p>
-                        <p className="mt-8">A line becomes identity.<br />A frame becomes emotion.<br />A motion becomes meaning.</p>
-                        <p className="mt-8 italic">This is the craft.<br />This is the quiet precision behind the beautiful.</p>
-                    </div>
-                </div>
-            </section>
+            <div className="max-w-[900px] w-full relative z-10">
+                {/* Title */}
+                <motion.div
+                    className="mb-16"
+                    style={{ y }}
+                >
+                    <motion.h2
+                        className="text-6xl md:text-8xl font-extralight tracking-tight leading-none mb-2"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                    >
+                        {section.title}
+                    </motion.h2>
+                    <motion.h3
+                        className="text-6xl md:text-8xl font-extralight tracking-tight leading-none"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.4 }}
+                    >
+                        {section.subtitle}
+                    </motion.h3>
+                </motion.div>
 
-            {/* Section 3: Designing Moments That Stay */}
-            <section
-                ref={el => sectionsRef.current[2] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        Designing Moments That Stay
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p>Before anyone understands your work,<br />they feel it.</p>
-                        <p className="mt-8">In the pause before a logo appears,<br />in the glow of a product render,<br />in the breath of a slow pan across a new skyline—</p>
-                        <p className="mt-8 italic">Perception is born.</p>
-                        <p className="mt-8">We shape that moment with care,<br />so your story is not just seen,<br />but remembered.</p>
-                    </div>
-                </div>
-            </section>
+                {/* Content */}
+                {section.content && (
+                    <motion.div
+                        className="space-y-4 text-xl md:text-2xl font-light text-gray-600 max-w-[600px]"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                    >
+                        {section.content.map((line, i) => (
+                            <motion.p
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.7 + i * 0.1 }}
+                                className="leading-relaxed"
+                            >
+                                {line}
+                            </motion.p>
+                        ))}
+                    </motion.div>
+                )}
 
-            {/* Section 4: Imagery That Breathes */}
-            <section
-                ref={el => sectionsRef.current[3] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 bg-[#fafafa] fade-section"
-            >
-                <div className="max-w-[800px]">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight text-center">
-                        Imagery That Breathes
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6 text-center mb-16">
-                        <p>Your ideas deserve more than explanation —<br />they deserve presence.</p>
-                        <p className="mt-8">We create visuals that carry their own gravity:</p>
-                    </div>
+                {/* Grid */}
+                {section.grid && (
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                    >
+                        {section.grid.map((item, i) => (
+                            <motion.div
+                                key={i}
+                                className="text-center p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.9 + i * 0.1 }}
+                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                            >
+                                <p className="text-lg font-light">{item}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mt-12">
-                        <div className="p-8">
-                            <h3 className="text-lg font-medium mb-3 tracking-wide">Identities that feel inevitable</h3>
-                        </div>
-                        <div className="p-8">
-                            <h3 className="text-lg font-medium mb-3 tracking-wide">2D stories that unfold like memory</h3>
-                        </div>
-                        <div className="p-8">
-                            <h3 className="text-lg font-medium mb-3 tracking-wide">3D worlds sculpted with realism and wonder</h3>
-                        </div>
-                        <div className="p-8">
-                            <h3 className="text-lg font-medium mb-3 tracking-wide">Renders that hold the silence of a photograph</h3>
-                        </div>
-                    </div>
+                {/* Services Grid */}
+                {section.services && (
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                    >
+                        {section.services.map((service, i) => (
+                            <motion.div
+                                key={i}
+                                className="group p-8 border border-black/5 hover:border-black/20 rounded-xl transition-all duration-300"
+                                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.7 + i * 0.1 }}
+                                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                            >
+                                <h4 className="text-2xl font-light mb-2 group-hover:text-gray-600 transition-colors">
+                                    {service.name}
+                                </h4>
+                                <p className="text-gray-500 font-light">{service.desc}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                )}
 
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-4 text-center mt-16">
-                        <p>Every pixel is a decision.<br />Every colour has purpose.<br />Every frame moves with intent.</p>
-                    </div>
-                </div>
-            </section>
+                {/* Emphasis */}
+                {section.emphasis && (
+                    <motion.p
+                        className="text-3xl md:text-4xl font-light italic mt-16 leading-relaxed text-gray-700"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 1 }}
+                    >
+                        {section.emphasis}
+                    </motion.p>
+                )}
 
-            {/* Section 5: Crafted for the Visionaries */}
-            <section
-                ref={el => sectionsRef.current[4] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        Crafted for the Visionaries
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p>We build for the ones who see further—<br />the founders shaping tomorrow,<br />the designers forging new forms,<br />the engineers making the impossible work,<br />the dreamers who refuse simplicity.</p>
-                        <p className="mt-8">For them, we create clarity.<br />For them, we translate ambition into imagery.</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Section 6: A Process Rooted in Story */}
-            <section
-                ref={el => sectionsRef.current[5] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 bg-[#fafafa] fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        A Process Rooted in Story
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p className="italic">Our craft follows a quiet rhythm:</p>
-                        <div className="mt-12 space-y-4">
-                            <p>We <strong className="font-medium">listen</strong> — to what is unsaid.</p>
-                            <p>We <strong className="font-medium">shape</strong> — what wants to be seen.</p>
-                            <p>We <strong className="font-medium">refine</strong> — until the work stands with certainty.</p>
-                            <p>We <strong className="font-medium">reveal</strong> — a narrative captured in visuals.</p>
-                        </div>
-                        <p className="mt-12">Your story becomes a landscape,<br />and we build the view.</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Section 7: Motion, as a Language */}
-            <section
-                ref={el => sectionsRef.current[6] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        Motion, as a Language
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed space-y-6">
-                        <p>Some stories ask to move.</p>
-                        <p className="mt-8">To unfold,<br />to grow,<br />to carry energy the way words cannot.</p>
-                        <p className="mt-8">2D lines that dance,<br />3D worlds that breathe,<br />light and shadow performing in quiet harmony.</p>
-                        <p className="mt-8 italic">Your message becomes a film —<br />brief, beautiful, unforgettable.</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Section 8: CTA */}
-            <section
-                ref={el => sectionsRef.current[7] = el}
-                className="min-h-screen flex items-center justify-center px-8 py-32 bg-black text-white fade-section"
-            >
-                <div className="max-w-[700px] text-center">
-                    <h2 className="text-4xl md:text-5xl font-extralight mb-16 tracking-tight">
-                        Let Us Shape the Story You Hold
-                    </h2>
-                    <div className="text-xl md:text-2xl font-light text-white/80 leading-relaxed space-y-6 mb-16">
-                        <p>If you have a vision waiting for form,<br />a message waiting for a moment,<br />a brand waiting for its first heartbeat—</p>
-                        <p className="mt-8 italic">We are ready to craft it.</p>
-                        <p className="mt-8">Speak the idea.<br />We will give it a voice.</p>
-                    </div>
-                    <button className="mt-8 px-12 py-4 bg-white text-black text-sm font-light tracking-widest hover:bg-gray-100 transition-all duration-300">
-                        → Begin the Creative Journey
-                    </button>
-                </div>
-            </section>
-
-            <style jsx>{`
-                .fade-section {
-                    opacity: 0;
-                    transform: translateY(40px);
-                    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-                }
-                .fade-section.visible {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            `}</style>
-        </motion.div>
+                {/* CTA */}
+                {section.cta && (
+                    <motion.div
+                        className="text-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                    >
+                        <p className="text-2xl md:text-3xl font-light mb-12 text-white/80 leading-relaxed max-w-[600px] mx-auto">
+                            If you have a vision waiting for form,<br />
+                            a message waiting for a moment—
+                        </p>
+                        <motion.button
+                            className="px-12 py-4 bg-white text-black text-sm font-light tracking-[0.3em] hover:bg-gray-100 transition-colors duration-300 rounded-full"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            BEGIN THE JOURNEY
+                        </motion.button>
+                    </motion.div>
+                )}
+            </div>
+        </motion.section>
     );
 }
