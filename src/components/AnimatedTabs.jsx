@@ -5,13 +5,13 @@ import { twMerge } from "tailwind-merge";
 
 const tabs = [
     {
-        id: "engineering",
+        id: "design",
         label: "Design",
         url: "engineering.html",
         description: "Industrial design and end-to-end product development from concept to completion."
     },
     {
-        id: "architecture",
+        id: "structure",
         label: "Structure",
         url: "arch.html",
         description: "Architecture, planning, and construction solutions for commercial and residential spaces."
@@ -23,7 +23,7 @@ const tabs = [
         description: "Branding, animation, and visual storytelling through 2D, 3D, and high-end renderings."
     },
     {
-        id: "automation",
+        id: "intelligence",
         label: "Intelligence",
         url: "automation.html",
         description: "AI-driven automation, computer vision systems, and smart factory technologies."
@@ -35,10 +35,9 @@ export default function AnimatedTabs({ onNavigate }) {
 
     const handleTabClick = (e, tab) => {
         e.preventDefault();
-        if (tab.id === 'creative' && onNavigate) {
-            onNavigate('creative');
+        if (onNavigate) {
+            onNavigate(tab.id);
         } else {
-            // Default behavior for other tabs (navigation)
             window.location.href = tab.url;
         }
     };
