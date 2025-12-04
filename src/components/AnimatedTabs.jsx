@@ -30,8 +30,18 @@ const tabs = [
     },
 ];
 
-export default function AnimatedTabs() {
+export default function AnimatedTabs({ onNavigate }) {
     const [activeTab, setActiveTab] = useState(null);
+
+    const handleTabClick = (e, tab) => {
+        e.preventDefault();
+        if (tab.id === 'creative' && onNavigate) {
+            onNavigate('creative');
+        } else {
+            // Default behavior for other tabs (navigation)
+            window.location.href = tab.url;
+        }
+    };
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
@@ -40,12 +50,13 @@ export default function AnimatedTabs() {
                     <div key={tab.id} className="relative flex flex-col items-center group">
                         <a
                             href={tab.url}
+                            onClick={(e) => handleTabClick(e, tab)}
                             onMouseEnter={() => setActiveTab(tab.id)}
                             onMouseLeave={() => setActiveTab(null)}
                             className={twMerge(
                                 clsx(
                                     "relative px-4 py-2 md:px-6 md:py-3 text-base md:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10 whitespace-normal text-center leading-tight",
-                                    "text-[#666666] hover:text-[#333333]"
+                                    "text-[#666666] hover:text-[#333333] cursor-pointer"
                                 )
                             )}
                         >

@@ -5,7 +5,7 @@ import { Instagram, Linkedin, Youtube } from 'lucide-react';
 import GetInTouchButton from './GetInTouchButton';
 import logo from '../assets/images/LOGO_forwebsite.svg';
 
-export default function Layout() {
+export default function Layout({ onNavigate }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -88,7 +88,7 @@ export default function Layout() {
                     }
                 }}
             >
-                <AnimatedTabs />
+                <AnimatedTabs onNavigate={onNavigate} />
             </motion.div>
 
             {/* Footer Section */}
