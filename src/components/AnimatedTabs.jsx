@@ -4,10 +4,30 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 const tabs = [
-    { id: "engineering", label: "Design", url: "engineering.html", description: "Product Development" },
-    { id: "architecture", label: "Build", url: "arch.html", description: "Architecture" },
-    { id: "creative", label: "Creative", url: "creative.html", description: "Creative Studio" },
-    { id: "automation", label: "Intelligence", url: "automation.html", description: "AI & Automation" },
+    {
+        id: "engineering",
+        label: "Design",
+        url: "engineering.html",
+        description: "Industrial design and end-to-end product development from concept to completion."
+    },
+    {
+        id: "architecture",
+        label: "Structure",
+        url: "arch.html",
+        description: "Architecture, planning, and construction solutions for commercial and residential spaces."
+    },
+    {
+        id: "creative",
+        label: "Creative",
+        url: "creative.html",
+        description: "Branding, animation, and visual storytelling through 2D, 3D, and high-end renderings."
+    },
+    {
+        id: "automation",
+        label: "Intelligence",
+        url: "automation.html",
+        description: "AI-driven automation, computer vision systems, and smart factory technologies."
+    },
 ];
 
 export default function AnimatedTabs() {
@@ -17,7 +37,7 @@ export default function AnimatedTabs() {
         <div className="flex flex-col items-center justify-center w-full">
             <div className="flex flex-nowrap justify-center gap-8 md:gap-16 p-2 w-full">
                 {tabs.map((tab) => (
-                    <div key={tab.id} className="relative flex flex-col items-center">
+                    <div key={tab.id} className="relative flex flex-col items-center group">
                         <a
                             href={tab.url}
                             onMouseEnter={() => setActiveTab(tab.id)}
@@ -43,7 +63,7 @@ export default function AnimatedTabs() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 10 }}
-                                className="absolute top-full mt-2 text-xs md:text-sm text-gray-500 font-light whitespace-nowrap pointer-events-none"
+                                className="absolute top-full mt-4 text-xs md:text-sm text-gray-500 font-light text-center w-64 md:w-80 pointer-events-none bg-white/80 backdrop-blur-sm p-3 rounded-lg shadow-sm border border-white/50"
                             >
                                 {tab.description}
                             </motion.div>
