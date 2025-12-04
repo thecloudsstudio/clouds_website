@@ -4,9 +4,10 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 const tabs = [
-    { id: "automation", label: "Automation", url: "automation.html" },
+    { id: "automation", label: "AI and Automation", url: "automation.html" },
     { id: "architecture", label: "Architecture", url: "arch.html" },
-    { id: "engineering", label: "Engineering", url: "engineering.html" },
+    { id: "engineering", label: "Product Development", url: "engineering.html" },
+    { id: "creative", label: "Creative Studio", url: "creative.html" },
 ];
 
 export default function AnimatedTabs() {
