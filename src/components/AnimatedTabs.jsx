@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 const tabs = [
-    { id: "automation", label: "AI and Automation", url: "automation.html" },
+    { id: "automation", label: "AI & Automation", url: "automation.html" },
     { id: "architecture", label: "Architecture", url: "arch.html" },
     { id: "engineering", label: "Product Development", url: "engineering.html" },
     { id: "creative", label: "Creative Studio", url: "creative.html" },
@@ -15,7 +15,7 @@ export default function AnimatedTabs() {
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
-            <div className="flex flex-wrap justify-center gap-12 sm:gap-20 p-2">
+            <div className="flex flex-nowrap justify-center gap-4 md:gap-10 p-2 overflow-x-auto max-w-full">
                 {tabs.map((tab) => (
                     <a
                         key={tab.id}
@@ -24,7 +24,7 @@ export default function AnimatedTabs() {
                         onMouseLeave={() => setActiveTab(null)}
                         className={twMerge(
                             clsx(
-                                "relative px-8 py-4 text-lg sm:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10",
+                                "relative px-4 py-2 md:px-6 md:py-3 text-base md:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10 whitespace-nowrap",
                                 "text-[#666666] hover:text-[#333333]"
                             )
                         )}
