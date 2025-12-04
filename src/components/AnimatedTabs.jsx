@@ -4,10 +4,10 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 const tabs = [
-    { id: "automation", label: "AI & Automation", url: "automation.html" },
+    { id: "automation", label: <>AI &<br />Automation</>, url: "automation.html" },
     { id: "architecture", label: "Architecture", url: "arch.html" },
-    { id: "engineering", label: "Product Development", url: "engineering.html" },
-    { id: "creative", label: "Creative Studio", url: "creative.html" },
+    { id: "engineering", label: <>Product<br />Development</>, url: "engineering.html" },
+    { id: "creative", label: <>Creative<br />Studio</>, url: "creative.html" },
 ];
 
 export default function AnimatedTabs() {
@@ -15,7 +15,7 @@ export default function AnimatedTabs() {
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
-            <div className="flex flex-nowrap justify-center gap-4 md:gap-10 p-2 overflow-x-auto max-w-full">
+            <div className="flex flex-nowrap justify-center gap-8 md:gap-16 p-2 w-full">
                 {tabs.map((tab) => (
                     <a
                         key={tab.id}
@@ -24,7 +24,7 @@ export default function AnimatedTabs() {
                         onMouseLeave={() => setActiveTab(null)}
                         className={twMerge(
                             clsx(
-                                "relative px-4 py-2 md:px-6 md:py-3 text-base md:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10 whitespace-nowrap",
+                                "relative px-4 py-2 md:px-6 md:py-3 text-base md:text-xl font-light transition-colors duration-300 no-underline rounded-xl z-10 whitespace-normal text-center leading-tight",
                                 "text-[#666666] hover:text-[#333333]"
                             )
                         )}
