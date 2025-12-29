@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import AnimatedTabs from '@/components/home/AnimatedTabs';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Instagram, Linkedin, Youtube, Mail } from 'lucide-react';
 import GetInTouchButton from '@/components/home/GetInTouchButton';
 import Background from '@/components/home/Background';
+import MaintenancePage from '@/components/MaintenancePage';
 
 export default function Home() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -16,6 +18,14 @@ export default function Home() {
     message: ''
   });
   const [isSending, setIsSending] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  if (!isAuthenticated) {
+    return <MaintenancePage onLogin={handleLogin} />;
+  }
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
