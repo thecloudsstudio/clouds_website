@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouds Arch - Your Partner in Architectural Excellence</title>
+    <meta name="description" content="Your invitation to true architectural partnership. From design to execution for residential, commercial, public buildings and industries in Tamil Nadu, Chennai.">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header - exactly like Casewell */
+        .header {
+            background: #ffffff;
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #000000;
+            text-transform: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+        }
+
+        /* Hero Section - Casewell style */
+        .hero {
+            padding: 10rem 0 8rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -0.04em;
+            color: #000000;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #666666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            background: #000000;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 0;
+        }
+
+        .hero-cta:hover {
+            background: #333333;
+        }
+
+        /* Benefits Section - exactly like Casewell's "Why Partner" */
+        .benefits-section {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .benefits-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .benefits-subtitle {
+            font-size: 1.125rem;
+            color: #666666;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: #ffffff;
+            padding: 0;
+            border: none;
+            text-align: left;
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .benefit-text {
+            color: #666666;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .benefit-link {
+            color: #000000;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Services Section - like Casewell's "Cabinetry & Millwork" */
+        .services-section {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .services-subtitle {
+            font-size: 1.125rem;
+            color: #666666;
+            font-weight: 400;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 0;
+            border: none;
+            text-align: left;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .service-text {
+            color: #666666;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-link {
+            color: #000000;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Target Audience Section - like Casewell's individual cards */
+        .audience-section {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .audience-card {
+            background: #ffffff;
+            border: none;
+            text-align: left;
+        }
+
+        .audience-image {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .audience-label {
+            font-size: 0.875rem;
+            color: #666666;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .audience-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .audience-text {
+            color: #666666;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .audience-link {
+            color: #000000;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .audience-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Final CTA Section - like Casewell's bottom section */
+        .final-cta {
+            padding: 6rem 0;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-primary {
+            background: #ffffff;
+            color: #000000;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button-primary:hover {
+            background: #f0f0f0;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border: 1px solid #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button-secondary:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* Footer Navigation - like Casewell */
+        .footer-nav {
+            padding: 3rem 0;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: underline;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333333;
+        }
+
+        .footer-legal {
+            color: #666666;
+            font-size: 0.875rem;
+        }
+
+        .footer-legal a {
+            color: #666666;
+            text-decoration: underline;
+        }
+
+        .footer-legal a:hover {
+            opacity: 0.7;
+        }
+
+        /* Advanced Animation System */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, opacity;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+        }
+
+        /* Directional Animations */
+        .fade-up {
+            transform: translateY(60px);
+        }
+
+        .fade-up.animated {
+            transform: translateY(0);
+        }
+
+        .fade-down {
+            transform: translateY(-60px);
+        }
+
+        .fade-down.animated {
+            transform: translateY(0);
+        }
+
+        .fade-left {
+            transform: translateX(-60px);
+        }
+
+        .fade-left.animated {
+            transform: translateX(0);
+        }
+
+        .fade-right {
+            transform: translateX(60px);
+        }
+
+        .fade-right.animated {
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            transform: scale(0.9);
+        }
+
+        .scale-in.animated {
+            transform: scale(1);
+        }
+
+        .rotate-in {
+            transform: rotate(-3deg) scale(0.95);
+        }
+
+        .rotate-in.animated {
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Staggered Animation Delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Parallax Elements */
+        .parallax-element {
+            will-change: transform;
+        }
+
+        /* Enhanced Hover Effects */
+        .benefit-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .audience-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            overflow: hidden;
+            will-change: transform, box-shadow;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+
+        .audience-card:hover .audience-image {
+            transform: scale(1.1);
+        }
+
+        .audience-image {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        /* Button Animations */
+        .cta-button-primary, .cta-button-secondary {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+            will-change: transform, box-shadow;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Header Animation */
+        .header {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        /* Loading Animation */
+        @keyframes slideInFromTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            animation: slideInFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Smooth Page Transitions */
+        body {
+            animation: fadeInPage 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes fadeInPage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Advanced Hover States for Links */
+        .nav-link, .footer-link {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .nav-link::after, .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #333333;
+            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-link:hover::after, .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Preload optimization */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .benefits-title,
+            .services-title {
+                font-size: 2rem;
+            }
+            
+            .final-cta-title {
+                font-size: 2rem;
+            }
+            
+            .audience-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 8rem 0 6rem;
+            }
+            
+            .benefits-section,
+            .services-section,
+            .audience-section {
+                padding: 4rem 0;
+            }
+            
+            .final-cta {
+                padding: 4rem 0;
+            }
+            
+            .final-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid,
+            .services-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">CLOUDS ARCH</div>
+                <div class="nav-links">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="index.html" class="nav-link">← Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-on-scroll fade-up">Your Invitation to True Partnership</h1>
+                <p class="hero-subtitle animate-on-scroll fade-up stagger-1">
+                    Architectural excellence delivers expert design solutions, creating beautiful and functional spaces with quality craftsmanship.
+                </p>
+                <a href="#contact" class="hero-cta animate-on-scroll scale-in stagger-2">Work with us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-header">
+                <h2 class="benefits-title animate-on-scroll fade-down">Why Partner with Clouds Arch?</h2>
+                <p class="benefits-subtitle animate-on-scroll fade-up stagger-1">
+                    We built the architectural service model that should've existed all along, one that supports your success without getting in your way.
+                </p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll fade-up stagger-1">
+                    <h3 class="benefit-title">Complete Project Support</h3>
+                    <p class="benefit-text">
+                        Design help, permit assistance, and project management — all included.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll fade-up stagger-2">
+                    <h3 class="benefit-title">Streamlined Operations</h3>
+                    <p class="benefit-text">
+                        Fast quoting, accurate deliveries, and less back-and-forth.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll fade-up stagger-3">
+                    <h3 class="benefit-title">Professional-Grade Range</h3>
+                    <p class="benefit-text">
+                        From residential homes to commercial complexes, we've got your project covered.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll fade-up stagger-4">
+                    <h3 class="benefit-title">Your Clients Stay Yours</h3>
+                    <p class="benefit-text">
+                        We support you, not compete with you. Relationships stay yours.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll fade-up stagger-5">
+                    <h3 class="benefit-title">True Partnership Pricing</h3>
+                    <p class="benefit-text">
+                        Earn a real margin on architecture — no games, no retail markup.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll fade-up stagger-6">
+                    <h3 class="benefit-title">Design Excellence</h3>
+                    <p class="benefit-text">
+                        Award-winning designs that balance aesthetics with functionality and sustainability.
+                    </p>
+                    <a href="#services" class="benefit-link">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="services-title animate-on-scroll fade-left">Architecture & Design That Fits the Way You Work</h2>
+                <p class="services-subtitle animate-on-scroll fade-right stagger-1">
+                    Designed to move fast and look sharp.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll scale-in stagger-1">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Residential Architecture</h3>
+                    <p class="service-text">
+                        Custom homes and residential complexes designed for modern living with contemporary aesthetics.
+                    </p>
+                    <a href="#contact" class="service-link">Explore Our Services</a>
+                </div>
+                
+                <div class="service-card animate-on-scroll scale-in stagger-2">
+                    <h3 class="service-title">Commercial Design</h3>
+                    <p class="service-text">
+                        Office buildings, retail spaces, and mixed-use developments that maximize functionality.
+                    </p>
+                    <a href="#contact" class="service-link">Explore Our Services</a>
+                </div>
+                
+                <div class="service-card animate-on-scroll scale-in stagger-3">
+                    <h3 class="service-title">Public Buildings</h3>
+                    <p class="service-text">
+                        Educational institutions and civic buildings designed with accessibility and community focus.
+                    </p>
+                    <a href="#contact" class="service-link">Explore Our Services</a>
+                </div>
+                
+                <div class="service-card animate-on-scroll scale-in stagger-4">
+                    <h3 class="service-title">Industrial Architecture</h3>
+                    <p class="service-text">
+                        Manufacturing facilities and industrial complexes optimized for operational efficiency.
+                    </p>
+                    <a href="#contact" class="service-link">Explore Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="audience-section" id="projects">
+        <div class="container">
+            <div class="audience-grid">
+                <div class="audience-card animate-on-scroll rotate-in stagger-1 parallax-element">
+                    <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="audience-content">
+                        <p class="audience-label">You're in the right place if you're a...</p>
+                        <h3 class="audience-title">Architects</h3>
+                        <p class="audience-text">
+                            We can assist in bringing your technical and custom designs to life with precision, care, and a design process you can count on.
+                        </p>
+                        <a href="#contact" class="audience-link">See Contractor Services</a>
+                    </div>
+                </div>
+                
+                <div class="audience-card animate-on-scroll rotate-in stagger-2 parallax-element">
+                    <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="audience-content">
+                        <p class="audience-label">You're in the right place if you're a...</p>
+                        <h3 class="audience-title">Custom Home Builders</h3>
+                        <p class="audience-text">
+                            Build homes your clients will love — with curated styles, efficient design, and cost-conscious options that protect your bottom line.
+                        </p>
+                        <a href="#contact" class="audience-link">See Contractor Services</a>
+                    </div>
+                </div>
+                
+                <div class="audience-card animate-on-scroll rotate-in stagger-3 parallax-element">
+                    <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="audience-content">
+                        <p class="audience-label">You're in the right place if you're a...</p>
+                        <h3 class="audience-title">Interior Designers</h3>
+                        <p class="audience-text">
+                            Let us help bring your creative vision to life. From space planning to design coordination, we're your behind-the-scenes partner in beautiful, buildable design.
+                        </p>
+                        <a href="#contact" class="audience-link">See Contractor Services</a>
+                    </div>
+                </div>
+                
+                <div class="audience-card animate-on-scroll rotate-in stagger-4 parallax-element">
+                    <div class="audience-image" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="audience-content">
+                        <p class="audience-label">You're in the right place if you're a...</p>
+                        <h3 class="audience-title">Contractors & Installers</h3>
+                        <p class="audience-text">
+                            We can be your go-to design team — dependable plans, clear communication, and responsive support to keep your projects on track.
+                        </p>
+                        <a href="#contact" class="audience-link">See Contractor Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <h2 class="final-cta-title animate-on-scroll fade-up">
+                You don't need another architect.<br>
+                You need a partner.
+            </h2>
+            <div class="final-cta-buttons animate-on-scroll scale-in stagger-1">
+                <a href="index.html" class="cta-button-primary">Become a Partner</a>
+                <a href="index.html" class="cta-button-secondary">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Architecture</a>
+                <a href="index.html" class="footer-link">Projects</a>
+                <a href="index.html" class="footer-link">Services</a>
+                <a href="index.html" class="footer-link">Contact Us</a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="#">Terms & Conditions</a> | 
+                    <a href="#">Privacy Policy</a> | 
+                    All rights reserved®. 2025
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Advanced Intersection Observer for sophisticated animations
+        const observerOptions = {
+            threshold: [0, 0.1, 0.3, 0.5],
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                    // Add staggered delay based on elements position
+                    const delay = entry.target.classList.contains('stagger-1') ? 100 :
+                                  entry.target.classList.contains('stagger-2') ? 200 :
+                                  entry.target.classList.contains('stagger-3') ? 300 :
+                                  entry.target.classList.contains('stagger-4') ? 400 :
+                                  entry.target.classList.contains('stagger-5') ? 500 :
+                                  entry.target.classList.contains('stagger-6') ? 600 : 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, delay);
+                }
+            });
+        }, observerOptions);
+
+        // Parallax Scrolling Effect
+        function handleParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            const scrolled = window.pageYOffset;
+            
+            parallaxElements.forEach((element, index) => {
+                const rate = scrolled * -0.5;
+                const yPos = -(rate / (index + 1));
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        }
+
+        // Smooth Header Hide/Show on Scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('.header');
+        
+        function handleHeaderScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+
+        // Enhanced Mouse Movement Parallax for Cards
+        function handleMouseParallax(e) {
+            const cards = document.querySelectorAll('.benefit-card, .service-card, .audience-card');
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+                }
+            });
+        }
+
+        // Reset card transforms when mouse leaves
+        function resetCardTransforms() {
+            const cards = document.querySelectorAll('.benefit-card, .service-card, .audience-card');
+            cards.forEach(card => {
+                card.style.transform = '';
+            });
+        }
+
+        // Initialize all animations and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all elements with animation classes
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+
+            // Add smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Throttled scroll events for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(() => {
+                    handleParallax();
+                    handleHeaderScroll();
+                }, 10);
+            });
+
+            // Mouse movement effects
+            document.addEventListener('mousemove', handleMouseParallax);
+            document.addEventListener('mouseleave', resetCardTransforms);
+
+            // Add loading class to body for initial animation
+            document.body.classList.add('loaded');
+        });
+
+        // Performance optimization: Use requestAnimationFrame for smooth animations
+        let rafId;
+        function smoothScrollHandler() {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+            }
+            rafId = requestAnimationFrame(() => {
+                handleParallax();
+            });
+        }
+
+        window.addEventListener('scroll', smoothScrollHandler, { passive: true });
+    </script>
+</body>
+</html>

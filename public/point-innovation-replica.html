@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Innovation - Elevated Design Solutions</title>
+    <meta name="description" content="Elevated design solutions for complex challenges. Multi-disciplinary design consultancy blending creative and technical design.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            font-weight: 100;
+            line-height: 1.6;
+        }
+
+        /* Header - Exact Point Innovation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-size: 24px;
+            font-weight: 100;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #1a1a1a;
+        }
+
+        /* Hero Section - Exact Point Innovation */
+        .hero {
+            padding: 160px 40px 120px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 100;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+        }
+
+        /* Services Section - Exact Point Innovation Tabs */
+        .services {
+            padding: 120px 40px;
+            background: #fafafa;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-title {
+            font-size: 48px;
+            font-weight: 100;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        .service-tabs {
+            display: flex;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            min-height: 400px;
+        }
+
+        .service-tab {
+            flex: 1;
+            padding: 60px 40px;
+            border-right: 1px solid #e5e5e5;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-tab:last-child {
+            border-right: none;
+        }
+
+        .service-tab:hover {
+            background: #f8f9fa;
+        }
+
+        .service-tab.active {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .service-tab-title {
+            font-size: 24px;
+            font-weight: 100;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .service-tab-desc {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: inherit;
+            margin-bottom: 40px;
+        }
+
+        .service-tab.active .service-tab-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .learn-more-btn {
+            align-self: flex-start;
+            padding: 12px 24px;
+            border: 1px solid #e5e5e5;
+            background: transparent;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-tab.active .learn-more-btn {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        .learn-more-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .service-tab.active .learn-more-btn:hover {
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        /* Project Spotlight */
+        .projects {
+            padding: 120px 40px;
+            background: #ffffff;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .projects-title {
+            font-size: 48px;
+            font-weight: 100;
+            color: #1a1a1a;
+            margin-bottom: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+            font-size: 14px;
+        }
+
+        .project-content {
+            padding: 40px;
+            text-align: left;
+        }
+
+        .project-name {
+            font-size: 20px;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .project-type {
+            font-size: 12px;
+            font-weight: 300;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .view-all-btn {
+            padding: 16px 32px;
+            border: 1px solid #1a1a1a;
+            background: transparent;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-all-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 120px 40px;
+            background: #fafafa;
+        }
+
+        .partners-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partners-title {
+            font-size: 48px;
+            font-weight: 100;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .partners-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            margin-bottom: 60px;
+        }
+
+        .reach-out-btn {
+            padding: 16px 32px;
+            border: 1px solid #1a1a1a;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reach-out-btn:hover {
+            background: transparent;
+            color: #1a1a1a;
+        }
+
+        /* Careers Section */
+        .careers {
+            padding: 120px 40px;
+            background: #ffffff;
+        }
+
+        .careers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .careers-content {
+            padding-right: 40px;
+        }
+
+        .careers-title {
+            font-size: 48px;
+            font-weight: 100;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .careers-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            margin-bottom: 60px;
+        }
+
+        .careers-btn {
+            padding: 16px 32px;
+            border: 1px solid #1a1a1a;
+            background: transparent;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .careers-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .careers-image {
+            width: 100%;
+            height: 400px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 120px 40px;
+            background: #fafafa;
+        }
+
+        .process-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .process-title {
+            font-size: 48px;
+            font-weight: 100;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+        }
+
+        .process-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            margin-bottom: 60px;
+        }
+
+        .process-btn {
+            padding: 16px 32px;
+            border: 1px solid #1a1a1a;
+            background: transparent;
+            color: #1a1a1a;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .process-btn:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 40px 40px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-contact {
+            margin-bottom: 40px;
+        }
+
+        .footer-contact h3 {
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .footer-contact p {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+        }
+
+        .footer-legal {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 20px;
+                height: 60px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 20px 80px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .services,
+            .projects,
+            .partners,
+            .careers,
+            .process {
+                padding: 80px 20px;
+            }
+
+            .services-title,
+            .projects-title,
+            .partners-title,
+            .careers-title,
+            .process-title {
+                font-size: 32px;
+            }
+
+            .service-tabs {
+                flex-direction: column;
+            }
+
+            .service-tab {
+                border-right: none;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .service-tab:last-child {
+                border-bottom: none;
+            }
+
+            .careers-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .careers-content {
+                padding-right: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav-brand">POINT INNOVATION</a>
+            <ul class="nav-links">
+                <li><a href="#services" class="nav-link">SERVICES</a></li>
+                <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">ELEVATED DESIGN SOLUTIONS FOR COMPLEX CHALLENGES</h1>
+            <p class="hero-subtitle">
+                As a multi-disciplinary design consultancy, we blend creative and technical design to make your product vision become a successful reality.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="services-title">Our Services</h2>
+            <div class="service-tabs">
+                <div class="service-tab active">
+                    <div>
+                        <h3 class="service-tab-title">DESIGN</h3>
+                        <p class="service-tab-desc">
+                            From initial concept sketches to final design specifications, we create innovative solutions that balance form, function, and manufacturability.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">ENGINEERING</h3>
+                        <p class="service-tab-desc">
+                            Technical expertise meets creative problem-solving. Our engineering team transforms concepts into production-ready solutions.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">UI / UX</h3>
+                        <p class="service-tab-desc">
+                            User-centered design that creates intuitive, engaging experiences across digital and physical touchpoints.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">PROTOTYPING</h3>
+                        <p class="service-tab-desc">
+                            Rapid prototyping and testing to validate concepts and refine designs before full-scale production.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Spotlight -->
+    <section class="projects" id="projects">
+        <div class="projects-container">
+            <h2 class="projects-title">PROJECT SPOTLIGHT</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Breg Inc. Cervical Brace</h3>
+                        <p class="project-type">MEDICAL DEVICE</p>
+                        <p class="project-desc">
+                            A fully adjustable cervical brace that provides structure where necessary and breathability all day long. From patent research to design to tooling liaison to pilot build.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Entegra Modular Tablet</h3>
+                        <p class="project-type">TECHNOLOGY</p>
+                        <p class="project-desc">
+                            A modular, durable, touchscreen tablet that adapts to ever expanding market needs. Customization for performance, ruggedization, and accessories.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Aeroflex Rugged Tablet</h3>
+                        <p class="project-type">AEROSPACE</p>
+                        <p class="project-desc">
+                            A device that is not only a fraction of the size, but exponentially more capable thanks to a modular CPU designed around interchangeable PXI cards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="view-all-btn">VIEW ALL WORK</button>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="about">
+        <div class="partners-container">
+            <h2 class="partners-title">Partners</h2>
+            <p class="partners-desc">
+                We value respect internally and with our clients. Our mission is to guide you through the journey of product and experience design using a proven and successful process. We deliver an end result that stands apart for our clients.
+            </p>
+            <button class="reach-out-btn">REACH OUT</button>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers">
+        <div class="careers-container">
+            <div class="careers-content">
+                <h2 class="careers-title">Careers</h2>
+                <p class="careers-desc">
+                    We are always open to new applicants. At Point Innovation, we guide some of the world's leading brands in aerospace, communications, medical technology, and transportation. Reach out if you are interested in joining our team.
+                </p>
+                <button class="careers-btn">CAREERS</button>
+            </div>
+            <div class="careers-image">Careers Image</div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="process-container">
+            <h2 class="process-title">OUR PROCESS</h2>
+            <p class="process-desc">
+                As a multi-disciplinary design consultancy, we blend creative and technical design to make your product vision become a successful reality. Our talented staff tailor our solutions to surpass your needs, meet your deadlines, and exceed your expectations.
+            </p>
+            <button class="process-btn">LEARN MORE</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>1826 Lakeway Dr, Lewisville, TX 75057</p>
+                <p>info@pointinnovation.com</p>
+                <p>972.315.9207</p>
+            </div>
+            <div class="footer-social">
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+            <div class="footer-legal">
+                <p>© 2025 Point Innovation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service tab functionality
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

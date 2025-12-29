@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance - CLOUDS</title>
+    <meta name="description" content="CLOUDS is currently under maintenance. We'll be back soon.">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .maintenance-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #333333;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #666666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .signup-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .signup-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #dddddd;
+            font-size: 1rem;
+            color: #333333;
+            background: #ffffff;
+        }
+
+        .signup-form button {
+            background: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background: #555555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+            }
+            
+            .signup-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="maintenance-container">
+        <h1 class="logo-text">CLOUDS</h1>
+        <h2 class="main-title">Under Maintenance</h2>
+        <p class="subtitle">We're making improvements and will be back shortly.</p>
+        
+        <form class="signup-form" netlify>
+            <input type="email" name="email" placeholder="Enter your email for updates" required>
+            <button type="submit">Get Notified</button>
+        </form>
+    </div>
+</body>
+</html>

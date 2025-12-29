@@ -2,7 +2,11 @@
 
 ## 1. Prerequisites
 - The website is built with **Next.js**.
-- It is configured to run on the subpath `/intelligence`.
+- The website is built with **Next.js**.
+- It is configured as a **Hybrid Site**:
+  - **Homepage**: Restored "Clouds Automation" landing page.
+  - **ARGIS App**: Mapped to `/intelligence`.
+- Uses **Static Export** (`output: export`) for universal hosting compatibility.
 
 ## 2. Prepare Production Build
 1. Open your terminal in the project directory: `c:\Users\Lenovo\OneDrive\Documents\website`

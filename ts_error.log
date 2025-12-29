@@ -1,0 +1,2 @@
+src/components/home/Background.tsx(16,17): error TS2322: Type '{ className: string; colors: string[]; speed: number; wireframe: boolean; backgroundColor: string; }' is not assignable to type 'IntrinsicAttributes & MeshGradientProps'.
+  Property 'wireframe' does not exist on type 'IntrinsicAttributes & MeshGradientProps'.
