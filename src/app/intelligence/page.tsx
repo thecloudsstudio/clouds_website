@@ -3,7 +3,7 @@ import ROICalculator from "@/components/calculator/ROICalculator";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-    title: "ROI Calculator | ARGIS",
+    title: "Intelligence | ARGIS",
     description: "Calculate your potential savings with ARGIS AI guidance system.",
 };
 
