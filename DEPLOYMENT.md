@@ -12,27 +12,30 @@
    ```
    *This creates a `.next` folder with the optimized production application.*
 
-## 3. Deploy to Hosting Provider
+## 3. Automated Deployment (CD Pipeline)
 
-### Option A: Vercel (Recommended)
-If you typically deploy via Vercel:
-1. Push your latest code to your Git repository (GitHub/GitLab).
-   - *Since I cannot access your private repo credentials, please run these commands manually:*
-     ```powershell
-     git add .
-     git commit -m "Final ARGIS Release - Mapped to /intelligence"
-     git push origin main
-     ```
-2. Vercel will automatically detect the `Next.js` app.
-3. **IMPORTANT**: Ensure Vercel project settings do NOT override the `basePath`. The code itself handles the `/intelligence` path.
+I have set up a **GitHub Action** to automatically build and deploy your site whenever you push to `main`.
 
-### Option B: Static Export (For standard web servers)
-If you are hosting on a traditional server (Apache/Nginx/cPanel) alongside your main WordPress/HTML site:
-1. Update `next.config.ts`:
-   Add `output: 'export'` inside the config object.
-2. Run `npm run build`.
-3. An `out` folder will be created.
-4. Upload the contents of the `out` folder to a folder named `intelligence` on your web server.
+### One-Time Setup Required
+For this to work, you must add your hosting credentials to **GitHub Repository Secrets**:
+
+1. Go to your GitHub Repository -> **Settings** -> **Secrets and variables** -> **Actions**.
+2. Click **New repository secret** and add the following:
+   
+   | Secret Name | Value Example |
+   |-------------|---------------|
+   | `FTP_SERVER` | `ftp.thecloudsstudio.com` |
+   | `FTP_USERNAME` | `your_ftp_user` |
+   | `FTP_PASSWORD` | `your_ftp_password` |
+
+3. **Verify Target Folder**:
+   - The workflow attempts to upload to `./public_html/intelligence/`. 
+   - If your server path is different, edit `.github/workflows/deploy.yml` line 34: `server-dir: ./your/path/`
+
+### Manual Deploy (Fallback)
+If the automation fails or you prefer manual control:
+1. Run local build: `npm run build`
+2. Upload the content of the `out` folder to your server manually.
 
 ## 4. Verify Live Site
 - Go to `https://thecloudsstudio.com/intelligence`.
