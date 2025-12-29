@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouds Engineering - 3D Modeling & Product Design</title>
+    <meta name="description" content="Elevated engineering solutions for complex challenges. Advanced 3D modeling, product design, and innovative development services.">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            font-weight: 200;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header - Exact Point Innovation Visual */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-size: 22px;
+            font-weight: 300;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 56px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - Exact Point Innovation Visual */
+        .hero {
+            padding: 120px 32px 80px;
+            text-align: center;
+            background: #ffffff;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 5.5vw, 72px);
+            font-weight: 200;
+            color: #000000;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        /* Services Section - Exact Point Innovation Tabs */
+        .services {
+            padding: 100px 32px;
+            background: #fafafa;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .service-tab {
+            padding: 48px 32px;
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-tab:last-child {
+            border-right: none;
+        }
+
+        .service-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-tab:hover::before {
+            opacity: 1;
+        }
+
+        .service-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-tab.active {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(0);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-tab-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .service-tab-desc {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: inherit;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .service-tab.active .service-tab-desc {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .learn-more-btn {
+            align-self: flex-start;
+            padding: 8px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background: transparent;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learn-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .learn-more-btn:hover::before {
+            left: 0;
+        }
+
+        .learn-more-btn:hover {
+            color: #ffffff;
+            border-color: #000000;
+        }
+
+        .service-tab.active .learn-more-btn {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        .service-tab.active .learn-more-btn::before {
+            background: #ffffff;
+        }
+
+        .service-tab.active .learn-more-btn:hover {
+            color: #000000;
+        }
+
+        /* Project Spotlight - Exact Point Innovation Grid */
+        .projects {
+            padding: 100px 32px;
+            background: #ffffff;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -0.5px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+            font-size: 13px;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-name {
+            font-size: 20px;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .project-type {
+            font-size: 11px;
+            font-weight: 400;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .view-all-btn {
+            padding: 12px 24px;
+            border: 2px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-all-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .view-all-btn:hover::before {
+            left: 0;
+        }
+
+        .view-all-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Partners Section - Exact Point Innovation Style */
+        .partners {
+            padding: 100px 32px;
+            background: #fafafa;
+        }
+
+        .partners-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partners-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .partners-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        .reach-out-btn {
+            padding: 12px 24px;
+            border: 2px solid #000000;
+            background: #000000;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reach-out-btn:hover {
+            background: transparent;
+            color: #000000;
+        }
+
+        /* Careers Section - Exact Point Innovation Layout */
+        .careers {
+            padding: 100px 32px;
+            background: #ffffff;
+        }
+
+        .careers-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .careers-content {
+            padding-right: 40px;
+        }
+
+        .careers-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .careers-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        .careers-btn {
+            padding: 12px 24px;
+            border: 2px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .careers-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .careers-btn:hover::before {
+            left: 0;
+        }
+
+        .careers-btn:hover {
+            color: #ffffff;
+        }
+
+        .careers-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999999;
+            font-size: 13px;
+            font-weight: 300;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 32px;
+            background: #fafafa;
+        }
+
+        .process-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .process-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 200;
+            color: #000000;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .process-desc {
+            font-size: 18px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+
+        .process-btn {
+            padding: 12px 24px;
+            border: 2px solid #000000;
+            background: transparent;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .process-btn:hover::before {
+            left: 0;
+        }
+
+        .process-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Footer - Exact Point Innovation Style */
+        .footer {
+            padding: 60px 32px 40px;
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-contact {
+            margin-bottom: 32px;
+        }
+
+        .footer-contact h3 {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .footer-contact p {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 300;
+            transition: color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+        }
+
+        .footer-legal {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .service-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-tab {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+            
+            .service-tab:nth-child(2n) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .services,
+            .projects,
+            .partners,
+            .careers,
+            .process {
+                padding: 80px 20px;
+            }
+
+            .service-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .service-tab {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .service-tab:last-child {
+                border-bottom: none;
+            }
+
+            .careers-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .careers-content {
+                padding-right: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-brand">CLOUDS</a>
+            <ul class="nav-links">
+                <li><a href="#services" class="nav-link">SERVICES</a></li>
+                <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">ELEVATED ENGINEERING SOLUTIONS FOR COMPLEX CHALLENGES</h1>
+            <p class="hero-subtitle">
+                Advanced 3D modeling, product design, and innovative development services that transform ideas into reality with precision and excellence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="services-title">Engineering Services</h2>
+            <div class="service-tabs">
+                <div class="service-tab active">
+                    <div>
+                        <h3 class="service-tab-title">3D MODELING</h3>
+                        <p class="service-tab-desc">
+                            Precise CAD modeling and photorealistic visualization for complex engineering projects. From concept to production-ready specifications.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">PRODUCT DESIGN</h3>
+                        <p class="service-tab-desc">
+                            From concept to production-ready designs with attention to form, function, and manufacturability. Complete design lifecycle management.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">TECHNICAL ANALYSIS</h3>
+                        <p class="service-tab-desc">
+                            Structural analysis, simulation, and optimization for engineering excellence. FEA, CFD, and performance validation services.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+                <div class="service-tab">
+                    <div>
+                        <h3 class="service-tab-title">PROTOTYPING</h3>
+                        <p class="service-tab-desc">
+                            Rapid prototyping and testing to validate concepts and refine designs before full-scale production. Physical and digital validation.
+                        </p>
+                    </div>
+                    <button class="learn-more-btn">LEARN MORE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Spotlight -->
+    <section class="projects" id="projects">
+        <div class="projects-container">
+            <h2 class="projects-title">PROJECT SPOTLIGHT</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">Engineering Project</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Industrial Machinery Design</h3>
+                        <p class="project-type">MANUFACTURING EQUIPMENT</p>
+                        <p class="project-desc">
+                            Complete redesign of manufacturing equipment improving efficiency by 40%. From concept design through production implementation and testing validation.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Engineering Project</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Automotive Component</h3>
+                        <p class="project-type">PRECISION ENGINEERING</p>
+                        <p class="project-desc">
+                            High-precision component design for automotive industry applications. Advanced materials analysis and performance optimization.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">Engineering Project</div>
+                    <div class="project-content">
+                        <h3 class="project-name">Medical Device Innovation</h3>
+                        <p class="project-type">HEALTHCARE TECHNOLOGY</p>
+                        <p class="project-desc">
+                            FDA-compliant medical device design with enhanced patient safety features. Biocompatible materials and ergonomic design optimization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="view-all-btn">VIEW ALL PROJECTS</button>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="about">
+        <div class="partners-container">
+            <h2 class="partners-title">Partnership Approach</h2>
+            <p class="partners-desc">
+                We believe in collaborative engineering that brings together technical expertise and creative innovation to solve complex challenges. Our mission is to deliver engineering solutions that exceed expectations and drive innovation.
+            </p>
+            <button class="reach-out-btn">REACH OUT</button>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers">
+        <div class="careers-container">
+            <div class="careers-content">
+                <h2 class="careers-title">Join Our Team</h2>
+                <p class="careers-desc">
+                    We're looking for passionate engineers who share our commitment to excellence and innovation. Join our team of experts working on cutting-edge projects across multiple industries.
+                </p>
+                <button class="careers-btn">OPEN POSITIONS</button>
+            </div>
+            <div class="careers-image">Team Engineering</div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="process-container">
+            <h2 class="process-title">OUR PROCESS</h2>
+            <p class="process-desc">
+                A systematic approach to engineering excellence, from initial consultation through final delivery. Our proven methodology ensures quality, efficiency, and innovation at every stage of the development process.
+            </p>
+            <button class="process-btn">LEARN MORE</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>engineering@clouds.studio</p>
+                <p>+91 (0) 123 456 7890</p>
+                <p>Chennai, Tamil Nadu, India</p>
+            </div>
+            <div class="footer-social">
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+            <div class="footer-legal">
+                <p>© 2025 CLOUDS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service tab functionality - exact Point Innovation behavior
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Project card hover effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+                this.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+    <!-- Header - Exact Point Innovation Style -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-point-border-light z-50">
+        <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-xl font-ultra-light tracking-wider text-point-text-ultra hover:text-point-accent transition-colors">
+                CLOUDS
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-sm font-light text-point-text-secondary hover:text-point-text-ultra transition-colors">Services</a>
+                <a href="#projects" class="text-sm font-light text-point-text-secondary hover:text-point-text-ultra transition-colors">Projects</a>
+                <a href="#about" class="text-sm font-light text-point-text-secondary hover:text-point-text-ultra transition-colors">About</a>
+                <a href="#contact" class="text-sm font-light text-point-text-secondary hover:text-point-text-ultra transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Ultra-clean Point Innovation Style -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-hero-point text-point-text-ultra mb-8 animate-fade-in-up">
+                Elevated engineering solutions<br>
+                <span class="text-point-text-secondary">for complex challenges</span>
+            </h1>
+            <p class="text-xl font-light text-point-text-secondary max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
+                Advanced 3D modeling, product design, and innovative development services that transform ideas into reality.
+            </p>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="separator-point"></div>
+
+    <!-- Services Section - Point Innovation Tab Style -->
+    <section class="space-section px-6" id="services">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-section-point text-point-text-ultra mb-6">
+                    Engineering Services
+                </h2>
+            </div>
+            
+            <!-- Service Tabs - Exact Point Innovation Style -->
+            <div class="flex flex-col md:flex-row border border-point-border-light bg-point-ultra-light">
+                <div class="md:w-1/3 border-r border-point-border-light p-12 bg-white">
+                    <h3 class="text-2xl font-ultra-light text-point-text-ultra mb-6">3D Modeling & Visualization</h3>
+                    <p class="text-point-text-secondary font-light leading-relaxed mb-8">
+                        Precise CAD modeling and photorealistic visualization for complex engineering projects.
+                    </p>
+                    <button class="btn-point">Learn More</button>
+                </div>
+                <div class="md:w-1/3 border-r border-point-border-light p-12">
+                    <h3 class="text-2xl font-ultra-light text-point-text-ultra mb-6">Product Design</h3>
+                    <p class="text-point-text-secondary font-light leading-relaxed mb-8">
+                        From concept to production-ready designs with attention to form, function, and manufacturability.
+                    </p>
+                    <button class="btn-point">Learn More</button>
+                </div>
+                <div class="md:w-1/3 p-12">
+                    <h3 class="text-2xl font-ultra-light text-point-text-ultra mb-6">Technical Analysis</h3>
+                    <p class="text-point-text-secondary font-light leading-relaxed mb-8">
+                        Structural analysis, simulation, and optimization for engineering excellence.
+                    </p>
+                    <button class="btn-point">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="separator-point"></div>
+
+    <!-- Project Spotlight - Point Innovation Grid Style -->
+    <section class="space-section px-6" id="projects">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-section-point text-point-text-ultra mb-6">
+                    Project Spotlight
+                </h2>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="card-point group cursor-pointer">
+                    <div class="w-full h-48 bg-point-ultra-light mb-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-point-text-ultra/10 to-point-accent/5"></div>
+                    </div>
+                    <h3 class="text-xl font-light text-point-text-ultra mb-3">Industrial Machinery Design</h3>
+                    <p class="text-sm text-point-text-secondary mb-4">Manufacturing Equipment</p>
+                    <p class="text-point-text-secondary font-light leading-relaxed">
+                        Complete redesign of manufacturing equipment improving efficiency by 40%.
+                    </p>
+                </div>
+                
+                <div class="card-point group cursor-pointer">
+                    <div class="w-full h-48 bg-point-ultra-light mb-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-point-accent/10 to-point-text-ultra/5"></div>
+                    </div>
+                    <h3 class="text-xl font-light text-point-text-ultra mb-3">Automotive Component</h3>
+                    <p class="text-sm text-point-text-secondary mb-4">Precision Engineering</p>
+                    <p class="text-point-text-secondary font-light leading-relaxed">
+                        High-precision component design for automotive industry applications.
+                    </p>
+                </div>
+                
+                <div class="card-point group cursor-pointer">
+                    <div class="w-full h-48 bg-point-ultra-light mb-6 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-point-text-secondary/10 to-point-accent/10"></div>
+                    </div>
+                    <h3 class="text-xl font-light text-point-text-ultra mb-3">Medical Device Innovation</h3>
+                    <p class="text-sm text-point-text-secondary mb-4">Healthcare Technology</p>
+                    <p class="text-point-text-secondary font-light leading-relaxed">
+                        FDA-compliant medical device design with enhanced patient safety features.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn-point-primary">View All Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="separator-point"></div>
+
+    <!-- Partners Section - Point Innovation Style -->
+    <section class="space-section px-6" id="about">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-section-point text-point-text-ultra mb-8">
+                Partnership Approach
+            </h2>
+            <p class="text-xl font-light text-point-text-secondary leading-relaxed mb-12">
+                We believe in collaborative engineering that brings together technical expertise and creative innovation to solve complex challenges.
+            </p>
+            <button class="btn-point-primary">Reach Out</button>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="separator-point"></div>
+
+    <!-- Careers Section - Point Innovation Two-Column -->
+    <section class="space-section px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-section-point text-point-text-ultra mb-8">
+                        Join Our Team
+                    </h2>
+                    <p class="text-point-text-secondary font-light leading-relaxed mb-8">
+                        We're looking for passionate engineers who share our commitment to excellence and innovation.
+                    </p>
+                    <button class="btn-point">Open Positions</button>
+                </div>
+                <div class="h-80 bg-point-ultra-light relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-point-text-ultra/5 to-point-accent/10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Separator -->
+    <div class="separator-point"></div>
+
+    <!-- Process Section - Point Innovation Style -->
+    <section class="space-section px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-section-point text-point-text-ultra mb-8">
+                Our Process
+            </h2>
+            <p class="text-xl font-light text-point-text-secondary leading-relaxed mb-12">
+                A systematic approach to engineering excellence, from initial consultation through final delivery.
+            </p>
+            <button class="btn-point">Learn More</button>
+        </div>
+    </section>
+
+    <!-- Footer - Minimal Point Innovation Style -->
+    <footer class="border-t border-point-border-light mt-32 py-16 px-6" id="contact">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-xl font-light text-point-text-ultra mb-6">Contact</h3>
+                    <p class="text-point-text-secondary font-light">
+                        engineering@clouds.studio<br>
+                        +91 (0) 123 456 7890
+                    </p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-point-text-secondary font-light">
+                        © 2025 CLOUDS. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service tabs interaction - exact Point Innovation behavior
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        
+        serviceTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active from all tabs
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                // Add active to clicked tab
+                tab.classList.add('active');
+            });
+            
+            // Set first tab as active by default
+            if (index === 0) {
+                tab.classList.add('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links - Point Innovation style
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll - exact Point Innovation effect
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.borderBottomColor = 'rgba(0, 0, 0, 0.1)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.borderBottomColor = 'rgba(0, 0, 0, 0.06)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Project cards hover effect enhancement - Point Innovation style
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.005)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.12)';
+                this.style.borderColor = 'rgba(0, 0, 0, 0.12)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+                this.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+            });
+        });
+
+        // Service tab enhanced hover effects - Point Innovation precision
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08)';
+                }
+            });
+            
+            tab.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations - Point Innovation timing
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations with Point Innovation stagger
+        const sections = document.querySelectorAll('.services, .projects, .partners, .careers, .process');
+        sections.forEach((section, index) => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(40px)';
+            section.style.transition = `all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
+            observer.observe(section);
+        });
+
+        // Enhanced button hover effects - Point Innovation micro-interactions
+        const buttons = document.querySelectorAll('.learn-more-btn, .view-all-btn, .reach-out-btn, .careers-btn, .process-btn');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-1px)';
+                this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Subtle parallax effect for hero - Point Innovation smoothness
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const speed = scrolled * 0.15;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${speed}px)`;
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Loading animation for project images - Point Innovation shimmer
+        const projectImages = document.querySelectorAll('.project-image, .careers-image');
+        
+        projectImages.forEach(img => {
+            // Add shimmer effect on load
+            img.style.position = 'relative';
+            img.style.overflow = 'hidden';
+            
+            img.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #f0f2f5 0%, #dde1e7 100%)';
+                
+                // Trigger shimmer effect
+                const shimmer = this.querySelector('::before');
+                if (shimmer) {
+                    shimmer.style.left = '100%';
+                }
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)';
+            });
+        });
+
+        // Dynamic hero title animation - Point Innovation elegance
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            const words = heroTitle.textContent.split(' ');
+            heroTitle.innerHTML = words.map((word, i) => 
+                `<span style="opacity: 0; transform: translateY(20px); animation: fadeInWord 0.8s ease-out ${i * 0.1 + 0.3}s forwards;">${word}</span>`
+            ).join(' ');
+        }
+
+        // Add CSS for word animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInWord {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Navigation active state based on scroll position - Point Innovation precision
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections2 = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections2.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Card tilt effect for project cards - Point Innovation 3D feel
+        projectCards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / centerY * -2;
+                const rotateY = (x - centerX) / centerX * 2;
+                
+                this.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+                this.style.perspective = '1000px';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // Smooth page load animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initialize body for smooth load
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.6s ease-out';
+    </script>
+</body>
+</html>
