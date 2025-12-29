@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors - Pure Greyscale Palette */
+  --color-teal-400: #9ca3af;
+  /* Gray 400 */
+  --color-teal-500: #6b7280;
+  /* Gray 500 */
+  --color-teal-600: #4b5563;
+  /* Gray 600 */
+  --color-teal-glow: rgba(0, 0, 0, 0.1);
+
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Background Images - Dark grid on light bg */
+  --background-image-grid-pattern: linear-gradient(to right, #e5e5e5 1px, transparent 1px), linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+}
+
+/* Custom Base Styles */
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
