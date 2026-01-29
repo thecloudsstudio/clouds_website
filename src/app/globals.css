@@ -2,19 +2,18 @@
 
 @theme {
   /* Colors - Pure Greyscale Palette */
-  --color-teal-400: #9ca3af;
-  /* Gray 400 */
-  --color-teal-500: #6b7280;
-  /* Gray 500 */
-  --color-teal-600: #4b5563;
-  /* Gray 600 */
-  --color-teal-glow: rgba(0, 0, 0, 0.1);
+  --color-arch-black: #0a0a0a;
+  --color-arch-dark: #171717;
+  --color-arch-gray: #737373;
+  --color-arch-light: #e5e5e5;
+  --color-arch-white: #ffffff;
 
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  /* Background Images - Dark grid on light bg */
-  --background-image-grid-pattern: linear-gradient(to right, #e5e5e5 1px, transparent 1px), linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+  /* Animations */
+  --animate-fade-in: fade-in 0.8s ease-out forwards;
+  --animate-slide-up: slide-up 0.8s ease-out forwards;
 }
 
 /* Custom Base Styles */
