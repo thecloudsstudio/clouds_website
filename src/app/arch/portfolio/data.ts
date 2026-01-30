@@ -256,5 +256,56 @@ export const projects: Record<string, {
             }
         ],
         size: "1,200 sq ft"
+    },
+    "6": {
+        id: "6",
+        title: "Compact Urban Apartments",
+        category: "Residential",
+        location: "Chennai, India",
+        year: "2025",
+        description: "A Joint Venture multi-family residential building addressing Chennai's affordable housing needs on a constrained 2,800 sq ft urban plot. The design accommodates ground-level parking for six cars with three residential floors above, each containing two compact apartments. Departing from brutalism, the project employs tropical modernism with terracotta jali screens, passive ventilation strategies, and integrated greenery to create a climate-responsive, cost-effective solution for urban density.",
+        heroImage: "/chennai_apartments_exterior_v2_1769753645940.png",
+        images: [
+            "/chennai_apartments_exterior_v2_1769753645940.png",
+            "/chennai_apartments_parking_1769753661711.png",
+            "/chennai_apartments_staircase_1769753677802.png",
+            "/chennai_apartments_living_1769753696485.png",
+            "/chennai_apartments_bedroom_1769753714816.png",
+            "/chennai_apartments_kitchen_1769753735185.png"
+        ],
+        plans: [],
+        sections: [
+            {
+                title: "Building Strategy",
+                content: "The 4-story structure maximizes plot efficiency with ground floor entirely dedicated to resident parking—a critical amenity in dense urban Chennai. Three identical residential floors sit above, each with two mirrored 700 sq ft apartments. The terracotta and white facade employs geometric jali screens that provide privacy, reduce heat gain, and create a unified architectural identity distinct from our typical brutalist projects.",
+                image: "/chennai_apartments_exterior_v2_1769753645940.png"
+            },
+            {
+                title: "Ground Parking Level",
+                content: "The open ground floor accommodates six marked parking bays under the residential block above. White painted columns support the structure while a terracotta-clad stairwell provides secure access to upper apartments. This simple, functional solution addresses Chennai's parking constraints without sacrificing valuable residential area on upper floors.",
+                image: "/chennai_apartments_parking_1769753661711.png"
+            },
+            {
+                title: "Shared Circulation",
+                content: "A modest central staircase serves all six units with minimal common area. Terracotta accent walls match the building's exterior palette while skylights bring natural daylight deep into the circulation core. Potted plants on landings soften the utilitarian space, creating a welcoming shared environment on a tight budget.",
+                image: "/chennai_apartments_staircase_1769753677802.png"
+            },
+            {
+                title: "Apartment Living Spaces",
+                content: "Compact 700 sq ft apartments maximize perceived space through thoughtful design. A single terracotta accent wall adds warmth without overwhelming the small footprint. The signature jali screens filter harsh sunlight while maintaining visual connection to balconies. Simple modern furniture and tropical plants complete the modest but comfortable living areas.",
+                image: "/chennai_apartments_living_1769753696485.png"
+            },
+            {
+                title: "Bedroom Design",
+                content: "Bedrooms continue the terracotta and white palette established throughout the building. Windows feature the same geometric jali screens as the facade, ensuring design consistency and climate control. Despite the compact size, natural light, balcony access, and minimal furnishings create functional, livable sleeping spaces suitable for Chennai's climate.",
+                image: "/chennai_apartments_bedroom_1769753714816.png"
+            },
+            {
+                title: "Efficient Kitchens",
+                content: "Galley kitchens optimize the constrained footprint with terracotta tile backsplashes that tie to the building's material strategy. Natural wood cabinets paired with white countertops deliver durability and value. The compact layout ensures functionality without wasted space, critical in affordable multi-family housing where every square foot counts.",
+                image: "/chennai_apartments_kitchen_1769753735185.png"
+            }
+        ],
+        size: "2,800 sq ft plot, 6 units"
     }
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import ArchNavbar from '@/components/arch/ArchNavbar';
-import ArchFooter from '@/components/arch/ArchFooter';
 
 export const metadata = {
     title: 'Clouds Architecture',
@@ -18,7 +17,6 @@ export default function ArchLayout({
             <main className="flex-grow pb-12">
                 {children}
             </main>
-            <ArchFooter />
         </div>
     );
 }
