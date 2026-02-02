@@ -98,20 +98,14 @@ export default function ArchPortfolio() {
                     <div className="w-10 h-10 bg-white rounded-sm" />
                 )}
                 {cursorState === 'left' && (
-                    <div className="flex items-center gap-2">
-                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                        </svg>
-                        <div className="w-12 h-1.5 bg-white rounded-full" />
-                    </div>
+                    <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
                 )}
                 {cursorState === 'right' && (
-                    <div className="flex items-center gap-2">
-                        <div className="w-12 h-1.5 bg-white rounded-full" />
-                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-                        </svg>
-                    </div>
+                    <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
                 )}
             </div>
 

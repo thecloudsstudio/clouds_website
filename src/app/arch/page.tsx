@@ -113,21 +113,20 @@ export default function ArchHome() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Quote Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center z-10 px-6">
+                {/* Quote Overlay - Bottom Left */}
+                <div className="absolute bottom-32 md:bottom-24 left-6 md:left-12 z-10 max-w-2xl">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentSlide}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 1, delay: 0.3 }}
-                            className="max-w-4xl text-center"
                         >
-                            <blockquote className="text-2xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-6 italic">
+                            <blockquote className="text-lg md:text-2xl lg:text-3xl font-light text-white leading-tight mb-3 italic">
                                 "{heroSlides[currentSlide].quote}"
                             </blockquote>
-                            <cite className="text-sm md:text-base tracking-widest uppercase not-italic text-white/80">
+                            <cite className="text-xs md:text-sm tracking-widest uppercase not-italic text-white/70">
                                 — {heroSlides[currentSlide].author}
                             </cite>
                         </motion.div>
@@ -135,12 +134,12 @@ export default function ArchHome() {
                 </div>
 
                 {/* Explore Button */}
-                <div className="absolute bottom-20 md:bottom-16 left-1/2 transform -translate-x-1/2 z-20">
+                <div className="absolute bottom-20 md:bottom-16 right-6 md:right-12 z-20">
                     <Link
                         href="/arch/portfolio"
-                        className="explore-button group inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-full text-white hover:bg-white hover:text-black transition-all duration-300"
+                        className="explore-button group inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm text-white hover:bg-white hover:text-black transition-all duration-300"
                     >
-                        <span className="text-sm md:text-base font-medium tracking-wider uppercase">Explore Portfolio</span>
+                        <span className="text-sm md:text-base font-medium tracking-wider uppercase">Explore</span>
                         <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>
