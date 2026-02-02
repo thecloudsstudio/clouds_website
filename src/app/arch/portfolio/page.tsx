@@ -95,7 +95,7 @@ export default function ArchPortfolio() {
                 }}
             >
                 {cursorState === 'static' && (
-                    <div className="w-10 h-10 bg-white rounded-sm" />
+                    <div className="w-12 h-12 bg-white rounded-sm" />
                 )}
                 {cursorState === 'left' && (
                     <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
