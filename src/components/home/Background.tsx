@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-// @ts-ignore
 import { MeshGradient } from "@paper-design/shaders-react";
 
 export default function Background() {

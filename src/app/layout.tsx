@@ -8,8 +8,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ARGIS | Intelligent Manufacturing Guidance",
-  description: "Prevent assembly defects before they happen with real-time AI guidance.",
+  title: "Clouds Studio",
+  description: "Award-winning architectural and interior design studio. We create elegant, modern spaces that are rigorous in their detail and construction.",
+  openGraph: {
+    title: "Clouds Studio",
+    description: "Award-winning architectural and interior design studio. We create elegant, modern spaces that are rigorous in their detail and construction.",
+    url: "https://thecloudsstudio.com",
+    siteName: "Clouds Studio",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Clouds Studio",
+    description: "Award-winning architectural and interior design studio.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
