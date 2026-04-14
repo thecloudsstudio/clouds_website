@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/src/components/**/*.tsx /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/src/app/**/*.tsx)",
+      "Bash(npm install:*)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/haris/AppData/Roaming/**)",
+      "Read(//c/Users/haris/AppData/Local/Programs/**)",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"where.exe node\")",
+      "Bash(powershell.exe \"where.exe node 2>&1\")",
+      "Bash(powershell.exe \"Get-ChildItem 'C:\\\\Program Files\\\\nodejs\\\\' -ErrorAction SilentlyContinue; Get-ChildItem 'C:\\\\Program Files \\(x86\\)\\\\nodejs\\\\' -ErrorAction SilentlyContinue; Get-ChildItem 'C:\\\\Users\\\\haris\\\\AppData\\\\Roaming\\\\nvm\\\\' -ErrorAction SilentlyContinue\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Program Files\\\\nodejs\\\\' -ErrorAction SilentlyContinue | Format-List\")",
+      "Bash(powershell.exe -Command \"dir 'C:\\\\' -ErrorAction SilentlyContinue\")",
+      "Bash(powershell.exe -Command \"dir 'C:\\\\Program Files\\\\nodejs' -ErrorAction SilentlyContinue; dir 'C:\\\\Users\\\\haris\\\\AppData\\\\Local\\\\Programs\\\\node' -ErrorAction SilentlyContinue; dir 'C:\\\\Users\\\\haris\\\\.nvm' -ErrorAction SilentlyContinue; dir 'C:\\\\nvm' -ErrorAction SilentlyContinue\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem -Path 'C:\\\\Program Files' -ErrorAction SilentlyContinue | Select-Object Name\")",
+      "Bash(powershell.exe \"where.exe npm.cmd 2>&1; where.exe node.exe 2>&1\")",
+      "mcp__98e78049-422c-480e-889a-d71f374e715a__netlify-project-services-reader",
+      "mcp__98e78049-422c-480e-889a-d71f374e715a__netlify-deploy-services-reader",
+      "Bash(sitemap\")"
+    ]
+  }
+}

@@ -23,49 +23,11 @@ export default function ArchNavbar() {
     };
 
     const navLinks = [
-        {
-            name: 'Services',
-            href: '/arch/services',
-            subItems: [
-                {
-                    name: 'Architecture',
-                    href: '/arch/services/architecture',
-                    subItems: [
-                        { name: 'Residential', href: '/arch/services/architecture/residential' },
-                        { name: 'Commercial', href: '/arch/services/architecture/commercial' },
-                        { name: 'Heritage & Conservation', href: '/arch/services/architecture/heritage' }
-                    ]
-                },
-                {
-                    name: 'Interior Design',
-                    href: '/arch/services/interior-design',
-                    subItems: [
-                        { name: 'Residential', href: '/arch/services/interior-design/residential' },
-                        { name: 'Commercial', href: '/arch/services/interior-design/commercial' }
-                    ]
-                },
-                {
-                    name: 'Planning',
-                    href: '/arch/services/planning',
-                    subItems: [
-                        { name: 'Planning Applications', href: '/arch/services/planning/applications' },
-                        { name: 'Feasibility Studies', href: '/arch/services/planning/feasibility' }
-                    ]
-                },
-                { name: 'Create & Construct', href: '/arch/services/create-and-construct' }
-            ]
-        },
-        {
-            name: 'Portfolio',
-            href: '/arch/portfolio',
-            subItems: [
-                { name: 'Residential', href: '/arch/portfolio#residential' },
-                { name: 'Commercial', href: '/arch/portfolio#commercial' },
-                { name: 'Hospitality', href: '/arch/portfolio#hospitality' }
-            ]
-        },
-        { name: 'About', href: '/arch/about' },
-        { name: 'Contact', href: '/arch/contact' },
+        { name: 'Work', href: '/work' },
+        { name: 'Services', href: '/services' },
+        { name: 'About', href: '/about' },
+        { name: 'Insights', href: '/insights' },
+        { name: 'Contact', href: '/contact' },
     ];
 
     return (
@@ -83,7 +45,7 @@ export default function ArchNavbar() {
                     className="relative z-50 pointer-events-auto mix-blend-difference"
                     style={{ mixBlendMode: 'difference' }}
                 >
-                    <Link href="/arch" className="text-2xl font-light tracking-[0.2em] text-white uppercase block">
+                    <Link href="/" className="text-2xl font-light tracking-[0.2em] text-white uppercase block">
                         CLOUDS
                     </Link>
                 </div>

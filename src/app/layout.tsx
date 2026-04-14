@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ArchNavbar from "@/components/arch/ArchNavbar";
+import GlobalCursor from "@/components/GlobalCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,14 +10,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Clouds Studio",
+  title: {
+    default: "Clouds Studio",
+    template: "%s | Clouds Studio",
+  },
   description: "Award-winning architectural and interior design studio. We create elegant, modern spaces that are rigorous in their detail and construction.",
+  keywords: ["architecture studio", "interior design", "minimalist architecture", "residential design", "commercial architecture", "India", "Chennai", "Bangalore", "Kerala"],
   openGraph: {
     title: "Clouds Studio",
-    description: "Award-winning architectural and interior design studio. We create elegant, modern spaces that are rigorous in their detail and construction.",
+    description: "Award-winning architectural and interior design studio.",
     url: "https://thecloudsstudio.com",
     siteName: "Clouds Studio",
-    locale: "en_GB",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
@@ -36,9 +42,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} antialiased font-sans`}
-      >
+      <body className={`${inter.variable} antialiased font-sans cursor-none`}>
+        <GlobalCursor />
+        <ArchNavbar />
         {children}
       </body>
     </html>

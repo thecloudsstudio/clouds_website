@@ -5,3 +5,58 @@
 [build.environment]
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
+
+# Redirect old /arch/* URLs to new flat structure
+[[redirects]]
+  from = "/arch"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/portfolio"
+  to = "/work"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/portfolio/:id"
+  to = "/work/:id"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/about"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/contact"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/services"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arch/services/*"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/intelligence"
+  to = "/"
+  status = 301
+  force = true
+
+# SPA fallback for Next.js static export
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
