@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ArchNavbar from "@/components/arch/ArchNavbar";
 import GlobalCursor from "@/components/GlobalCursor";
+import LenisProvider from "@/components/LenisProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,7 +46,9 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased font-sans cursor-none`}>
         <GlobalCursor />
         <ArchNavbar />
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
