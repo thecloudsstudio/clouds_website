@@ -2,59 +2,34 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const navLinks = [
+    { name: 'Work', href: '/work' },
+    { name: 'Services', href: '/services' },
+    { name: 'About', href: '/about' },
+    { name: 'Insights', href: '/insights' },
+    { name: 'Contact', href: '/contact' },
+];
 
 export default function ArchNavbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [expandedLink, setExpandedLink] = useState<string | null>(null);
-    const [expandedSubLink, setExpandedSubLink] = useState<string | null>(null);
-
     const toggleMenu = () => setIsOpen(!isOpen);
-
-    const toggleSubMenu = (name: string) => {
-        setExpandedLink(expandedLink === name ? null : name);
-        setExpandedSubLink(null);
-    };
-
-    const toggleSubSubMenu = (e: React.MouseEvent, name: string) => {
-        e.stopPropagation();
-        setExpandedSubLink(expandedSubLink === name ? null : name);
-    };
-
-    const navLinks = [
-        { name: 'Work', href: '/work' },
-        { name: 'Services', href: '/services' },
-        { name: 'About', href: '/about' },
-        { name: 'Insights', href: '/insights' },
-        { name: 'Contact', href: '/contact' },
-    ];
 
     return (
         <>
-            {/* 
-                NAVBAR WRAPPER STRATEGY
-                - The wrappers <div className="mix-blend-difference"> apply the inversion math.
-                - The inner elements are pure white.
-                - Wrapper has pointer-events-auto to capture clicks.
-            */}
             <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-start bg-transparent pointer-events-none">
 
-                {/* Left: Logo Wrapper */}
-                <div
-                    className="relative z-50 pointer-events-auto mix-blend-difference"
-                    style={{ mixBlendMode: 'difference' }}
-                >
+                {/* Logo */}
+                <div className="relative z-50 pointer-events-auto mix-blend-difference" style={{ mixBlendMode: 'difference' }}>
                     <Link href="/" className="text-2xl font-light tracking-[0.2em] text-white uppercase block">
                         CLOUDS
                     </Link>
                 </div>
 
-                {/* Right: Menu Icon Wrapper */}
-                <div
-                    className="relative z-50 pointer-events-auto mix-blend-difference"
-                    style={{ mixBlendMode: 'difference' }}
-                >
+                {/* Hamburger */}
+                <div className="relative z-50 pointer-events-auto mix-blend-difference" style={{ mixBlendMode: 'difference' }}>
                     <button
                         onClick={toggleMenu}
                         className="text-white hover:text-gray-300 transition-colors focus:outline-none block"
@@ -65,7 +40,7 @@ export default function ArchNavbar() {
                 </div>
             </nav>
 
-            {/* EXPANDED MENU */}
+            {/* Full-screen menu */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -78,88 +53,13 @@ export default function ArchNavbar() {
                         <div className="max-w-xl w-full mx-auto space-y-6 py-24">
                             {navLinks.map((link) => (
                                 <div key={link.name} className="border-b border-gray-800 pb-4">
-                                    <div className="flex items-center justify-between group cursor-pointer" onClick={() => link.subItems ? toggleSubMenu(link.name) : toggleMenu()}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-3xl md:text-5xl font-light tracking-wide text-white group-hover:text-gray-400 transition-colors uppercase"
-                                            onClick={(e) => {
-                                                if (link.subItems) {
-                                                    e.preventDefault();
-                                                    toggleSubMenu(link.name);
-                                                } else {
-                                                    toggleMenu();
-                                                }
-                                            }}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                        {link.subItems && (
-                                            <span className="text-gray-500">
-                                                {expandedLink === link.name ? <ChevronDown size={24} /> : <ChevronRight size={24} />}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Level 2 Sub-menu */}
-                                    <AnimatePresence>
-                                        {link.subItems && expandedLink === link.name && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden pl-4 mt-4 space-y-3"
-                                            >
-                                                {link.subItems.map((sub) => (
-                                                    <div key={sub.name}>
-                                                        <div className="flex items-center justify-between group cursor-pointer" onClick={(e) => 'subItems' in sub ? toggleSubSubMenu(e, sub.name) : toggleMenu()}>
-                                                            <Link
-                                                                href={sub.href}
-                                                                onClick={(e) => {
-                                                                    if ('subItems' in sub) {
-                                                                        e.preventDefault();
-                                                                        toggleSubSubMenu(e, sub.name);
-                                                                    } else {
-                                                                        toggleMenu();
-                                                                    }
-                                                                }}
-                                                                className="block text-lg text-gray-500 hover:text-white transition-colors font-light tracking-wider"
-                                                            >
-                                                                {sub.name}
-                                                            </Link>
-                                                            {'subItems' in sub && (
-                                                                <span className="text-gray-600">
-                                                                    {expandedSubLink === sub.name ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-                                                                </span>
-                                                            )}
-                                                        </div>
-
-                                                        {/* Level 3 Sub-menu */}
-                                                        <AnimatePresence>
-                                                            {'subItems' in sub && expandedSubLink === sub.name && (
-                                                                <motion.div
-                                                                    initial={{ height: 0, opacity: 0 }}
-                                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                                    exit={{ height: 0, opacity: 0 }}
-                                                                    className="overflow-hidden pl-4 mt-2 space-y-2 border-l border-gray-800 ml-1"
-                                                                >
-                                                                    {(sub as any).subItems.map((subSub: any) => (
-                                                                        <Link
-                                                                            key={subSub.name}
-                                                                            href={subSub.href}
-                                                                            onClick={toggleMenu}
-                                                                            className="block text-base text-gray-400 hover:text-white transition-colors font-light tracking-wider"
-                                                                        >
-                                                                            {subSub.name}
-                                                                        </Link>
-                                                                    ))}
-                                                                </motion.div>
-                                                            )}
-                                                        </AnimatePresence>
-                                                    </div>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                                    <Link
+                                        href={link.href}
+                                        onClick={toggleMenu}
+                                        className="text-3xl md:text-5xl font-light tracking-wide text-white hover:text-gray-400 transition-colors uppercase block"
+                                    >
+                                        {link.name}
+                                    </Link>
                                 </div>
                             ))}
                         </div>
