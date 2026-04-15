@@ -17,7 +17,23 @@
       "Bash(powershell.exe \"where.exe npm.cmd 2>&1; where.exe node.exe 2>&1\")",
       "mcp__98e78049-422c-480e-889a-d71f374e715a__netlify-project-services-reader",
       "mcp__98e78049-422c-480e-889a-d71f374e715a__netlify-deploy-services-reader",
-      "Bash(sitemap\")"
+      "Bash(sitemap\")",
+      "Bash(powershell.exe -Command \"cd 'C:\\\\Users\\\\haris\\\\OneDrive\\\\Documents\\\\website\\\\.claude\\\\worktrees\\\\sharp-spence'; npx tsc --noEmit 2>&1\")",
+      "Bash(powershell.exe -Command \"Get-Command npx -ErrorAction SilentlyContinue | Select-Object Source; Get-Command node -ErrorAction SilentlyContinue | Select-Object Source\")",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(npm --version)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(find /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/src -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" \\\\\\) -exec grep -l \"submit\\\\|Contact\\\\|form\" {} \\\\;)",
+      "Bash(grep -h \"assets\\\\|images\\\\|js\\\\|css\" /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/public/*.html)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(find /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/_backup_argis_old -type f -name \"*.html\" -exec sh -c 'echo \"=== $1 ===\"; grep -o \"href=\\\\\"[^\\\\\"]*\\\\|src=\\\\\"[^\\\\\"]*\" \"$1\" | head -20' _ {} \\\\;)",
+      "Bash(grep -h \"assets/images/favicon\\\\|assets/\\\\|src=\\\\\"\" /c/Users/haris/OneDrive/Documents/website/.claude/worktrees/sharp-spence/_backup_argis_old/*.html)",
+      "Bash(rm -rf _backup_argis_old)",
+      "Bash(rm -rf temp_argis_app)",
+      "Bash(rm -f public/arch.html public/automation.html public/engineering.html public/maintenance_backup.html public/point-innovation-replica.html public/index.html)",
+      "Bash(rm -rf public/images)",
+      "Bash(rm -f public/file.svg public/next.svg public/window.svg public/globe.svg public/vercel.svg)"
     ]
   }
 }
