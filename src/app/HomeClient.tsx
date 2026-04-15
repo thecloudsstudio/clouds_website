@@ -114,7 +114,7 @@ export default function HomeClient() {
                 {/* Explore button */}
                 <div className="absolute bottom-20 md:bottom-16 right-6 md:right-12 z-20">
                     <Link
-                        href="/work"
+                        href="/portfolio"
                         className="explore-button group inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm text-white hover:bg-white hover:text-black transition-all duration-300"
                     >
                         <span className="text-sm md:text-base font-medium tracking-wider uppercase">Explore</span>

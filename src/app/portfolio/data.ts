@@ -1,5 +1,5 @@
 export const projects: Record<string, {
-    id: string;
+    slug: string;
     title: string;
     category: string;
     location: string;
@@ -15,8 +15,8 @@ export const projects: Record<string, {
     }[];
     size?: string;
 }> = {
-    "1": {
-        id: "1",
+    "bangalore-fusion-villa": {
+        slug: "bangalore-fusion-villa",
         title: "Bangalore Fusion Villa",
         category: "Residential",
         location: "Bangalore, India",
@@ -44,19 +44,18 @@ export const projects: Record<string, {
             },
             {
                 title: "Courtyard Living",
-                content: "Central to the home's organization is the open-to-sky courtyard. It regulates the microclimate, bringing in cool air and diffusing sunlight. It serves as the visual and spiritual heart of the home, connecting the private and public zones.",
+                content: "Central to the home's organisation is the open-to-sky courtyard. It regulates the microclimate, bringing in cool air and diffusing sunlight. It serves as the visual and spiritual heart of the home, connecting the private and public zones.",
                 image: "/bangalore_villa_kitchen_color_1767792872338.png"
             }
         ],
-        size: "large"
     },
-    "2": {
-        id: "2",
+    "kerala-eco-resort": {
+        slug: "kerala-eco-resort",
         title: "Kerala Eco-Resort",
         category: "Hospitality",
         location: "Munnar, Kerala",
         year: "2023",
-        description: "Nestled in the backwaters, this resort minimizes its carbon footprint through the use of locally sourced laterite and bamboo. The design blurs the boundaries between the built form and the water.",
+        description: "Nestled in the backwaters, this resort minimises its carbon footprint through the use of locally sourced laterite and bamboo. The design blurs the boundaries between the built form and the water.",
         heroImage: "/kerala_resort_slider_colorized_1767793672440.png",
         images: [
             "/kerala_resort_pool_colorized_v2_1767794309819.png",
@@ -88,10 +87,9 @@ export const projects: Record<string, {
                 image: "/kerala_resort_reception_colorized_v2_1767794334436.png"
             }
         ],
-        size: "large"
     },
-    "3": {
-        id: "3",
+    "chennai-tech-hub": {
+        slug: "chennai-tech-hub",
         title: "Chennai Tech Hub",
         category: "Commercial",
         location: "Chennai, Tamil Nadu",
@@ -127,10 +125,9 @@ export const projects: Record<string, {
                 image: "/chennai_facade_night_colorized_1767795174827.png"
             }
         ],
-        size: "small"
     },
-    "4": {
-        id: "4",
+    "chettinad-conservation": {
+        slug: "chettinad-conservation",
         title: "Chettinad Conservation",
         category: "Conservation",
         location: "Karaikudi, Tamil Nadu",
@@ -164,13 +161,13 @@ export const projects: Record<string, {
         ],
         size: "1,800 sq ft"
     },
-    "5": {
-        id: "5",
+    "chennai-urban-residence": {
+        slug: "chennai-urban-residence",
         title: "Chennai Urban Residence",
         category: "Residential",
         location: "Chennai, India",
         year: "2025",
-        description: "A contemporary 2-floor residence designed for a young IT couple with a child in urban Chennai. The project reimagines conventional construction with bold design gestures, optimising space for modern work-from-home lifestyles while maintaining harmony with the surrounding neighbourhood context.",
+        description: "A contemporary 2-floor residence designed for a young IT couple with a child in urban Chennai. The project reimagines conventional construction with bold design gestures, optimising space for modern work-from-home lifestyles.",
         heroImage: "/chennai_urban_residence_exterior_1769688810297.png",
         images: [
             "/chennai_urban_residence_exterior_1769688810297.png",
@@ -193,17 +190,17 @@ export const projects: Record<string, {
             { title: "Facade Design", content: "The exterior combines textured concrete panels with warm wooden slats, creating visual rhythm and depth. The cantilevered balcony adds architectural drama while providing outdoor living space.", image: "/chennai_residence_facade_detail_1769692207613.png" },
             { title: "Living Spaces", content: "The double-height living room forms the social heart of the home. Warm wooden accents complement the minimal contemporary aesthetic, while abundant natural light creates a sense of spaciousness.", image: "/chennai_residence_living_room_1769688835282.png" },
             { title: "Master Bedroom", content: "The master bedroom embraces Japanese-inspired minimalism with a low platform bed, wooden flooring, and a direct connection to a private terrace with lush greenery.", image: "/chennai_residence_bedroom_1769688873885.png" },
-            { title: "Rooftop Terrace", content: "The rooftop terrace transforms the compact urban plot into a private oasis. Wooden decking, concrete planters with tropical vegetation, and string lighting create an outdoor living room.", image: "/chennai_residence_terrace_1769692133375.png" }
+            { title: "Rooftop Terrace", content: "The rooftop terrace transforms the compact urban plot into a private oasis. Wooden decking, concrete planters, and string lighting create an outdoor living room with city views.", image: "/chennai_residence_terrace_1769692133375.png" }
         ],
         size: "1,200 sq ft"
     },
-    "6": {
-        id: "6",
+    "compact-urban-apartments": {
+        slug: "compact-urban-apartments",
         title: "Compact Urban Apartments",
         category: "Residential",
         location: "Chennai, India",
         year: "2025",
-        description: "A Joint Venture multi-family residential building addressing Chennai's affordable housing needs on a constrained 2,800 sq ft urban plot. Departing from brutalism, the project employs tropical modernism with terracotta jali screens, passive ventilation strategies, and integrated greenery.",
+        description: "A Joint Venture multi-family residential building addressing Chennai's affordable housing needs on a constrained 2,800 sq ft urban plot. The project employs tropical modernism with terracotta jali screens, passive ventilation strategies, and integrated greenery.",
         heroImage: "/chennai_apartments_exterior_v2_1769753645940.png",
         images: [
             "/chennai_apartments_exterior_v2_1769753645940.png",

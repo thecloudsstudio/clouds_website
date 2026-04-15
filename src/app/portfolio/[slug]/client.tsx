@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 
 interface ProjectDetailClientProps {
     project: {
-        id: string;
+        slug: string;
         title: string;
         location: string;
         year: string;
@@ -88,9 +88,9 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
     return (
         <div className="w-full bg-white min-h-screen text-black">
             <div className="fixed top-8 left-6 md:left-12 z-50 mix-blend-difference text-white">
-                <Link href="/work" className="flex items-center text-sm font-medium tracking-[0.2em] hover:opacity-70 transition-opacity uppercase group">
+                <Link href="/portfolio" className="flex items-center text-sm font-medium tracking-[0.2em] hover:opacity-70 transition-opacity uppercase group">
                     <ArrowLeft size={16} className="mr-3 transition-transform group-hover:-translate-x-1" />
-                    Back
+                    Portfolio
                 </Link>
             </div>
 
@@ -121,7 +121,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             {project.plans.map((p, i) => (
                                 <div key={i} className="bg-white border border-neutral-200 aspect-square flex items-center justify-center p-12 hover:shadow-lg transition-shadow duration-500">
-                                    <Image src={p} alt="Plan" width={800} height={800} className="object-contain opacity-80" />
+                                    <Image src={p} alt="Floorplan" width={800} height={800} className="object-contain opacity-80" />
                                 </div>
                             ))}
                         </div>

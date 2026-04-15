@@ -15,13 +15,13 @@
 
 [[redirects]]
   from = "/arch/portfolio"
-  to = "/work"
+  to = "/portfolio"
   status = 301
   force = true
 
 [[redirects]]
   from = "/arch/portfolio/:id"
-  to = "/work/:id"
+  to = "/portfolio/:id"
   status = 301
   force = true
 
@@ -52,6 +52,26 @@
 [[redirects]]
   from = "/intelligence"
   to = "/"
+  status = 301
+  force = true
+
+# Redirect old /work URLs to /portfolio
+[[redirects]]
+  from = "/work"
+  to = "/portfolio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work/*"
+  to = "/portfolio"
+  status = 301
+  force = true
+
+# Redirect old /insights to /journal
+[[redirects]]
+  from = "/insights"
+  to = "/journal"
   status = 301
   force = true
 

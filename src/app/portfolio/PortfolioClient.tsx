@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from './data';
 
-export default function WorkClient() {
+export default function PortfolioClient() {
     const projectsList = Object.values(projects);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [cursorState, setCursorState] = useState<'static' | 'left' | 'right'>('static');
@@ -91,14 +91,14 @@ export default function WorkClient() {
                     transition={{ duration: 0.8 }}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-black mb-4 sm:mb-6 md:mb-8 uppercase"
                 >
-                    Selected Works
+                    Portfolio
                 </motion.h1>
                 <div className="hidden sm:flex flex-wrap gap-4 md:gap-8 text-xs sm:text-sm font-medium tracking-widest uppercase text-gray-400">
                     <span className="text-black">All</span>
-                    <span className="hover:text-black transition-colors">Residential</span>
-                    <span className="hover:text-black transition-colors">Commercial</span>
-                    <span className="hover:text-black transition-colors">Hospitality</span>
-                    <span className="hover:text-black transition-colors">Conservation</span>
+                    <span className="hover:text-black transition-colors cursor-pointer">Residential</span>
+                    <span className="hover:text-black transition-colors cursor-pointer">Commercial</span>
+                    <span className="hover:text-black transition-colors cursor-pointer">Hospitality</span>
+                    <span className="hover:text-black transition-colors cursor-pointer">Conservation</span>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@ export default function WorkClient() {
                 <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide h-full flex items-center w-full scroll-smooth cursor-none">
                     <div className="flex gap-4 sm:gap-6 px-4 sm:px-6 md:px-12 h-full items-center">
                         {projectsList.map((project, index) => (
-                            <Link href={`/work/${project.id}`} key={project.id} className="block group flex-shrink-0 cursor-none">
+                            <Link href={`/portfolio/${project.slug}`} key={project.slug} className="block group flex-shrink-0 cursor-none">
                                 <motion.div
                                     initial={{ opacity: 0, x: 30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
