@@ -4,137 +4,125 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
-// ── GEOMETRY ─────────────────────────────────────────────────────────────────
-const CX = 72;   // ring centre x (px from left)
-const CY = 450;  // ring centre y (px from top)
-const R1 = 82;   // hub radius
-const R2 = 360;  // dark selector wheel radius
-const R3 = 1380; // cream content circle radius
+// ── GEOMETRY ──────────────────────────────────────────────────────────────────
+const CX = 72;      // ring centre x (px)
+const CY = 450;     // ring centre y (px)
+const R1 = 88;      // hub radius
+const R2 = 456;     // selector wheel — wider to fit "Construction Management"
+const R3 = 1380;    // content/image circle
+const N  = 6;
+const STEP = 360 / N; // 60° per service
 
-// Returns white or black text depending on which ring zone a point sits in
-function adaptiveColor(px: number, py: number): string {
-    const dist = Math.sqrt((px - CX) ** 2 + (py - CY) ** 2);
-    if (dist < R2) return '#ffffff';   // inside dark ring  → white
-    if (dist < R3) return '#111111';   // inside cream ring → dark
-    return '#ffffff';                   // outside cream     → white (dark bg)
+// Label radius: 57% of R2 — text centres here
+const R_LBL = R2 * 0.57; // ~260 px
+
+// Longest label is "Construction Management" (~192px at 9.5px + 0.19em spacing).
+// Text spans ±96px either side of R_LBL. Pointer must end before R_LBL - 96.
+const POINTER_END = Math.floor(R_LBL - 108); // comfortable gap before text
+
+// Adaptive colour — pure geometry, no DOM sampling, works on SSR too
+function adaptColor(px: number, py: number): string {
+    const d = Math.sqrt((px - CX) ** 2 + (py - CY) ** 2);
+    // Inside dark ring  → white text
+    if (d <= R2) return '#ffffff';
+    // Inside image/cream circle → dark text
+    if (d <= R3) return '#111111';
+    // Outside everything (dark bg strip on far right) → white
+    return '#ffffff';
 }
 
-// ── DATA ─────────────────────────────────────────────────────────────────────
+// ── DATA ──────────────────────────────────────────────────────────────────────
 const SERVICES = [
     {
         id: 1,
-        title: "Architecture\n& Design",
         shortName: "Architecture & Design",
+        title: "Architecture\n& Design",
         description: "We design buildings deeply rooted in their context and built to last generations. Our work begins with a rigorous understanding of site, climate, culture, and the precise way people inhabit space.\n\nFrom intimate private residences to large-scale commercial complexes, every project is shaped by a commitment to material honesty and spatial clarity.",
         areas: ["Residential", "Commercial", "Hospitality", "Heritage & Conservation"],
-        images: [
-            { src: "/bangalore_villa_facade_color_1767792911832.png", label: "Exterior / Facade" },
-            { src: "/bangalore_villa_bedroom_color_1767792889582.png", label: "Interior" },
-            { src: "/bangalore_villa_kitchen_color_1767792872338.png", label: "Detail" },
-        ],
+        heroImage: "/bangalore_villa_facade_color_1767792911832.png",
     },
     {
         id: 2,
-        title: "Interior\nDesign",
         shortName: "Interior Design",
-        description: "Our interior practice extends the architectural vision inward — from first wall to last detail. We curate material palettes, spatial sequences, lighting strategies, and furniture selections that create cohesive environments.\n\nWe design interiors that feel both deliberate and lived-in, spaces that grow richer over time.",
+        title: "Interior\nDesign",
+        description: "Our interior practice extends the architectural vision inward — from first wall to last detail. We curate material palettes, spatial sequences, lighting strategies, and furniture selections that create cohesive, considered environments.\n\nWe design interiors that feel both deliberate and lived-in, spaces that grow richer over time rather than dating with trends.",
         areas: ["Residential Interiors", "Commercial Interiors", "Hospitality Interiors", "Furniture Curation"],
-        images: [
-            { src: "/chettinad_bedroom_colorized_1767964135344.png", label: "Bedroom" },
-            { src: "/chettinad_dining_colorized_1767964163160.png", label: "Dining" },
-            { src: "/chettinad_courtyard_colorized_1767964112792.png", label: "Courtyard" },
-        ],
+        heroImage: "/chettinad_bedroom_colorized_1767964135344.png",
     },
     {
         id: 3,
-        title: "Construction\nManagement",
         shortName: "Construction Management",
-        description: "Through our create-and-construct model, we manage the complete build process — procurement, contractor coordination, site supervision, and handover. A single point of accountability from concept to completion.\n\nThis end-to-end involvement ensures the design intent is fully preserved through every phase.",
+        title: "Construction\nManagement",
+        description: "Through our create-and-construct model, we manage the complete build process — procurement, contractor coordination, site supervision, and handover. A single point of accountability from concept to completion.\n\nThis end-to-end involvement ensures the design intent is fully preserved through every phase of construction.",
         areas: ["Project Management", "Contractor Coordination", "Site Supervision", "Handover & Closeout"],
-        images: [
-            { src: "/chennai_urban_residence_exterior_1769688810297.png", label: "Site" },
-            { src: "/chennai_residence_facade_detail_1769692207613.png", label: "Facade Detail" },
-            { src: "/chennai_residence_staircase_1769688893581.png", label: "Structure" },
-        ],
+        heroImage: "/chennai_urban_residence_exterior_1769688810297.png",
     },
     {
         id: 4,
-        title: "Planning &\nApprovals",
         shortName: "Planning & Approvals",
+        title: "Planning &\nApprovals",
         description: "Navigating planning regulations and statutory approvals requires both experience and precision. We prepare comprehensive planning applications, feasibility studies, and regulatory submissions.\n\nOur deep familiarity with local planning frameworks across India ensures projects move efficiently from concept to commencement.",
         areas: ["Planning Applications", "Feasibility Studies", "Regulatory Submissions", "Zoning Analysis"],
-        images: [
-            { src: "/chennai_apartments_exterior_v2_1769753645940.png", label: "Massing" },
-            { src: "/chennai_apartments_living_1769753696485.png", label: "Unit Interior" },
-            { src: "/chennai_apartments_staircase_1769753677802.png", label: "Circulation" },
-        ],
+        heroImage: "/chennai_apartments_exterior_v2_1769753645940.png",
     },
     {
         id: 5,
-        title: "Project\nConsultation",
         shortName: "Project Consultation",
-        description: "Not every project needs a full service from day one. Our consultation offering provides focused expert guidance at any stage — from site appraisals and brief development to design reviews and value engineering.\n\nWhether you are an individual client, a developer, or another design practice, we bring clarity to complex decisions.",
+        title: "Project\nConsultation",
+        description: "Not every project needs a full service from day one. Our consultation offering provides focused expert guidance at any stage — from site appraisals and brief development to design reviews and value engineering.\n\nWhether you are an individual client, developer, or another design practice, we bring clarity to complex decisions.",
         areas: ["Site Appraisals", "Brief Development", "Design Review", "Value Engineering"],
-        images: [
-            { src: "/kerala_resort_aerial_colorized_1767793602663.png", label: "Aerial View" },
-            { src: "/kerala_resort_reception_colorized_v2_1767794334436.png", label: "Reception" },
-            { src: "/kerala_resort_pool_colorized_v2_1767794309819.png", label: "Landscape" },
-        ],
+        heroImage: "/kerala_resort_aerial_colorized_1767793602663.png",
     },
     {
         id: 6,
-        title: "Site\nAnalysis",
         shortName: "Site Analysis",
-        description: "Every great building begins with a thorough understanding of its ground. Our site analysis service examines topography, solar orientation, wind patterns, drainage, views, and contextual relationships.\n\nThis foundational work ensures the architecture that emerges is specific to its place, not generic to any site.",
+        title: "Site\nAnalysis",
+        description: "Every great building begins with a thorough understanding of its ground. Our site analysis service examines topography, solar orientation, wind patterns, drainage, views, and contextual relationships — producing a comprehensive brief that informs every subsequent design decision.\n\nThis foundational work ensures the architecture that emerges is specific to its place.",
         areas: ["Topographic Survey", "Solar & Wind Analysis", "Contextual Study", "Environmental Assessment"],
-        images: [
-            { src: "/kerala_resort_yoga_colorized_v2_1767794447655.png", label: "Landscape" },
-            { src: "/kerala_resort_walkway_colorized_1767793650889.png", label: "Circulation" },
-            { src: "/kerala_resort_bedroom_colorized_1767793625502.png", label: "Environment" },
-        ],
+        heroImage: "/kerala_resort_yoga_colorized_v2_1767794447655.png",
     },
 ];
 
 // ── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function ServicesClient() {
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted]         = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const [angleOffset, setAngleOffset] = useState(0);
-    const [scrollDir, setScrollDir] = useState<1 | -1>(1);
+    const [scrollDir, setScrollDir]     = useState<1 | -1>(1);
 
-    // Refs — avoid stale closures in event handlers
-    const angleRef = useRef(0);
-    const targetAngleRef = useRef(0);
-    const isWheelZoneRef = useRef(true);
-    const contentRef = useRef<HTMLDivElement>(null);
-    const rafRef = useRef<number>(0);
+    const angleRef        = useRef(0);
+    const targetAngleRef  = useRef(0);
+    const isWheelZoneRef  = useRef(true);
+    const lastWheelRef    = useRef(0);     // debounce: time of last snap
+    const contentRef      = useRef<HTMLDivElement>(null);
+    const rafRef          = useRef<number>(0);
 
-    const N = SERVICES.length;
-    const STEP = 360 / N; // 60° per service
-
-    // ── MOUNT: hide ArchNavbar, mark body ──────────────────────────────────
+    // ── MOUNT: hide ArchNavbar ─────────────────────────────────────────────
     useEffect(() => {
         setMounted(true);
-        document.body.classList.add('services-page');
-        return () => document.body.classList.remove('services-page');
+        // Force-hide the global ArchNavbar (fixed nav) on this page
+        const navEls = document.querySelectorAll('nav');
+        navEls.forEach(el => { (el as HTMLElement).style.setProperty('display', 'none', 'important'); });
+        return () => {
+            navEls.forEach(el => { (el as HTMLElement).style.removeProperty('display'); });
+        };
     }, []);
 
     // ── SPRING ANIMATION LOOP ──────────────────────────────────────────────
     useEffect(() => {
         const loop = () => {
             const diff = targetAngleRef.current - angleRef.current;
-            angleRef.current += diff * 0.09;
+            angleRef.current += diff * 0.1;
             setAngleOffset(angleRef.current);
             const snapped = Math.round(-angleRef.current / STEP);
-            const idx = ((snapped % N) + N) % N;
-            setActiveIndex(idx);
+            setActiveIndex(((snapped % N) + N) % N);
             rafRef.current = requestAnimationFrame(loop);
         };
         rafRef.current = requestAnimationFrame(loop);
         return () => cancelAnimationFrame(rafRef.current);
-    }, [N, STEP]);
+    }, []);
 
-    // ── MOUSE ZONE DETECTION ───────────────────────────────────────────────
+    // ── MOUSE ZONE ─────────────────────────────────────────────────────────
     useEffect(() => {
         const onMove = (e: MouseEvent) => {
             isWheelZoneRef.current = e.clientX <= CX + R2;
@@ -143,13 +131,19 @@ export default function ServicesClient() {
         return () => window.removeEventListener('mousemove', onMove);
     }, []);
 
-    // ── WHEEL HANDLER (uses refs — no stale closure) ───────────────────────
+    // ── WHEEL — ONE SNAP PER GESTURE (400ms debounce) ─────────────────────
     useEffect(() => {
         const onWheel = (e: WheelEvent) => {
             e.preventDefault();
             if (isWheelZoneRef.current) {
-                setScrollDir(e.deltaY > 0 ? 1 : -1);
-                targetAngleRef.current -= e.deltaY * 0.2;
+                const now = Date.now();
+                if (now - lastWheelRef.current < 400) return; // block rapid fire
+                lastWheelRef.current = now;
+                const dir = e.deltaY > 0 ? 1 : -1;
+                setScrollDir(dir as 1 | -1);
+                // Snap from current target position — not visual position
+                const currentSnap = Math.round(-targetAngleRef.current / STEP);
+                targetAngleRef.current = -(currentSnap + dir) * STEP;
             } else {
                 contentRef.current?.scrollBy({ top: e.deltaY });
             }
@@ -158,119 +152,159 @@ export default function ServicesClient() {
         return () => window.removeEventListener('wheel', onWheel);
     }, []);
 
+    // Click a label → jump to that service
     const goTo = (i: number) => {
-        setScrollDir(i > activeIndex ? 1 : -1);
+        setScrollDir((i > activeIndex ? 1 : -1) as 1 | -1);
         targetAngleRef.current = -i * STEP;
     };
 
     const service = SERVICES[activeIndex];
 
-    // Adaptive colours — purely geometry-based, no DOM sampling
-    // Logo: fixed at approx centre (57, 39)
-    const logoColor = adaptiveColor(57, 39);
-    // Hamburger: fixed at approx centre (W-39, 37) — 1401, 37
-    const burgerColor = adaptiveColor(1401, 37);
+    // Adaptive colour — computed from geometry, stable across SSR + client
+    // Logo centre ≈ (57, 36), Hamburger centre ≈ (1416, 36)
+    const logoColor   = adaptColor(57, 36);
+    const burgerColor = adaptColor(1416, 36);
 
-    // ── SSR GUARD — render nothing until client mounts ─────────────────────
-    // (prevents hydration mismatch from Math.cos/sin position computations)
-    if (!mounted) {
-        return (
-            <div className="w-full h-screen bg-[#0e0e0e]" />
-        );
-    }
+    // ── SSR SHELL ─────────────────────────────────────────────────────────
+    if (!mounted) return <div className="w-full h-screen bg-[#0e0e0e]" />;
 
     return (
-        <div className="w-full h-screen overflow-hidden bg-[#0e0e0e] relative" style={{ cursor: 'none' }}>
-
-            {/* ── RING 3: large cream content circle ──────────────────── */}
+        <div
+            className="w-full h-screen overflow-hidden bg-[#0e0e0e] relative"
+            style={{ cursor: 'none' }}
+        >
+            {/* ═══════════════════════════════════════════════════════════════
+                RING 3 — large image-filled circle
+                Image IS the background; cream overlay makes text readable
+            ═══════════════════════════════════════════════════════════════ */}
             <div
-                className="absolute rounded-full pointer-events-none"
+                className="absolute rounded-full overflow-hidden pointer-events-none"
                 style={{
                     width: R3 * 2, height: R3 * 2,
                     left: CX - R3, top: CY - R3,
-                    backgroundColor: '#f5f4f0',
+                    zIndex: 1,
                 }}
-            />
+            >
+                {/* Crossfading hero image */}
+                <AnimatePresence mode="sync">
+                    <motion.img
+                        key={service.id}
+                        src={service.heroImage}
+                        alt={service.shortName}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.9 }}
+                        style={{
+                            position: 'absolute', inset: 0,
+                            width: '100%', height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: '60% center',
+                        }}
+                    />
+                </AnimatePresence>
 
-            {/* ── SVG SPOKES inside Ring 3 ────────────────────────────── */}
+                {/* Cream overlay — 80% opacity, image subtly shows through */}
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    backgroundColor: 'rgba(245,244,240,0.80)',
+                }} />
+
+                {/* Left-side radial fade into dark (blends Ring 2 boundary) */}
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    background: `radial-gradient(ellipse ${R2 + 80}px ${R3 * 0.5}px at ${R3}px ${R3}px, rgba(13,13,13,0.96) 0%, transparent 100%)`,
+                }} />
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════
+                ROTATING SVG SPOKES — rotate with wheel, outside Ring 2
+            ═══════════════════════════════════════════════════════════════ */}
             <svg
                 className="absolute inset-0 pointer-events-none"
                 width="1440" height="900"
-                style={{ zIndex: 1 }}
+                style={{
+                    zIndex: 2,
+                    transform: `rotate(${angleOffset}deg)`,
+                    transformOrigin: `${CX}px ${CY}px`,
+                }}
             >
-                {[14, 40, 66].map(deg =>
+                {[15, 43, 71].map(deg =>
                     [-1, 1].map(sign => {
-                        const rad = deg * sign * Math.PI / 180;
-                        const x1 = CX + (R2 + 20) * Math.cos(rad);
-                        const y1 = CY + (R2 + 20) * Math.sin(rad);
-                        const x2 = CX + (R2 + 700) * Math.cos(rad);
-                        const y2 = CY + (R2 + 700) * Math.sin(rad);
+                        const rad = (deg * sign) * Math.PI / 180;
+                        const x1 = CX + (R2 + 16) * Math.cos(rad);
+                        const y1 = CY + (R2 + 16) * Math.sin(rad);
+                        const x2 = CX + (R2 + 740) * Math.cos(rad);
+                        const y2 = CY + (R2 + 740) * Math.sin(rad);
                         return (
                             <line
-                                key={`${deg}-${sign}`}
+                                key={`${deg}${sign}`}
                                 x1={x1} y1={y1} x2={x2} y2={y2}
-                                stroke="#e0dfd9" strokeWidth="0.8"
+                                stroke="#d4d2cc" strokeWidth="0.7"
                             />
                         );
                     })
                 )}
             </svg>
 
-            {/* ── RING 2: dark service selector wheel ─────────────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                RING 2 — dark service selector wheel
+                z:4 so it sits above spokes (spokes are outside Ring 2 anyway)
+            ═══════════════════════════════════════════════════════════════ */}
             <div
                 className="absolute rounded-full pointer-events-none"
                 style={{
                     width: R2 * 2, height: R2 * 2,
                     left: CX - R2, top: CY - R2,
-                    backgroundColor: '#141414',
+                    backgroundColor: '#121212',
                     border: '1px solid #2a2a2a',
-                    zIndex: 2,
+                    zIndex: 4,
                 }}
             />
 
-            {/* ── ROTATING SERVICE LABELS on Ring 2 ───────────────────── */}
-            {/* This whole group rotates with angleOffset */}
+            {/* ═══════════════════════════════════════════════════════════════
+                SERVICE LABELS — rotate with wheel, z:5 (above Ring 2)
+            ═══════════════════════════════════════════════════════════════ */}
             <div
                 className="absolute pointer-events-none"
-                style={{ left: CX, top: CY, zIndex: 3 }}
+                style={{ left: CX, top: CY, zIndex: 5 }}
             >
                 <div style={{ transform: `rotate(${angleOffset}deg)` }}>
                     {SERVICES.map((svc, i) => {
                         const deg = (i / N) * 360;
                         const rad = deg * Math.PI / 180;
                         const isActive = i === activeIndex;
-                        const R_lbl = R2 * 0.63;
-                        const lx = R_lbl * Math.cos(rad);
-                        const ly = R_lbl * Math.sin(rad);
+                        const lx = R_LBL * Math.cos(rad);
+                        const ly = R_LBL * Math.sin(rad);
 
                         return (
                             <React.Fragment key={svc.id}>
-                                {/* Tick at ring edge */}
+                                {/* Tick mark at ring edge */}
                                 <div
                                     className="absolute"
                                     style={{
                                         left: R2 * Math.cos(rad) - 8,
-                                        top: R2 * Math.sin(rad) - (isActive ? 1 : 0.5),
+                                        top:  R2 * Math.sin(rad) - (isActive ? 1 : 0.5),
                                         width: 16,
                                         height: isActive ? 1.5 : 0.75,
-                                        backgroundColor: isActive ? '#777' : '#333',
+                                        backgroundColor: isActive ? '#888' : '#3c3c3c',
                                         transform: `rotate(${deg}deg)`,
                                         transformOrigin: 'center',
                                     }}
                                 />
-                                {/* Label */}
+                                {/* Service name */}
                                 <div
                                     className="absolute"
                                     style={{
                                         left: lx,
-                                        top: ly,
+                                        top:  ly,
                                         transform: `translate(-50%, -50%) rotate(${deg}deg)`,
-                                        width: 178,
+                                        width: 194,
                                         textAlign: 'center',
-                                        fontSize: isActive ? 11 : 9,
+                                        fontSize: isActive ? 11.5 : 9.5,
                                         letterSpacing: isActive ? '0.24em' : '0.18em',
-                                        fontWeight: 300,
-                                        color: isActive ? '#ffffff' : '#606060',
+                                        fontWeight: isActive ? 400 : 300,
+                                        color: isActive ? '#ffffff' : '#787878',
                                         fontFamily: 'var(--font-inter)',
                                         textTransform: 'uppercase',
                                         whiteSpace: 'nowrap',
@@ -288,83 +322,90 @@ export default function ServicesClient() {
                 </div>
             </div>
 
-            {/* ── RING 1: hub ─────────────────────────────────────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                RING 1 — static hub, z:6 (above everything in the wheel)
+            ═══════════════════════════════════════════════════════════════ */}
             <div
                 className="absolute rounded-full pointer-events-none"
                 style={{
                     width: R1 * 2, height: R1 * 2,
                     left: CX - R1, top: CY - R1,
-                    backgroundColor: '#0e0e0e',
+                    backgroundColor: '#090909',
                     border: '1px solid #333',
-                    zIndex: 4,
+                    zIndex: 6,
                 }}
             />
-            {/* SERVICES label inside hub */}
+            {/* "SERVICES" label inside hub */}
             <div
                 className="absolute pointer-events-none"
                 style={{
-                    left: CX - 38, top: CY - 7,
+                    left: CX - 42, top: CY - 7,
+                    width: 84, textAlign: 'center',
                     fontSize: 10, letterSpacing: '0.38em',
-                    color: '#555', fontFamily: 'var(--font-inter)',
+                    color: '#545454', fontFamily: 'var(--font-inter)',
                     fontWeight: 300, textTransform: 'uppercase',
-                    width: 76, textAlign: 'center',
-                    zIndex: 5,
+                    zIndex: 7,
                 }}
             >
                 SERVICES
             </div>
 
-            {/* ── POINTER — ends before label zone (R2 * 0.52) ────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                POINTER — ends before the label text zone
+            ═══════════════════════════════════════════════════════════════ */}
             <div
                 className="absolute pointer-events-none"
                 style={{
-                    left: CX + R1 + 4,
+                    left: CX + R1 + 8,
                     top: CY - 0.75,
-                    width: R2 * 0.52 - R1 - 4,
+                    width: POINTER_END - R1 - 8,
                     height: 1.5,
-                    backgroundColor: '#555',
-                    zIndex: 5,
+                    backgroundColor: '#454545',
+                    zIndex: 7,
                 }}
             />
-            {/* Pointer tip dot */}
+            {/* Pointer tip */}
             <div
                 className="absolute rounded-full pointer-events-none"
                 style={{
-                    width: 8, height: 8,
-                    left: CX + R2 * 0.52 - 4,
-                    top: CY - 4,
-                    backgroundColor: '#888',
-                    zIndex: 5,
+                    width: 7, height: 7,
+                    left: CX + POINTER_END - 3.5,
+                    top: CY - 3.5,
+                    backgroundColor: '#606060',
+                    zIndex: 7,
                 }}
             />
 
-            {/* ── CONTENT PANEL ────────────────────────────────────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                CONTENT PANEL — right of Ring 2, z:8
+                Scrollable independently, image fills most of panel
+            ═══════════════════════════════════════════════════════════════ */}
             <div
                 ref={contentRef}
                 className="absolute overflow-y-auto"
                 style={{
-                    left: CX + R2 + 72,
+                    left: CX + R2 + 60,
                     top: 0, right: 0, bottom: 0,
-                    paddingTop: 72,
-                    paddingRight: 72,
+                    paddingTop: 66,
+                    paddingRight: 60,
                     paddingBottom: 48,
                     scrollbarWidth: 'none',
-                    zIndex: 6,
+                    zIndex: 8,
                 }}
             >
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={service.id}
-                        initial={{ opacity: 0, y: scrollDir * 50, x: scrollDir * 8 }}
-                        animate={{ opacity: 1, y: 0, x: 0 }}
-                        exit={{ opacity: 0, y: scrollDir * -50, x: scrollDir * -8 }}
-                        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0, y: scrollDir * 52 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: scrollDir * -52 }}
+                        transition={{ duration: 0.46, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                         {/* Counter */}
                         <p style={{
-                            fontSize: 12, letterSpacing: '0.42em',
-                            color: '#999', fontWeight: 300,
-                            textTransform: 'uppercase', marginBottom: 24,
+                            fontSize: 12, letterSpacing: '0.44em',
+                            color: '#aaa', fontWeight: 300,
+                            textTransform: 'uppercase', marginBottom: 18,
                             fontFamily: 'var(--font-inter)',
                         }}>
                             0{service.id} / 0{N}
@@ -372,30 +413,31 @@ export default function ServicesClient() {
 
                         {/* Title */}
                         <h2 style={{
-                            fontSize: 68, fontWeight: 300,
-                            color: '#0e0e0e', lineHeight: 1.05,
+                            fontSize: 62, fontWeight: 300,
+                            color: '#0d0d0d', lineHeight: 1.06,
                             letterSpacing: '-0.02em',
-                            whiteSpace: 'pre-line', marginBottom: 28,
+                            whiteSpace: 'pre-line', marginBottom: 22,
                             fontFamily: 'var(--font-inter)',
                         }}>
                             {service.title}
                         </h2>
 
                         {/* Rule */}
-                        <div style={{ width: 48, height: 1, backgroundColor: '#ccc', marginBottom: 28 }} />
+                        <div style={{ width: 44, height: 1, backgroundColor: '#bbb', marginBottom: 22 }} />
 
                         {/* Description */}
                         <p style={{
                             fontSize: 15, fontWeight: 300,
-                            color: '#5a5a5a', lineHeight: 1.85,
+                            color: '#555', lineHeight: 1.85,
                             whiteSpace: 'pre-line', maxWidth: 440,
-                            marginBottom: 32, fontFamily: 'var(--font-inter)',
+                            marginBottom: 26,
+                            fontFamily: 'var(--font-inter)',
                         }}>
                             {service.description}
                         </p>
 
                         {/* Areas */}
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 40 }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
                             {service.areas.map(a => (
                                 <span
                                     key={a}
@@ -403,7 +445,7 @@ export default function ServicesClient() {
                                         fontSize: 10, letterSpacing: '0.18em',
                                         textTransform: 'uppercase', fontWeight: 300,
                                         color: '#888', border: '1px solid #ddd',
-                                        padding: '6px 14px', borderRadius: 2,
+                                        padding: '5px 13px', borderRadius: 2,
                                         fontFamily: 'var(--font-inter)',
                                     }}
                                 >
@@ -412,57 +454,50 @@ export default function ServicesClient() {
                             ))}
                         </div>
 
-                        {/* Images — circular arc stagger */}
-                        <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 36 }}>
-                            {/* Main image */}
-                            <div style={{ position: 'relative', width: 248, height: 214, flexShrink: 0 }}>
-                                <img
-                                    src={service.images[0].src}
-                                    alt={service.images[0].label}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 2 }}
-                                />
-                                <span style={{
-                                    position: 'absolute', bottom: 10, left: 12,
-                                    fontSize: 8, letterSpacing: '0.2em',
-                                    textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)',
-                                    fontWeight: 300, fontFamily: 'var(--font-inter)',
-                                }}>
-                                    {service.images[0].label}
-                                </span>
-                            </div>
-
-                            {/* Two stacked — offset down slightly along arc */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 14 }}>
-                                {service.images.slice(1).map((img, ii) => (
-                                    <div key={ii} style={{ position: 'relative', width: 164, height: 96 }}>
-                                        <img
-                                            src={img.src}
-                                            alt={img.label}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 2 }}
-                                        />
-                                        <span style={{
-                                            position: 'absolute', bottom: 8, left: 10,
-                                            fontSize: 8, letterSpacing: '0.18em',
-                                            textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)',
-                                            fontWeight: 300, fontFamily: 'var(--font-inter)',
-                                        }}>
-                                            {img.label}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
+                        {/* ── LARGE HERO IMAGE ── fills the content width */}
+                        <div style={{
+                            position: 'relative',
+                            width: '100%',
+                            maxWidth: 700,
+                            aspectRatio: '16/9',
+                            marginBottom: 28,
+                            borderRadius: 2,
+                            overflow: 'hidden',
+                        }}>
+                            <img
+                                src={service.heroImage}
+                                alt={service.shortName}
+                                style={{
+                                    width: '100%', height: '100%',
+                                    objectFit: 'cover',
+                                    display: 'block',
+                                }}
+                            />
+                            <div style={{
+                                position: 'absolute', inset: 0,
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%)',
+                            }} />
+                            <span style={{
+                                position: 'absolute', bottom: 14, left: 16,
+                                fontSize: 9, letterSpacing: '0.22em',
+                                textTransform: 'uppercase',
+                                color: 'rgba(255,255,255,0.8)',
+                                fontWeight: 300, fontFamily: 'var(--font-inter)',
+                            }}>
+                                {service.shortName}
+                            </span>
                         </div>
 
                         {/* CTA */}
                         <Link
                             href="/contact"
                             style={{
-                                display: 'inline-flex', alignItems: 'center', gap: 12,
+                                display: 'inline-flex', alignItems: 'center', gap: 10,
                                 fontSize: 11, letterSpacing: '0.28em',
                                 textTransform: 'uppercase', fontWeight: 300,
                                 color: '#333', textDecoration: 'none',
-                                borderBottom: '1px solid #ccc',
-                                paddingBottom: 4, fontFamily: 'var(--font-inter)',
+                                borderBottom: '1px solid #bbb', paddingBottom: 3,
+                                fontFamily: 'var(--font-inter)',
                             }}
                         >
                             Start a project →
@@ -470,22 +505,28 @@ export default function ServicesClient() {
 
                         {/* Scroll hint */}
                         <p style={{
-                            marginTop: 48, fontSize: 10, letterSpacing: '0.28em',
-                            textTransform: 'uppercase', color: '#bbb', fontWeight: 300,
-                            fontFamily: 'var(--font-inter)',
+                            marginTop: 40,
+                            fontSize: 10, letterSpacing: '0.28em',
+                            textTransform: 'uppercase', color: '#c0c0c0',
+                            fontWeight: 300, fontFamily: 'var(--font-inter)',
                         }}>
-                            ◌&nbsp;&nbsp;rotate wheel to explore&nbsp;&nbsp;◌
+                            ◌&nbsp;&nbsp;rotate wheel to explore services&nbsp;&nbsp;◌
                         </p>
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* ── ADAPTIVE LOGO ──────────────────────────────────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                ADAPTIVE LOGO — geometry-based colour, no DOM sampling
+                Logo sits at (24,28). Centre ≈ (57, 36).
+                d from (CX,CY) = ~393px — inside Ring 2 (R2=456) → white ✓
+                (When ring 2 is visible behind logo, which it always is)
+            ═══════════════════════════════════════════════════════════════ */}
             <div
-                className="fixed z-50 pointer-events-none"
+                className="fixed pointer-events-none"
                 style={{
-                    top: 28, left: 24,
-                    fontSize: 15, letterSpacing: '0.38em',
+                    top: 28, left: 24, zIndex: 50,
+                    fontSize: 15, letterSpacing: '0.4em',
                     fontWeight: 300, textTransform: 'uppercase',
                     fontFamily: 'var(--font-inter)',
                     color: logoColor,
@@ -495,10 +536,20 @@ export default function ServicesClient() {
                 CLOUDS
             </div>
 
-            {/* ── ADAPTIVE HAMBURGER ─────────────────────────────────── */}
+            {/* ═══════════════════════════════════════════════════════════════
+                ADAPTIVE HAMBURGER — three lines, geometry-based colour.
+                Hamburger sits at right: 24px. Centre ≈ (1403, 36).
+                d from (CX,CY) = ~1331px — inside Ring 3 (R3=1380) → dark ✓
+                But screen right edge is past ring 3, so right corner = dark bg → white.
+                1440-24-13 = 1403. dist = sqrt((1403-72)²+(36-450)²) = sqrt(1331²+414²) ≈ 1394 > R3=1380 → white ✓
+            ═══════════════════════════════════════════════════════════════ */}
             <div
-                className="fixed z-50"
-                style={{ top: 24, right: 24, display: 'flex', flexDirection: 'column', gap: 8, cursor: 'none' }}
+                className="fixed"
+                style={{
+                    top: 25, right: 24, zIndex: 50,
+                    display: 'flex', flexDirection: 'column', gap: 8,
+                    cursor: 'none',
+                }}
             >
                 {[0, 1, 2].map(i => (
                     <div
