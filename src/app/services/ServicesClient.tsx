@@ -159,11 +159,8 @@ export default function ServicesClient() {
     const prevSvc  = SERVICES[(activeIndex - 1 + N) % N];
     const nextSvc  = SERVICES[(activeIndex + 1) % N];
 
-    // Logo: sits at (57,36), inside Ring 2 → white
-    // Hamburger: sits at (1403,36), outside Ring 3 → white too
-    // (dist = sqrt((1403-72)²+(36-450)²) ≈ 1394 > R3=1380)
-    const logoColor   = adaptColor(57, 36);   // → '#ffffff'
-    const burgerColor = adaptColor(1403, 36);  // → '#ffffff'
+    // Logo: always over dark Ring 2 → fixed white
+    const logoColor = '#ffffff';
 
     return (
         <div
@@ -193,10 +190,10 @@ export default function ServicesClient() {
                         className="w-full h-full object-cover"
                         style={{ opacity: 0.55 }}
                     />
-                    {/* Fade out toward active zone */}
+                    {/* Blend down into cream center — fully opaque at bottom edge */}
                     <div style={{
                         position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.10) 60%, rgba(242,240,236,0.92) 100%)',
+                        background: 'linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.08) 55%, rgba(245,244,240,1.0) 100%)',
                     }} />
                     <span style={{
                         position: 'absolute', bottom: 22, right: 56,
@@ -208,28 +205,11 @@ export default function ServicesClient() {
                 </motion.div>
             </AnimatePresence>
 
-            {/* CENTER BAND — active service image (full bleed) */}
-            <AnimatePresence mode="sync">
-                <motion.div
-                    key={`center-${svc.id}`}
-                    className="absolute left-0 right-0 overflow-hidden"
-                    style={{ top: CY - BAND, height: BAND * 2, zIndex: 1 }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.9 }}
-                >
-                    <img
-                        src={svc.heroImage} alt={svc.shortName}
-                        className="w-full h-full object-cover"
-                    />
-                    {/* Cream overlay so text is readable */}
-                    <div style={{
-                        position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to right, rgba(14,14,14,0.1) 0%, rgba(242,240,236,0.65) 30%, rgba(242,240,236,0.55) 100%)',
-                    }} />
-                </motion.div>
-            </AnimatePresence>
+            {/* CENTER BAND — solid cream, no image (text must be fully readable) */}
+            <div
+                className="absolute left-0 right-0"
+                style={{ top: CY - BAND, height: BAND * 2, backgroundColor: '#f5f4f0', zIndex: 1 }}
+            />
 
             {/* BOTTOM BAND — next service image */}
             <AnimatePresence mode="wait">
@@ -247,10 +227,10 @@ export default function ServicesClient() {
                         className="w-full h-full object-cover"
                         style={{ opacity: 0.55 }}
                     />
-                    {/* Fade out toward active zone */}
+                    {/* Blend up into cream center — fully opaque at top edge */}
                     <div style={{
                         position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to top, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.10) 60%, rgba(242,240,236,0.92) 100%)',
+                        background: 'linear-gradient(to top, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.08) 55%, rgba(245,244,240,1.0) 100%)',
                     }} />
                     <span style={{
                         position: 'absolute', top: 22, right: 56,
@@ -262,19 +242,6 @@ export default function ServicesClient() {
                 </motion.div>
             </AnimatePresence>
 
-            {/* Thin band separators — subtle arc dividers */}
-            <div style={{
-                position: 'absolute', left: CX + R2, right: 0,
-                top: CY - BAND, height: 1,
-                background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.12) 20%, rgba(0,0,0,0.12) 80%, transparent)',
-                zIndex: 9,
-            }} />
-            <div style={{
-                position: 'absolute', left: CX + R2, right: 0,
-                top: CY + BAND, height: 1,
-                background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.12) 20%, rgba(0,0,0,0.12) 80%, transparent)',
-                zIndex: 9,
-            }} />
 
             {/* ══════════════════════════════════════════════════════════════
                 LAYER 2: ROTATING SPOKES — synced with wheel rotation
@@ -490,15 +457,18 @@ export default function ServicesClient() {
                 color: logoColor, transition: 'color 0.4s',
             }}>CLOUDS</div>
 
+            {/* Hamburger — mix-blend-mode:difference with white bars
+                 → appears white on dark images, dark on light cream area,
+                   reacting to actual rendered pixels in real time            */}
             <div className="fixed" style={{
                 top: 25, right: 24, zIndex: 50,
                 display: 'flex', flexDirection: 'column', gap: 8, cursor: 'none',
+                mixBlendMode: 'difference',
             }}>
                 {[0, 1, 2].map(i => (
                     <div key={i} style={{
                         width: 26, height: 1.5,
-                        backgroundColor: burgerColor,
-                        transition: 'background-color 0.4s',
+                        backgroundColor: '#ffffff',
                     }} />
                 ))}
             </div>
