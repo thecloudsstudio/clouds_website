@@ -9,7 +9,7 @@ const CX   = 72;    // ring centre x
 const CY   = 450;   // ring centre y
 const R1   = 88;    // hub
 const R2   = 456;   // selector wheel
-const N    = 6;
+const N    = 7;
 const STEP = 360 / N;
 const R_LBL      = R2 * 0.57;               // label radius
 const POINTER_END = Math.floor(R_LBL - 112); // pointer stops before labels
@@ -33,57 +33,66 @@ function adaptColor(px: number, py: number): string {
 const SERVICES = [
     {
         id: 1,
-        shortName: "Architecture & Design",
-        title: "Architecture\n& Design",
-        tagline: "Spaces that speak of their time and yearn for timelessness.",
-        description: "From intimate private residences to large-scale commercial complexes — every project shaped by material honesty, contextual rigour, and spatial clarity.",
-        areas: ["Residential", "Commercial", "Hospitality", "Heritage & Conservation"],
+        shortName: "Architectural Design",
+        title: "Architectural\nDesign",
+        tagline: "Every space begins with a vision — we give it form.",
+        description: "We design any built environment — homes, schools, factories, resorts, public buildings, parks. Interior space planning is part of the process, not an afterthought.",
+        areas: ["Residential", "Commercial & Institutional", "Industrial & Hospitality", "Interior Spaces"],
         heroImage: "/bangalore_villa_facade_color_1767792911832.png",
     },
     {
         id: 2,
-        shortName: "Interior Design",
-        title: "Interior\nDesign",
-        tagline: "Every material, every surface, every shadow — considered.",
-        description: "We extend the architectural vision inward. Material palettes, spatial sequences, lighting, and furniture that create environments both deliberate and deeply lived-in.",
-        areas: ["Residential Interiors", "Commercial Interiors", "Hospitality Interiors", "Furniture Curation"],
-        heroImage: "/chettinad_bedroom_colorized_1767964135344.png",
+        shortName: "Design Consultancy",
+        title: "Design\nConsultancy",
+        tagline: "Your team, your site — guided by the people who designed it.",
+        description: "Once the design is complete, we stay on as technical advisors — reviewing execution, answering site queries, and ensuring every decision stays true to the original design intent.",
+        areas: ["Design Advisory", "Technical Guidance", "Site Reviews", "Execution Compliance"],
+        heroImage: "/kerala_resort_aerial_colorized_1767793602663.png",
     },
     {
         id: 3,
-        shortName: "Construction Management",
-        title: "Construction\nManagement",
-        tagline: "A single point of accountability — concept to completion.",
-        description: "We manage the complete build: procurement, contractor coordination, site supervision, and handover. Design intent preserved through every phase of construction.",
-        areas: ["Project Management", "Contractor Coordination", "Site Supervision", "Handover & Closeout"],
+        shortName: "Architecture PMC",
+        title: "Architecture\nPMC",
+        tagline: "One accountable voice between client and contractor.",
+        description: "We act as your dedicated project management layer — scheduling, directing, and quality-controlling your appointed execution team so every decision serves the design.",
+        areas: ["Project Scheduling", "Contractor Coordination", "Quality Control", "Cost Management"],
         heroImage: "/chennai_urban_residence_exterior_1769688810297.png",
     },
     {
         id: 4,
-        shortName: "Planning & Approvals",
-        title: "Planning &\nApprovals",
-        tagline: "Clarity through complexity — every submission, every stage.",
-        description: "Planning applications, feasibility studies, and regulatory submissions prepared with precision. Deep familiarity with planning frameworks across India.",
-        areas: ["Planning Applications", "Feasibility Studies", "Regulatory Submissions", "Zoning Analysis"],
+        shortName: "Turnkey Construction",
+        title: "Turnkey\nConstruction",
+        tagline: "Design, build, and deliver — nothing left undone.",
+        description: "For clients who want a single point of responsibility. We design, construct, and finish everything — structure, interiors, fit-out — handing over a space that is ready to inhabit.",
+        areas: ["Full-Build Execution", "Interior Fit-Out", "MEP & Services", "Handover & Closeout"],
         heroImage: "/chennai_apartments_exterior_v2_1769753645940.png",
     },
     {
         id: 5,
-        shortName: "Project Consultation",
-        title: "Project\nConsultation",
-        tagline: "Expert guidance at any stage, however complex the question.",
-        description: "Site appraisals, brief development, design reviews, and value engineering — bringing clarity to decisions at every scale, for every kind of client.",
-        areas: ["Site Appraisals", "Brief Development", "Design Review", "Value Engineering"],
-        heroImage: "/kerala_resort_aerial_colorized_1767793602663.png",
+        shortName: "Product Design",
+        title: "Product &\nIndustrial Design",
+        tagline: "Every object deserves the precision of great design.",
+        description: "We design physical things — furniture, machines, vehicles, consumer products, packaging. If it needs a designer's eye to be better made, more functional, or more beautiful, we do it.",
+        areas: ["Consumer Products", "Industrial Equipment", "Furniture Design", "Packaging Design"],
+        heroImage: "/chettinad_bedroom_colorized_1767964135344.png",
     },
     {
         id: 6,
-        shortName: "Site Analysis",
-        title: "Site\nAnalysis",
-        tagline: "Architecture that belongs to its ground.",
-        description: "Topography, solar orientation, wind, drainage, views, and context — comprehensively studied before a single line is drawn. The foundation every great building needs.",
-        areas: ["Topographic Survey", "Solar & Wind Analysis", "Contextual Study", "Environmental Assessment"],
+        shortName: "Brand Design",
+        title: "Brand &\nVisual Design",
+        tagline: "Identity that is felt before it is read.",
+        description: "From logo and stationery to exhibition stalls, promotional gifts, and branded environments — we craft the visual language that represents your organisation at every touchpoint.",
+        areas: ["Brand Identity", "Print & Digital", "Exhibition & Events", "Branded Environments"],
         heroImage: "/kerala_resort_yoga_colorized_v2_1767794447655.png",
+    },
+    {
+        id: 7,
+        shortName: "3D Visualisation",
+        title: "3D\nVisualisation",
+        tagline: "See it before it exists.",
+        description: "We turn concepts into photorealistic renders, immersive walkthroughs, and motion animations — from architectural interiors to manufacturing process visualisations.",
+        areas: ["3D Modelling", "Photorealistic Rendering", "Walkthrough Animation", "Process Visualisation"],
+        heroImage: "/bangalore_villa_facade_color_1767792911832.png",
     },
 ];
 
@@ -153,7 +162,7 @@ export default function ServicesClient() {
         targetRef.current = -i * STEP;
     };
 
-    if (!mounted) return <div className="w-full h-screen bg-[#0e0e0e]" />;
+    if (!mounted) return <div className="w-full h-screen" style={{ backgroundColor: '#f5f4f0' }} />;
 
     const svc      = SERVICES[activeIndex];
     const prevSvc  = SERVICES[(activeIndex - 1 + N) % N];
@@ -164,14 +173,15 @@ export default function ServicesClient() {
 
     return (
         <div
-            className="w-full h-screen overflow-hidden bg-[#0e0e0e] relative"
-            style={{ cursor: 'none' }}
+            className="w-full h-screen overflow-hidden relative"
+            style={{ cursor: 'none', backgroundColor: '#f5f4f0' }}
         >
 
             {/* ══════════════════════════════════════════════════════════════
-                LAYER 1: FULL-SCREEN IMAGE BACKGROUND (fills corners too)
-                Three crossfading images stacked by zone:
-                top=prev service, center=active, bottom=next service
+                LAYER 1: IMAGE BANDS — light opacity, no dark overlay
+                Top = previous service, Bottom = next service
+                The cream gradient overlay (Layer 1b) handles all fading —
+                no per-band gradients needed, so zero hard edges possible.
             ══════════════════════════════════════════════════════════════ */}
 
             {/* TOP BAND — previous service image */}
@@ -179,7 +189,7 @@ export default function ServicesClient() {
                 <motion.div
                     key={`top-${activeIndex}`}
                     className="absolute left-0 right-0 overflow-hidden"
-                    style={{ top: 0, height: CY - BAND + 30, zIndex: 1 }}
+                    style={{ top: 0, height: CY - BAND, zIndex: 1 }}
                     initial={{ opacity: 0, y: scrollDir * -50, x: arcX(-BAND) }}
                     animate={{ opacity: 1, y: 0, x: 0 }}
                     exit={{ opacity: 0, y: scrollDir * 40 }}
@@ -188,16 +198,11 @@ export default function ServicesClient() {
                     <img
                         src={prevSvc.heroImage} alt={prevSvc.shortName}
                         className="w-full h-full object-cover"
-                        style={{ opacity: 0.55 }}
+                        style={{ opacity: 0.40 }}
                     />
-                    {/* Blend down into cream center — fully opaque at bottom edge */}
-                    <div style={{
-                        position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.08) 55%, rgba(245,244,240,1.0) 100%)',
-                    }} />
                     <span style={{
-                        position: 'absolute', bottom: 22, right: 56,
-                        fontSize: 9.5, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.55)',
+                        position: 'absolute', bottom: 28, right: 56,
+                        fontSize: 9.5, letterSpacing: '0.22em', color: 'rgba(50,50,50,0.45)',
                         textTransform: 'uppercase', fontFamily: 'var(--font-inter)', fontWeight: 300,
                     }}>
                         {prevSvc.shortName}
@@ -205,18 +210,12 @@ export default function ServicesClient() {
                 </motion.div>
             </AnimatePresence>
 
-            {/* CENTER BAND — solid cream, no image (text must be fully readable) */}
-            <div
-                className="absolute left-0 right-0"
-                style={{ top: CY - BAND, height: BAND * 2, backgroundColor: '#f5f4f0', zIndex: 1 }}
-            />
-
             {/* BOTTOM BAND — next service image */}
             <AnimatePresence mode="wait">
                 <motion.div
                     key={`bot-${activeIndex}`}
                     className="absolute left-0 right-0 overflow-hidden"
-                    style={{ top: CY + BAND - 30, bottom: 0, zIndex: 1 }}
+                    style={{ top: CY + BAND, bottom: 0, zIndex: 1 }}
                     initial={{ opacity: 0, y: scrollDir * 50, x: arcX(BAND) }}
                     animate={{ opacity: 1, y: 0, x: 0 }}
                     exit={{ opacity: 0, y: scrollDir * -40 }}
@@ -225,16 +224,11 @@ export default function ServicesClient() {
                     <img
                         src={nextSvc.heroImage} alt={nextSvc.shortName}
                         className="w-full h-full object-cover"
-                        style={{ opacity: 0.55 }}
+                        style={{ opacity: 0.40 }}
                     />
-                    {/* Blend up into cream center — fully opaque at top edge */}
-                    <div style={{
-                        position: 'absolute', inset: 0,
-                        background: 'linear-gradient(to top, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.08) 55%, rgba(245,244,240,1.0) 100%)',
-                    }} />
                     <span style={{
-                        position: 'absolute', top: 22, right: 56,
-                        fontSize: 9.5, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.55)',
+                        position: 'absolute', top: 28, right: 56,
+                        fontSize: 9.5, letterSpacing: '0.22em', color: 'rgba(50,50,50,0.45)',
                         textTransform: 'uppercase', fontFamily: 'var(--font-inter)', fontWeight: 300,
                     }}>
                         {nextSvc.shortName}
@@ -242,10 +236,40 @@ export default function ServicesClient() {
                 </motion.div>
             </AnimatePresence>
 
+            {/* ── LAYER 1b: SINGLE CREAM GRADIENT OVERLAY ─────────────────────
+                Spans the full viewport. Transparent at top & bottom (images
+                show through), solid cream in the centre. One continuous CSS
+                gradient = physically impossible to have a hard seam.
+            ─────────────────────────────────────────────────────────────── */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    zIndex: 2,
+                    /* px-based stops — exact regardless of viewport height.
+                       Top band ends at ${CY - BAND}px = 260px.
+                       Bottom band starts at ${CY + BAND}px = 640px.
+                       Cream is solid well before/after each hard div edge.
+                       Long 260px tail at bottom so fade is barely visible
+                       within any normal viewport height. */
+                    /* Cream hits 1.0 EXACTLY at the div hard edges (CY±BAND).
+                       The 180px fade lives entirely inside the image band zone —
+                       so the div boundary is 100% buried and invisible.
+                       Below 260px / above 640px: pure background, no image div. */
+                    background: `linear-gradient(to bottom,
+                        rgba(245,244,240,0)   0px,
+                        rgba(245,244,240,0)   ${CY - BAND - 180}px,
+                        rgba(245,244,240,1.0) ${CY - BAND}px,
+                        rgba(245,244,240,1.0) ${CY + BAND}px,
+                        rgba(245,244,240,0)   ${CY + BAND + 180}px
+                    )`,
+                }}
+            />
+
 
             {/* ══════════════════════════════════════════════════════════════
                 LAYER 2: ROTATING SPOKES — synced with wheel rotation
             ══════════════════════════════════════════════════════════════ */}
+            {/* Spokes clipped to Ring 2 — never bleed into cream content area */}
             <svg
                 className="absolute inset-0 pointer-events-none"
                 width="1440" height="900"
@@ -255,21 +279,28 @@ export default function ServicesClient() {
                     transformOrigin: `${CX}px ${CY}px`,
                 }}
             >
-                {[14, 42, 70].map(deg =>
-                    [-1, 1].map(sign => {
-                        const rad = deg * sign * Math.PI / 180;
-                        const x1 = CX + (R2 + 14) * Math.cos(rad);
-                        const y1 = CY + (R2 + 14) * Math.sin(rad);
-                        const x2 = CX + (R2 + 800) * Math.cos(rad);
-                        const y2 = CY + (R2 + 800) * Math.sin(rad);
-                        return (
-                            <line key={`${deg}${sign}`}
-                                x1={x1} y1={y1} x2={x2} y2={y2}
-                                stroke="rgba(100,96,88,0.25)" strokeWidth="0.9"
-                            />
-                        );
-                    })
-                )}
+                <defs>
+                    <clipPath id="ring2clip">
+                        <circle cx={CX} cy={CY} r={R2} />
+                    </clipPath>
+                </defs>
+                <g clipPath="url(#ring2clip)">
+                    {[14, 42, 70].map(deg =>
+                        [-1, 1].map(sign => {
+                            const rad = deg * sign * Math.PI / 180;
+                            const x1 = CX + R1 * Math.cos(rad);
+                            const y1 = CY + R1 * Math.sin(rad);
+                            const x2 = CX + R2 * Math.cos(rad);
+                            const y2 = CY + R2 * Math.sin(rad);
+                            return (
+                                <line key={`${deg}${sign}`}
+                                    x1={x1} y1={y1} x2={x2} y2={y2}
+                                    stroke="rgba(100,96,88,0.25)" strokeWidth="0.9"
+                                />
+                            );
+                        })
+                    )}
+                </g>
             </svg>
 
             {/* ══════════════════════════════════════════════════════════════
@@ -376,12 +407,13 @@ export default function ServicesClient() {
                     key={svc.id}
                     style={{
                         position: 'absolute',
-                        left: CX + R2 + 64,
+                        left: CX + R2 + 56,
                         right: 0,
-                        top: CY - BAND + 16,
-                        height: BAND * 2 - 32,
+                        top: CY - BAND,
+                        height: BAND * 2,
                         paddingRight: 56,
-                        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                        display: 'flex', flexDirection: 'row', alignItems: 'center',
+                        gap: 40,
                         zIndex: 10,
                     }}
                     initial={{ opacity: 0, y: scrollDir * 52, x: arcX(scrollDir * BAND) }}
@@ -389,60 +421,61 @@ export default function ServicesClient() {
                     exit={{ opacity: 0, y: scrollDir * -52, x: arcX(scrollDir * -BAND) }}
                     transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                    {/* Counter */}
-                    <p style={{
-                        fontSize: 11, letterSpacing: '0.46em', color: '#888',
-                        fontWeight: 300, textTransform: 'uppercase', marginBottom: 14,
-                        fontFamily: 'var(--font-inter)',
-                    }}>0{svc.id} / 0{N}</p>
+                    {/* ── LEFT: Title + tagline + description + CTA ── */}
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-                    {/* Title */}
-                    <h2 style={{
-                        fontSize: 60, fontWeight: 300, color: '#0c0c0c',
-                        lineHeight: 1.05, letterSpacing: '-0.02em',
-                        whiteSpace: 'pre-line', marginBottom: 16,
-                        fontFamily: 'var(--font-inter)',
-                    }}>{svc.title}</h2>
+                        {/* Title */}
+                        <h2 style={{
+                            fontSize: 56, fontWeight: 300, color: '#0c0c0c',
+                            lineHeight: 1.05, letterSpacing: '-0.02em',
+                            whiteSpace: 'pre-line', marginBottom: 18,
+                            fontFamily: 'var(--font-inter)',
+                        }}>{svc.title}</h2>
 
-                    {/* Rule */}
-                    <div style={{ width: 40, height: 1, backgroundColor: '#aaa', marginBottom: 16 }} />
+                        {/* Rule */}
+                        <div style={{ width: 36, height: 1, backgroundColor: '#bbb', marginBottom: 18 }} />
 
-                    {/* Tagline */}
-                    <p style={{
-                        fontSize: 14.5, fontWeight: 300, color: '#444',
-                        lineHeight: 1.7, maxWidth: 460, marginBottom: 10,
-                        fontFamily: 'var(--font-inter)', fontStyle: 'italic',
-                    }}>{svc.tagline}</p>
+                        {/* Tagline */}
+                        <p style={{
+                            fontSize: 14, fontWeight: 300, color: '#555',
+                            lineHeight: 1.75, maxWidth: 400, marginBottom: 12,
+                            fontFamily: 'var(--font-inter)', fontStyle: 'italic',
+                        }}>{svc.tagline}</p>
 
-                    {/* Description */}
-                    <p style={{
-                        fontSize: 13.5, fontWeight: 300, color: '#666',
-                        lineHeight: 1.8, maxWidth: 480, marginBottom: 20,
-                        fontFamily: 'var(--font-inter)',
-                    }}>{svc.description}</p>
+                        {/* Description */}
+                        <p style={{
+                            fontSize: 13, fontWeight: 300, color: '#777',
+                            lineHeight: 1.85, maxWidth: 400, marginBottom: 28,
+                            fontFamily: 'var(--font-inter)',
+                        }}>{svc.description}</p>
 
-                    {/* Areas */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 22 }}>
-                        {svc.areas.map(a => (
-                            <span key={a} style={{
-                                fontSize: 9.5, letterSpacing: '0.18em',
-                                textTransform: 'uppercase', fontWeight: 300,
-                                color: '#777', border: '1px solid rgba(0,0,0,0.18)',
-                                padding: '5px 12px', borderRadius: 2,
-                                fontFamily: 'var(--font-inter)',
-                            }}>{a}</span>
-                        ))}
+                        {/* CTA */}
+                        <Link href="/contact" style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 10,
+                            fontSize: 10, letterSpacing: '0.28em',
+                            textTransform: 'uppercase', fontWeight: 300,
+                            color: '#222', textDecoration: 'none',
+                            borderBottom: '1px solid rgba(0,0,0,0.22)', paddingBottom: 3,
+                            fontFamily: 'var(--font-inter)', width: 'fit-content',
+                        }}>Start a project →</Link>
                     </div>
 
-                    {/* CTA */}
-                    <Link href="/contact" style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 10,
-                        fontSize: 10.5, letterSpacing: '0.28em',
-                        textTransform: 'uppercase', fontWeight: 300,
-                        color: '#222', textDecoration: 'none',
-                        borderBottom: '1px solid rgba(0,0,0,0.25)', paddingBottom: 3,
-                        fontFamily: 'var(--font-inter)', width: 'fit-content',
-                    }}>Start a project →</Link>
+                    {/* ── RIGHT: Service name, right-aligned, vertically centred ── */}
+                    <div style={{
+                        flexShrink: 0, width: 180,
+                        display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
+                        alignSelf: 'stretch',
+                    }}>
+                        <p style={{
+                            fontSize: 9, letterSpacing: '0.30em',
+                            textTransform: 'uppercase', fontWeight: 300,
+                            color: 'rgba(0,0,0,0.30)', textAlign: 'right',
+                            fontFamily: 'var(--font-inter)',
+                            writingMode: 'vertical-rl',
+                            transform: 'rotate(180deg)',
+                            lineHeight: 1,
+                        }}>{svc.shortName}</p>
+                    </div>
                 </motion.div>
             </AnimatePresence>
 
