@@ -77,6 +77,7 @@ export default function ServicesClient() {
     const [scrollDir,   setScrollDir]   = useState<1 | -1>(1);
     const [vpW,         setVpW]         = useState(1512);
     const [vpH,         setVpH]         = useState(942);
+    const [menuOpen,    setMenuOpen]    = useState(false);
 
     const angleRef     = useRef(0);
     const targetRef    = useRef(0);
@@ -195,6 +196,82 @@ export default function ServicesClient() {
     const prevSvc = SERVICES[(activeIndex - 1 + N) % N];
     const nextSvc = SERVICES[(activeIndex + 1) % N];
 
+    // ── NAV LINKS (shared) ────────────────────────────────────────────────────
+    const NAV_LINKS = [
+        { name: 'Portfolio', href: '/portfolio' },
+        { name: 'Services',  href: '/services'  },
+        { name: 'About',     href: '/about'     },
+        { name: 'Journal',   href: '/journal'   },
+        { name: 'Contact',   href: '/contact'   },
+    ];
+
+    // ── FULL-SCREEN MENU OVERLAY (same style as ArchNavbar) ──────────────────
+    const menuOverlay = (
+        <AnimatePresence>
+            {menuOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 200,
+                        backgroundColor: '#171717',
+                        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                        padding: '0 10vw',
+                    }}
+                >
+                    {/* Close — same thin-bar X feel as the hamburger */}
+                    <button
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                            position: 'absolute', top: 26, right: 24,
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            display: 'flex', flexDirection: 'column', gap: 0,
+                            padding: 4,
+                        }}
+                        aria-label="Close menu"
+                    >
+                        {/* Two bars crossed = X */}
+                        <div style={{ width: 26, height: 1.5, backgroundColor: '#fff', transform: 'translateY(0.75px) rotate(45deg)', transformOrigin: 'center' }} />
+                        <div style={{ width: 26, height: 1.5, backgroundColor: '#fff', transform: 'translateY(-0.75px) rotate(-45deg)', transformOrigin: 'center' }} />
+                    </button>
+
+                    {/* Logo in menu */}
+                    <Link href="/" onClick={() => setMenuOpen(false)} style={{
+                        position: 'absolute', top: 28, left: 24,
+                        fontSize: 15, letterSpacing: '0.4em', fontWeight: 300,
+                        textTransform: 'uppercase', color: '#fff',
+                        textDecoration: 'none', fontFamily: 'var(--font-inter)',
+                    }}>CLOUDS</Link>
+
+                    {/* Links */}
+                    <div style={{ maxWidth: 560 }}>
+                        {NAV_LINKS.map((link, i) => (
+                            <div key={link.name} style={{
+                                borderBottom: '1px solid #2a2a2a',
+                                paddingBottom: 18, marginBottom: 18,
+                            }}>
+                                <Link
+                                    href={link.href}
+                                    onClick={() => setMenuOpen(false)}
+                                    style={{
+                                        fontSize: 'clamp(28px, 5vw, 52px)',
+                                        fontWeight: 300, letterSpacing: '0.04em',
+                                        textTransform: 'uppercase', color: '#fff',
+                                        textDecoration: 'none',
+                                        fontFamily: 'var(--font-inter)',
+                                        display: 'block', transition: 'color 0.2s',
+                                    }}
+                                >{link.name}</Link>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+
     // ─────────────────────────────────────────────────────────────────────────
     // MOBILE LAYOUT  (< 900 px — phones + narrow tablets)
     // Full-screen hero image + centred content + dot nav
@@ -283,22 +360,31 @@ export default function ServicesClient() {
                     ))}
                 </div>
 
-                {/* Logo */}
-                <div className="fixed" style={{
-                    top: 24, left: 20, zIndex: 50, fontSize: 13, letterSpacing: '0.4em',
-                    fontWeight: 300, textTransform: 'uppercase',
-                    fontFamily: 'var(--font-inter)', color: '#111',
-                }}>CLOUDS</div>
+                {/* Logo → home */}
+                <Link href="/" style={{
+                    position: 'fixed', top: 24, left: 20, zIndex: 50,
+                    fontSize: 13, letterSpacing: '0.4em', fontWeight: 300,
+                    textTransform: 'uppercase', fontFamily: 'var(--font-inter)',
+                    color: '#111', textDecoration: 'none',
+                }}>CLOUDS</Link>
 
-                {/* Hamburger */}
-                <div className="fixed" style={{
-                    top: 22, right: 20, zIndex: 50,
-                    display: 'flex', flexDirection: 'column', gap: 7,
-                }}>
+                {/* Hamburger → opens menu */}
+                <button
+                    onClick={() => setMenuOpen(true)}
+                    style={{
+                        position: 'fixed', top: 22, right: 20, zIndex: 50,
+                        display: 'flex', flexDirection: 'column', gap: 7,
+                        background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+                        mixBlendMode: 'difference',
+                    }}
+                    aria-label="Open menu"
+                >
                     {[0, 1, 2].map(i => (
-                        <div key={i} style={{ width: 24, height: 1.5, backgroundColor: '#333' }} />
+                        <div key={i} style={{ width: 24, height: 1.5, backgroundColor: '#fff' }} />
                     ))}
-                </div>
+                </button>
+
+                {menuOverlay}
             </div>
         );
     }
@@ -564,25 +650,37 @@ export default function ServicesClient() {
 
             {/* ══════════════════════════════════════════════════════════════
                 LOGO + HAMBURGER
+                mix-blend-mode:difference → readable on both dark wheel
+                and light cream background, matching ArchNavbar behaviour
             ══════════════════════════════════════════════════════════════ */}
-            <div className="fixed pointer-events-none" style={{
-                top: 28, left: 24, zIndex: 50,
+
+            {/* Logo → home */}
+            <Link href="/" style={{
+                position: 'fixed', top: 28, left: 24, zIndex: 50,
                 fontSize: Math.max(12, Math.round(15 * scale)),
                 letterSpacing: '0.4em', fontWeight: 300,
                 textTransform: 'uppercase', fontFamily: 'var(--font-inter)',
-                color: '#ffffff', transition: 'color 0.4s',
-            }}>CLOUDS</div>
+                color: '#ffffff', textDecoration: 'none',
+                mixBlendMode: 'difference',
+            }}>CLOUDS</Link>
 
-            {/* mix-blend-mode:difference → white bars look dark on cream, white on dark wheel */}
-            <div className="fixed" style={{
-                top: 25, right: 24, zIndex: 50,
-                display: 'flex', flexDirection: 'column', gap: 8,
-                cursor: 'none', mixBlendMode: 'difference',
-            }}>
+            {/* Hamburger → opens full-screen menu */}
+            <button
+                onClick={() => setMenuOpen(true)}
+                style={{
+                    position: 'fixed', top: 25, right: 24, zIndex: 50,
+                    display: 'flex', flexDirection: 'column', gap: 8,
+                    background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+                    mixBlendMode: 'difference',
+                }}
+                aria-label="Open menu"
+            >
                 {[0, 1, 2].map(i => (
                     <div key={i} style={{ width: 26, height: 1.5, backgroundColor: '#ffffff' }} />
                 ))}
-            </div>
+            </button>
+
+            {menuOverlay}
 
         </div>
     );
