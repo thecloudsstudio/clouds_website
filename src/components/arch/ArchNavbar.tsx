@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+
+// Pages that have their own full-screen fixed navigation — hide the global navbar on these
+const HIDDEN_ON = [/^\/portfolio\/.+/, /^\/services$/, /^\/mockups/];
 
 const NAV_ITEMS = [
     {
@@ -44,7 +48,11 @@ const NAV_ITEMS = [
 ];
 
 export default function ArchNavbar() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+
+    // Don't render on full-screen experience pages — they have their own nav
+    if (HIDDEN_ON.some(re => re.test(pathname))) return null;
 
     return (
         <>
