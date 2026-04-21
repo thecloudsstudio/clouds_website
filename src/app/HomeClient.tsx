@@ -50,6 +50,7 @@ export default function HomeClient() {
         return () => { if (autoSlideTimerRef.current) clearInterval(autoSlideTimerRef.current); };
     }, []);
 
+    // Desktop: click left/right third to navigate
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
@@ -66,6 +67,25 @@ export default function HomeClient() {
         };
         window.addEventListener('click', handleClick);
         return () => window.removeEventListener('click', handleClick);
+    }, []);
+
+    // Mobile: touch swipe to navigate
+    useEffect(() => {
+        let startX = 0;
+        const onStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
+        const onEnd = (e: TouchEvent) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) < 50) return;
+            if (dx < 0) { setCurrentSlide(p => (p + 1) % heroSlides.length); }
+            else        { setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length); }
+            resetAutoSlide();
+        };
+        window.addEventListener('touchstart', onStart, { passive: true });
+        window.addEventListener('touchend', onEnd, { passive: true });
+        return () => {
+            window.removeEventListener('touchstart', onStart);
+            window.removeEventListener('touchend', onEnd);
+        };
     }, []);
 
     return (
@@ -92,7 +112,7 @@ export default function HomeClient() {
                 </AnimatePresence>
 
                 {/* Quote */}
-                <div className="absolute bottom-32 md:bottom-24 left-6 md:left-12 z-10 max-w-2xl">
+                <div className="absolute bottom-28 sm:bottom-32 md:bottom-24 left-5 right-5 sm:left-8 md:left-12 md:right-auto z-10 max-w-xl md:max-w-2xl">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentSlide}
@@ -112,13 +132,13 @@ export default function HomeClient() {
                 </div>
 
                 {/* Explore button */}
-                <div className="absolute bottom-20 md:bottom-16 right-6 md:right-12 z-20">
+                <div className="absolute bottom-10 md:bottom-16 right-5 md:right-12 z-20">
                     <Link
                         href="/portfolio"
-                        className="explore-button group inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm text-white hover:bg-white hover:text-black transition-all duration-300"
+                        className="explore-button group inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm text-white hover:bg-white hover:text-black transition-all duration-300"
                     >
-                        <span className="text-sm md:text-base font-medium tracking-wider uppercase">Explore</span>
-                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        <span className="text-xs md:text-base font-medium tracking-wider uppercase">Explore</span>
+                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>
 
